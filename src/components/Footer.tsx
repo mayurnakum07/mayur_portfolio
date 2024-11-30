@@ -4,32 +4,40 @@ import SocialsMenu from "./SocialsMenu";
 
 const Footer = () => {
   return (
-    <main className="flex-none h-auto max-w-[1300px] relative w-[100%] m-auto py-4">
-      <div className="grid grid-cols-1 lg:grid-cols-1  md:grid-cols-2 gap-10">
-        <section className="flex justify-between">
+    <main className="flex-none h-auto max-w-[1300px] relative w-full m-auto py-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 text-center md:text-left">
+        {/* Menubar */}
+        <section className="flex justify-center md:justify-start">
           <Menubar />
+        </section>
+
+        {/* Socials Menu */}
+        <section className="flex md:flex-col justify-center md:justify-start md:items-end">
           <SocialsMenu />
         </section>
 
-        <section className="flex justify-between items-start">
-          <div className="flex flex-col items-start justify-center">
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
-              Interested in working together?
-            </h1>
-            <div className="mt-6 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
-              <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold">
-                Get In Touch
-              </button>
-              <button className="px-6 py-2 bg-transparent transition-all duration-300 border border-gray-600 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white flex gap-2 font-bold">
-                <Download /> Download CV
-              </button>
-            </div>
+        {/* Get in Touch */}
+        <section className="flex flex-col justify-center items-center md:items-start">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
+            Interested in working together?
+          </h1>
+          <div className="mt-6 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
+            <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold">
+              Get In Touch
+            </button>
+            <button className="px-6 py-2 bg-transparent transition-all duration-300 border border-gray-600 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white flex gap-2 font-bold">
+              <Download /> Download CV
+            </button>
           </div>
-          <p className="text-sm text-gray-500">
+        </section>
+
+        {/* Copyright */}
+        <section className="flex flex-col justify-center items-center md:items-end">
+          <h3 className="text-[17px] text-gray-500">
             ©2023 All Rights Reserved.
             <br />
             Made with 💜 by Mayur Nakum
-          </p>
+          </h3>
         </section>
       </div>
     </main>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Menubar from "./Menubar";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -7,7 +8,7 @@ const Header = () => {
       <section className="flex justify-between">
         <h1 className="text-black text-[22px] font-bold">Mayur</h1>
         <Menubar />
-        <div className="bg-black p-2 rounded-full">
+        <Link href="/contact" className="bg-black p-2 rounded-full">
           <Image
             src={
               "https://framerusercontent.com/images/y7AJDvszhzacJVCt3lE8xkNyDY.svg"
@@ -16,7 +17,7 @@ const Header = () => {
             width={20}
             height={20}
           />
-        </div>
+        </Link>
       </section>
     </main>
   );
