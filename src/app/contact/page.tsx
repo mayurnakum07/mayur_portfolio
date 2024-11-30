@@ -1,4 +1,5 @@
 import { Mail, Phone } from "lucide-react";
+import profileImg from "../../../public/profile.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -38,16 +39,12 @@ const Contant = () => {
               <p className="text-[18px] text-gray-600">+91 72029-17242</p>
             </Link>
           </div>
-          <div className="relative flex items-center justify-center w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 mt-10 md:mt-0 rounded-full border-2 border-purple-200">
-            <div className="rounded-full overflow-hidden">
-              <Image
-                src="/profile.jpeg"
-                alt="Profile Image"
-                className="object-cover"
-                width={250}
-                height={250}
-              />
-            </div>
+          <div className="relative flex items-center justify-center w-48 h-48 md:w-64 md:h-64 lg:w-[25rem] lg:h-[25rem] mt-10 md:mt-0 rounded-full border-2 border-purple-300">
+            <Image
+              src={profileImg}
+              alt="Profile Image"
+              className="object-cover rounded-full w-full h-full lg:w-80 lg:h-80 md:w-60 md:h-60 sm:w-40 sm:h-40"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { Download } from "lucide-react";
 import Menubar from "./Menubar";
 import SocialsMenu from "./SocialsMenu";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -22,9 +23,12 @@ const Footer = () => {
             Interested in working together?
           </h1>
           <div className="mt-6 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
-            <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold">
+            <Link
+              href="/contact"
+              className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold"
+            >
               Get In Touch
-            </button>
+            </Link>
             <button className="px-6 py-2 bg-transparent transition-all duration-300 border border-gray-600 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white flex gap-2 font-bold">
               <Download /> Download CV
             </button>

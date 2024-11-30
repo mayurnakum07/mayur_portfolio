@@ -11,12 +11,12 @@ const SocialsMenu = () => {
           </a>
         </li>
         <li className="hover:text-purple-600">
-          <a href="https://linkedin.com/mr_mayur_nakum">
+          <a href="https://linkedin.com/in/mayur-nakum-178777250">
             <Linkedin />
           </a>
         </li>
         <li className="hover:text-purple-600">
-          <a href="https://instagram.com/mr_mayur_nakum">
+          <a href="https://github.com/mayurnakum07">
             <Github />
           </a>
         </li>
