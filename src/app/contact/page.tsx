@@ -15,7 +15,7 @@ const Contant = () => {
             </h1>
             <p className="mt-6 text-gray-800 lg:text-2xl">
               Looking to partner or work together? Reach out through the form
-              and I'll get back to you in the next 24 hours.
+              and {"I'll"} get back to you in the next 24 hours.
             </p>
             <Link
               href="mailto:mayurnakum07@gmail.com"
