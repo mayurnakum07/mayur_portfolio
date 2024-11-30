@@ -19,11 +19,9 @@ export default function RootLayout({
       <html lang="en">
         <SpeedInsights />
         <body>
-          <NoSSRProvider>
-            <Header />
-            {children}
-            <Footer />
-          </NoSSRProvider>
+          <Header />
+          {children}
+          <Footer />
         </body>
       </html>
     </>
