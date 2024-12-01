@@ -6,15 +6,15 @@ import React from "react";
 
 const Contant = () => {
   return (
-    <main className="flex-none h-auto max-w-[1300px] relative w-[100%] m-auto">
+    <main className="flex-none h-auto max-w-[1300px] px-2 lg:px-0 md:px-5  relative w-[100%] m-auto">
       <section className="py-28">
         <div className="flex flex-col md:flex-row items-center justify-between mt-8">
           <div className="text-center md:text-left md:w-1/2 lg:w-1/2 p-5">
-            <h1 className="lg:text-6xl md:text-6xl font-bold text-gray-800">
+            <h1 className="text-4xl lg:text-6xl md:text-6xl font-bold text-gray-800">
               Get In Touch
               <span className="text-purple-600">.</span>
             </h1>
-            <p className="mt-6 text-gray-800 lg:text-2xl">
+            <p className="mt-6 text-gray-800 text-xl lg:text-2xl">
               Looking to partner or work together? Reach out through the form
               and {"I'll"} get back to you in the next 24 hours.
             </p>

@@ -4,10 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const Menubar = () => {
+interface menuInterface {
+  home?: boolean;
+}
+
+const Menubar = ({ home }: menuInterface) => {
   const pathname = usePathname();
   return (
-    <nav>
+    <nav className={`${home && "hidden lg:block md:block"}`}>
       <ul className="flex space-x-6 font-bold text-[20px] text-[#4e525a]">
         <li
           className={`hover:text-purple-600 ${

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <main className="flex-none h-auto max-w-[1300px] relative w-full m-auto py-4">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 text-center md:text-left">
+    <main className="flex-none h-auto max-w-[1300px] px-2 lg:px-0 md:px-5  relative w-full m-auto py-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 text-center md:text-left mb-4 ">
         {/* Menubar */}
         <section className="flex justify-center md:justify-start">
           <Menubar />
@@ -37,7 +37,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <section className="flex flex-col justify-center items-center md:items-end">
-          <h3 className="text-[17px] text-gray-500">
+          <h3 className="text-[17px] text-gray-500 text-end">
             ©2023 All Rights Reserved.
             <br />
             Made with 💜 by Mayur Nakum
