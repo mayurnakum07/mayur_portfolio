@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: "Mayur | Frontend Web Developer Portfolio",
   description:
     "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
-  icons: "https://cdn-icons-png.flaticon.com/512/2518/2518007.png",
   keywords: [
     "Frontend Web Developer",
     "React Developer",

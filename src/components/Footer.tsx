@@ -29,16 +29,21 @@ const Footer = () => {
             >
               Get In Touch
             </Link>
-            <button className="px-6 py-2 bg-transparent transition-all duration-300 border border-gray-600 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white flex gap-2 font-bold">
+            <a
+              href="https://mayur-portfolio-two.vercel.app/mayurResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2 bg-transparent transition-all duration-300 border border-gray-600 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white flex gap-2 font-bold"
+            >
               <Download /> Download CV
-            </button>
+            </a>
           </div>
         </section>
 
         {/* Copyright */}
         <section className="flex flex-col justify-center items-center md:items-end">
           <h3 className="text-[17px] text-gray-500 text-end">
-            ©2023 All Rights Reserved.
+            ©2024 All Rights Reserved.
             <br />
             Made with 💜 by Mayur Nakum
           </h3>
