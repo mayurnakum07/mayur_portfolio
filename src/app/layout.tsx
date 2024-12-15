@@ -23,13 +23,13 @@ export const metadata: Metadata = {
   ],
   robots: "index, follow",
   openGraph: {
-    images: "https://i.ibb.co/0cL5M9C/protfollio-Img.png",
+    images: "https://i.ibb.co/zs2JLHM/newImg.png",
     title: "Mayur | Frontend Web Developer Portfolio",
     description:
       "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
   },
   twitter: {
-    images: "https://i.ibb.co/0cL5M9C/protfollio-Img.png",
+    images: "https://i.ibb.co/zs2JLHM/newImg.png",
     title: "Mayur | Frontend Web Developer Portfolio",
     description:
       "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
