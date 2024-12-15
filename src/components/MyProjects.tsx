@@ -17,11 +17,12 @@ const MyProjects = () => {
               index === projectData.length - 1 ? "relative" : "sticky top-5"
             }`}
           >
-            <div className="w-[100%] h-[30vh] lg:h-[70vh] md:h-[50vh] sm:h-[40vh] relative">
+            <div className="w-[100%] bg-[#b8b8b8] h-[30vh] rounded-xl lg:h-[70vh] md:h-[50vh] sm:h-[40vh] relative">
               <Image
                 src={item.image}
                 alt="project-image"
-                className="w-[100%] h-[100%] object-contain rounded-xl"
+                className="w-[100%] h-[100%] object-contain "
+                loading="lazy"
               />
             </div>
             <h1 className="mt-5 text-4xl lg:text-6xl font-bold text-gray-800">
@@ -34,7 +35,7 @@ const MyProjects = () => {
           </div>
         </div>
       ))}
-    </section>  
+    </section>
   );
 };
 
