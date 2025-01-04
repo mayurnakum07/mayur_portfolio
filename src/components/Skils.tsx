@@ -19,10 +19,11 @@ const Skils = () => {
         </div>
         <div>
           <h3 className="text-3xl font-bold text-gray-800">Frontend</h3>
-          <ul className="mt-4 text-gray-800 lg:text-[20px]">
+           <ul className="mt-4 text-gray-800 lg:text-[20px]">
             <li>Javascript</li>
             <li>ReactJS</li>
             <li>NextJS</li>
+            <li>React Native</li>
             <li>Ionic</li>
           </ul>
         </div>
