@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "Mayur | Frontend Web Developer Portfolio",
   description:
-    "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
+    "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
   keywords: [
     "Frontend Web Developer",
     "React Developer",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     images: "https://i.ibb.co/zs2JLHM/newImg.png",
     title: "Mayur | Frontend Web Developer Portfolio",
     description:
-      "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
+      "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
   },
   twitter: {
     images: "https://i.ibb.co/zs2JLHM/newImg.png",
     title: "Mayur | Frontend Web Developer Portfolio",
     description:
-      "Frontend Developer with expertise in React, Next.js, TypeScript, and React Ionic. Passionate about building dynamic, responsive web applications.",
+      "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
   },
   viewport: "width=device-width, initial-scale=1.0",
   themeColor: "#000000",
@@ -51,9 +51,9 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <Analytics />
         </body>
       </html>
+      <Analytics />
     </>
   );
 }
