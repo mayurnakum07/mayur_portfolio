@@ -46,14 +46,14 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <SpeedInsights />
         <body>
           <Header />
           {children}
           <Footer />
+          <SpeedInsights />
+          <Analytics />
         </body>
       </html>
-      <Analytics />
     </>
   );
 }
