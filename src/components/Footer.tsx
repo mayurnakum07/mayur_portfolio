@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 text-center md:text-left mb-4 ">
         {/* Menubar */}
         <section className="flex justify-center md:justify-start">
-          <Menubar />
+          <Menubar isContactVisible={true} />
         </section>
 
         {/* Socials Menu */}

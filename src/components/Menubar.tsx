@@ -6,9 +6,10 @@ import React from "react";
 
 interface menuInterface {
   home?: boolean;
+  isContactVisible?: boolean;
 }
 
-const Menubar = ({ home }: menuInterface) => {
+const Menubar = ({ home, isContactVisible = false }: menuInterface) => {
   const pathname = usePathname();
   return (
     <nav className={`${home && "hidden lg:block md:block"}`}>
@@ -34,6 +35,15 @@ const Menubar = ({ home }: menuInterface) => {
         >
           <Link href="/about">About</Link>
         </li>
+        {isContactVisible && (
+          <li
+            className={`hover:text-purple-600 ${
+              pathname === "/contact" && "text-purple-600"
+            }`}
+          >
+            <Link href="/contact">Contact</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
