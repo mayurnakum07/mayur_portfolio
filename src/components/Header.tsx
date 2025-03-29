@@ -17,8 +17,10 @@ const Header = () => {
 
   // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (menuOpen && !event.target.closest("#mobile-menu")) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      if (menuOpen && target && !target.closest("#mobile-menu")) {
         setMenuOpen(false);
       }
     };
@@ -29,7 +31,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full ${
+      className={`fixed w-full ${
         !menuOpen ? "backdrop-blur-xl" : "bg-white"
       } shadow-md z-50`}
     >
