@@ -14,7 +14,7 @@ const MyProjects = () => {
         >
           <div
             className={`h-[0vh] ${
-              index === projectData.length - 1 ? "relative" : "sticky top-5"
+              index === projectData.length - 1 ? "relative" : "sticky top-[80px]"
             }`}
           >
             <div className="w-[100%] bg-[#b8b8b8] h-[30vh] rounded-xl lg:h-[70vh] md:h-[50vh] sm:h-[40vh] relative">

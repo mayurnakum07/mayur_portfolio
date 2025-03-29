@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <main className="flex-none h-auto max-w-[1300px] px-2 lg:px-0 md:px-5  relative w-full m-auto py-4">
+    <main className="flex-none h-auto px-4 md:px-8 lg:px-28  relative w-full m-auto py-4">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 text-center md:text-left mb-4 ">
         {/* Menubar */}
         <section className="flex justify-center md:justify-start">
