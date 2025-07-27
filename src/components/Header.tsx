@@ -38,9 +38,9 @@ const Header = () => {
       <main className="flex-none h-auto px-4 md:px-8 lg:px-28 w-full m-auto py-4">
         <section className="flex justify-between items-center">
           {/* Logo */}
-          <a href="/" className="text-black text-[20px] font-bold">
+          <Link href="/" className="text-black text-[20px] font-bold">
             Mayur<span className="text-purple-600">.</span>
-          </a>
+          </Link>
 
           {/* Menu Button for Mobile/Tablet */}
           <button

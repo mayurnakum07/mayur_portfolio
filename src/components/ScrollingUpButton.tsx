@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
-import upArrowIcon from "../../public/icon/upArrow.svg";
 import React, { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
 
 const ScrollButtons = () => {
   const [showScrollUp, setShowScrollUp] = useState(false);
@@ -38,34 +37,34 @@ const ScrollButtons = () => {
     <>
       {/* Scroll Up Button */}
       <div
-        className={`fixed bottom-8 right-10 z-50 transition-opacity duration-500 ${
-          showScrollUp ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ${
+          showScrollUp
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
         }`}
         onClick={scrollToTop}
       >
-        <div className="bg-purple-600 w-[40px] h-[40px] rounded-full flex justify-center items-center cursor-pointer group transition-all duration-300">
-          <Image
-            alt="upArrow"
-            src={upArrowIcon}
-            className="w-[20px] transition-transform duration-300 group-hover:-translate-y-1"
-          />
+        <div className="group bg-purple-600 w-14 h-14 rounded-full flex justify-center items-center cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-purple-700 transform hover:scale-110">
+          <ChevronUp className="text-white w-6 h-6 group-hover:-translate-y-0.5 transition-transform duration-200" />
         </div>
       </div>
 
       {/* Scroll Down Button */}
       <div
-        className={`fixed bottom-9 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-500 ${
-          showScrollDown ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+          showScrollDown
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
         }`}
         onClick={scrollToSection}
       >
-        <div className="flex flex-col items-center cursor-pointer">
+        <div className="flex flex-col items-center cursor-pointer group">
           {/* Animated Scroll Container */}
-          <div className="w-10 h-16 rounded-full border-2 border-purple-600 flex justify-center items-end p-1 relative overflow-hidden animate-pulse">
-            <div className="w-5 h-5 bg-purple-600 rounded-full animate-bounce"></div>
+          <div className="w-12 h-16 rounded-full border-2 border-purple-600 flex justify-center items-end p-1 relative overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+            <div className="w-3 h-3 bg-purple-600 rounded-full animate-bounce"></div>
           </div>
           {/* Scroll Text */}
-          <p className="text-purple-600 mt-2 text-sm md:text-base animate-pulse">
+          <p className="text-purple-600 mt-2 text-sm font-medium group-hover:text-purple-700 transition-colors duration-200">
             Scroll down
           </p>
         </div>
@@ -73,4 +72,5 @@ const ScrollButtons = () => {
     </>
   );
 };
+
 export default ScrollButtons;

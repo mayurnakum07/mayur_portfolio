@@ -1,4 +1,5 @@
-import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const SocialsMenu = () => {
@@ -6,27 +7,22 @@ const SocialsMenu = () => {
     <nav>
       <ul className="flex space-x-6 font-bold text-[20px] text-[#4e525a]">
         <li className="hover:text-purple-600">
-          <a href="https://instagram.com/mr_mayur_nakum" target="_blank">
+          <Link href="https://instagram.com/mr_mayur_nakum" target="_blank">
             <Instagram />
-          </a>
+          </Link>
         </li>
         <li className="hover:text-purple-600">
-          <a
+          <Link
             href="https://linkedin.com/in/mayur-nakum-178777250"
             target="_blank"
           >
             <Linkedin />
-          </a>
+          </Link>
         </li>
         <li className="hover:text-purple-600">
-          <a href="https://github.com/mayurnakum07" target="_blank">
+          <Link href="https://github.com/mayurnakum07" target="_blank">
             <Github />
-          </a>
-        </li>
-        <li className="hover:text-purple-600">
-          <a href="https://instagram.com/mr_mayur_nakum" target="_blank">
-            <Facebook />
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
