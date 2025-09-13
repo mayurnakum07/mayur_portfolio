@@ -110,22 +110,6 @@ const Contact = () => {
                   </div>
                 </Link>
 
-                {/* Phone */}
-                <Link
-                  href="tel:+917202917242"
-                  className="group flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:border-purple-200"
-                >
-                  <div className="p-3 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors duration-200">
-                    <Phone className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-gray-500 font-medium">Phone</p>
-                    <p className="text-gray-800 font-semibold">
-                      +91 72029-17242
-                    </p>
-                  </div>
-                </Link>
-
                 {/* Location */}
                 <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
                   <div className="p-3 bg-purple-100 rounded-lg">
