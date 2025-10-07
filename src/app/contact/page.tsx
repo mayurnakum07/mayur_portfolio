@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+import { Mail,  MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import profileImg from "../../../public/profile.jpg";
 import Image from "next/image";
 import Link from "next/link";
