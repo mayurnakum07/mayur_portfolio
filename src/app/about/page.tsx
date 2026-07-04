@@ -38,98 +38,96 @@ export const metadata: Metadata = {
 
 const About = () => {
   return (
-    <main className="container-page relative w-full">
-      <section className="section-spacing relative overflow-hidden">
-        <div className="relative z-10">
-          <div className="text-center mb-20">
-            <h1 className="heading-display mb-8">
-              About me<span className="text-accent-cyan">.</span>
-            </h1>
-            <p className="text-body-lg max-w-4xl mx-auto border-l-2 border-accent-cyan pl-6 lg:pl-8 text-left lg:text-center lg:border-l-0 lg:pl-0">
-              Developing beautiful and functional websites is what I love doing,
-              and{" "}
-              <span className="text-accent-cyan font-semibold">
-                {`that's`} why I give my all
-              </span>{" "}
-              in every new challenge.
+    <main className="container-page">
+      <section className="section-spacing">
+        <div className="section-header-center mb-20 lg:mb-28">
+          <h1 className="heading-display mb-8">
+            About me<span className="text-accent-cyan">.</span>
+          </h1>
+          <p className="text-body-lg max-w-3xl mx-auto">
+            Developing beautiful and functional websites is what I love doing,
+            and{" "}
+            <span className="text-accent-cyan font-semibold">
+              {`that's`} why I give my all
+            </span>{" "}
+            in every new challenge.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20 lg:mb-28">
+          <div className="card-interactive p-6 lg:p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="icon-box-accent">
+                <User className="w-6 h-6 text-accent-purple" />
+              </div>
+              <h3 className="heading-subsection text-lg">
+                Passionate Developer
+              </h3>
+            </div>
+            <p className="text-body">
+              {`I'm`} deeply passionate about creating exceptional user
+              experiences and bringing innovative ideas to life through code.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
-            <div className="card-interactive p-6 lg:p-8">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="icon-box-accent">
-                  <User className="w-6 h-6 text-accent-purple" />
-                </div>
-                <h3 className="heading-subsection text-lg">
-                  Passionate Developer
-                </h3>
+          <div className="card-interactive p-6 lg:p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
+                <Target className="w-6 h-6 text-accent-cyan" />
               </div>
-              <p className="text-body">
-                {`I'm`} deeply passionate about creating exceptional user
-                experiences and bringing innovative ideas to life through code.
-              </p>
+              <h3 className="heading-subsection text-lg">
+                Goal-Oriented
+              </h3>
             </div>
-
-            <div className="card-interactive p-6 lg:p-8">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
-                  <Target className="w-6 h-6 text-accent-cyan" />
-                </div>
-                <h3 className="heading-subsection text-lg">
-                  Goal-Oriented
-                </h3>
-              </div>
-              <p className="text-body">
-                Every project has a clear objective, and I ensure we achieve it
-                through focused development and strategic planning.
-              </p>
-            </div>
-
-            <div className="card-interactive p-6 lg:p-8">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="icon-box-accent">
-                  <Heart className="w-6 h-6 text-accent-purple" />
-                </div>
-                <h3 className="heading-subsection text-lg">
-                  User-Focused
-                </h3>
-              </div>
-              <p className="text-body">
-                I prioritize user experience in every decision, ensuring the end
-                product is both beautiful and functional.
-              </p>
-            </div>
-
-            <div className="card-interactive p-6 lg:p-8">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
-                  <Award className="w-6 h-6 text-accent-cyan" />
-                </div>
-                <h3 className="heading-subsection text-lg">
-                  Quality Driven
-                </h3>
-              </div>
-              <p className="text-body">
-                I maintain high standards in code quality, performance, and
-                design to deliver exceptional results.
-              </p>
-            </div>
+            <p className="text-body">
+              Every project has a clear objective, and I ensure we achieve it
+              through focused development and strategic planning.
+            </p>
           </div>
 
-          <div className="surface-panel-accent p-8 lg:p-12">
-            <div className="text-center">
-              <h2 className="heading-subsection mb-6">My Mission</h2>
-              <p className="text-body-lg max-w-4xl mx-auto">
-                To create{" "}
-                <span className="text-accent-cyan font-semibold">
-                  innovative, accessible, and impactful digital solutions
-                </span>{" "}
-                that not only meet client requirements but exceed expectations.
-                I believe in the power of technology to transform businesses and
-                enhance user experiences.
-              </p>
+          <div className="card-interactive p-6 lg:p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="icon-box-accent">
+                <Heart className="w-6 h-6 text-accent-purple" />
+              </div>
+              <h3 className="heading-subsection text-lg">
+                User-Focused
+              </h3>
             </div>
+            <p className="text-body">
+              I prioritize user experience in every decision, ensuring the end
+              product is both beautiful and functional.
+            </p>
+          </div>
+
+          <div className="card-interactive p-6 lg:p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
+                <Award className="w-6 h-6 text-accent-cyan" />
+              </div>
+              <h3 className="heading-subsection text-lg">
+                Quality Driven
+              </h3>
+            </div>
+            <p className="text-body">
+              I maintain high standards in code quality, performance, and
+              design to deliver exceptional results.
+            </p>
+          </div>
+        </div>
+
+        <div className="surface-panel-accent p-8 lg:p-12 max-w-4xl mx-auto">
+          <div className="text-center">
+            <h2 className="heading-subsection mb-6">My Mission</h2>
+            <p className="text-body-lg">
+              To create{" "}
+              <span className="text-accent-cyan font-semibold">
+                innovative, accessible, and impactful digital solutions
+              </span>{" "}
+              that not only meet client requirements but exceed expectations.
+              I believe in the power of technology to transform businesses and
+              enhance user experiences.
+            </p>
           </div>
         </div>
       </section>

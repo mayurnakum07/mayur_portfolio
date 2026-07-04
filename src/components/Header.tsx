@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Menubar from "./Menubar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,7 +18,7 @@ const Header = () => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
 
-      if (menuOpen && target && !target.closest("#mobile-menu")) {
+      if (menuOpen && target && !target.closest("#site-nav")) {
         setMenuOpen(false);
       }
     };
@@ -29,77 +28,83 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header className={`nav-header ${menuOpen ? "bg-surface-1" : ""}`}>
-      <main className="container-page py-4">
-        <section className="flex justify-between items-center">
-          <Link href="/" className="text-foreground text-xl font-bold tracking-tight">
+    <header className="nav-floating">
+      <div id="site-nav" className="container-page relative">
+        <div
+          className={`nav-glass grid grid-cols-[1fr_auto_1fr] items-center gap-3 ${menuOpen ? "nav-glass-open" : ""}`}
+        >
+          <Link href="/" className="nav-logo justify-self-start">
             Mayur<span className="text-accent-cyan">.</span>
           </Link>
 
-          <button
-            className="lg:hidden md:hidden btn-icon"
-            onClick={(e) => {
-              e.stopPropagation();
-              setMenuOpen(!menuOpen);
-            }}
-          >
-            {menuOpen ? <X size={20} /> : <AlignJustify size={20} />}
-          </button>
+          <div className="justify-self-center hidden md:block">
+            <Menubar home={true} variant="header" />
+          </div>
 
-          <Menubar home={true} />
+          <div className="nav-actions justify-self-end col-start-3">
+            <Link
+              href="/contact"
+              className={`hidden md:inline-flex btn-accent text-sm px-4 py-2 ${
+                pathname === "/contact" ? "ring-1 ring-accent-cyan/40" : ""
+              }`}
+            >
+              Get In Touch
+            </Link>
 
-          <Link
-            href="/contact"
-            className={`hidden md:block lg:block btn-icon ${
-              pathname === "/contact" ? "border-accent-cyan/40 bg-accent-cyan/10" : ""
-            }`}
-          >
-            <Image
-              src="https://framerusercontent.com/images/y7AJDvszhzacJVCt3lE8xkNyDY.svg"
-              alt="contact"
-              width={20}
-              height={20}
-              className="invert"
-            />
-          </Link>
-        </section>
+            <button
+              className="md:hidden btn-icon h-9 w-9 p-0 col-start-3"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMenuOpen(!menuOpen);
+              }}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+            >
+              {menuOpen ? <X size={18} /> : <AlignJustify size={18} />}
+            </button>
+          </div>
+        </div>
 
         {menuOpen && (
-          <div
-            id="mobile-menu"
-            className="absolute top-16 left-0 w-full card-glass p-6 md:hidden lg:hidden z-50 mx-0 rounded-none border-x-0"
-          >
+          <div className="nav-mobile-menu">
             <nav>
-              <ul className="flex flex-col space-y-4 text-lg">
-                <Link
-                  href="/"
-                  className={`nav-link ${pathname === "/" ? "nav-link-active" : ""}`}
-                >
-                  <li>Home</li>
-                </Link>
-                <Link
-                  href="/projects"
-                  className={`nav-link ${pathname === "/projects" ? "nav-link-active" : ""}`}
-                >
-                  <li>Projects</li>
-                </Link>
-                <Link
-                  href="/about"
-                  className={`nav-link ${pathname === "/about" ? "nav-link-active" : ""}`}
-                >
-                  <li>About</li>
-                </Link>
-                <Link
-                  href="/contact"
-                  className={`nav-link ${pathname === "/contact" ? "nav-link-active" : ""}`}
-                >
-                  <li>Get In Touch</li>
-                </Link>
+              <ul className="flex flex-col gap-1">
+                <li>
+                  <Link
+                    href="/"
+                    className={`nav-link block ${pathname === "/" ? "nav-link-active" : ""}`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/projects"
+                    className={`nav-link block ${pathname === "/projects" ? "nav-link-active" : ""}`}
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className={`nav-link block ${pathname === "/about" ? "nav-link-active" : ""}`}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className={`nav-link block ${pathname === "/contact" ? "nav-link-active" : ""}`}
+                  >
+                    Get In Touch
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
         )}
-      </main>
+      </div>
     </header>
   );
 };

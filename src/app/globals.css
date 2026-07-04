@@ -64,16 +64,143 @@
 
 @layer components {
   /* ── Layout ── */
+  .page-shell {
+    @apply flex min-h-screen flex-col;
+  }
+
+  .page-content {
+    @apply flex-1 pt-24 md:pt-28;
+  }
+
   .container-page {
-    @apply w-full mx-auto max-w-page px-6 md:px-10 lg:px-16 xl:px-24;
+    @apply w-full mx-auto max-w-page px-5 sm:px-8 md:px-10 lg:px-12;
+  }
+
+  .container-wide {
+    @apply w-full mx-auto max-w-wide px-5 sm:px-8 md:px-10 lg:px-12;
   }
 
   .section-spacing {
-    @apply py-24 lg:py-32;
+    @apply py-28 lg:py-40;
+  }
+
+  .section-spacing-sm {
+    @apply py-20 lg:py-28;
   }
 
   .section-divider {
-    @apply border-t border-border;
+    @apply border-t border-border/60;
+  }
+
+  .section-header {
+    @apply mb-16 lg:mb-24 max-w-content;
+  }
+
+  .section-header-center {
+    @apply section-header mx-auto text-center;
+  }
+
+  /* ── Hero ── */
+  .hero-section {
+    @apply relative overflow-hidden min-h-[calc(100svh-7rem)] flex items-center py-16 lg:py-24;
+  }
+
+  .hero-grid {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center w-full;
+  }
+
+  .hero-content {
+    @apply lg:col-span-7 flex flex-col gap-10 lg:gap-12 text-center lg:text-left;
+  }
+
+  .hero-visual {
+    @apply lg:col-span-5 flex justify-center lg:justify-end order-first lg:order-last;
+  }
+
+  .hero-visual-frame {
+    @apply relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] aspect-[4/5] rounded-2xl border border-border/80 bg-surface-1 overflow-hidden shadow-soft-lg;
+  }
+
+  .hero-visual-glow {
+    @apply absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-purple/10 -z-10 blur-2xl;
+  }
+
+  .hero-eyebrow {
+    @apply label-text text-accent-cyan/80;
+  }
+
+  .hero-actions {
+    @apply flex flex-col sm:flex-row items-center lg:items-start gap-4;
+  }
+
+  .hero-tags {
+    @apply flex flex-wrap gap-3 justify-center lg:justify-start;
+  }
+
+  /* ── Navigation ── */
+  .nav-floating {
+    @apply fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-4 md:pt-5 pointer-events-none;
+  }
+
+  .nav-glass {
+    @apply pointer-events-auto h-14 md:h-[3.75rem] px-4 md:px-5 rounded-2xl border border-border/60 bg-surface-1/70 backdrop-blur-2xl shadow-soft-lg;
+  }
+
+  .nav-glass-open {
+    @apply rounded-2xl border-border bg-surface-1/90;
+  }
+
+  .nav-logo {
+    @apply text-foreground text-lg font-bold tracking-tight shrink-0;
+  }
+
+  .nav-links {
+    @apply hidden md:flex items-center gap-1;
+  }
+
+  .nav-link {
+    @apply px-3.5 py-2 text-sm font-medium text-muted-foreground rounded-lg transition-colors duration-200 hover:text-foreground hover:bg-surface-2/80;
+  }
+
+  .nav-link-active {
+    @apply text-foreground bg-surface-2/90 border border-border/60;
+  }
+
+  .nav-actions {
+    @apply flex items-center gap-2 shrink-0;
+  }
+
+  .nav-mobile-menu {
+    @apply pointer-events-auto absolute top-[calc(100%+0.5rem)] left-0 right-0 card-glass p-5 md:hidden rounded-2xl;
+  }
+
+  /* ── Footer ── */
+  .footer-shell {
+    @apply mt-auto border-t border-border/60 bg-surface-1/30;
+  }
+
+  .footer-cta {
+    @apply surface-panel-accent p-8 md:p-10 lg:p-12 mb-12 lg:mb-16;
+  }
+
+  .footer-grid {
+    @apply grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center pb-10 lg:pb-12;
+  }
+
+  .footer-brand {
+    @apply flex flex-col gap-3 text-center md:text-left;
+  }
+
+  .footer-nav {
+    @apply flex justify-center md:justify-start;
+  }
+
+  .footer-social {
+    @apply flex justify-center md:justify-end;
+  }
+
+  .footer-bottom {
+    @apply flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border/60 text-center sm:text-left;
   }
 
   /* ── Typography ── */
@@ -163,17 +290,13 @@
     @apply surface-panel bg-gradient-to-br from-surface-2 to-surface-1;
   }
 
-  /* ── Navigation ── */
-  .nav-link {
-    @apply text-muted-foreground font-medium text-body-md transition-colors duration-200 hover:text-foreground;
+  /* ── Navigation (legacy footer links) ── */
+  .footer-nav-link {
+    @apply text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground;
   }
 
-  .nav-link-active {
+  .footer-nav-link-active {
     @apply text-accent-cyan;
-  }
-
-  .nav-header {
-    @apply fixed w-full z-50 border-b border-border bg-background/80 backdrop-blur-xl;
   }
 
   /* ── Inputs ── */

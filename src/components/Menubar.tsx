@@ -7,25 +7,57 @@ import React from "react";
 interface menuInterface {
   home?: boolean;
   isContactVisible?: boolean;
+  variant?: "header" | "footer";
 }
 
-const Menubar = ({ home, isContactVisible = false }: menuInterface) => {
+const Menubar = ({
+  isContactVisible = false,
+  variant = "footer",
+}: menuInterface) => {
   const pathname = usePathname();
+  const linkClass = variant === "header" ? "nav-link" : "footer-nav-link";
+  const activeClass =
+    variant === "header" ? "nav-link-active" : "footer-nav-link-active";
+  const listClass =
+    variant === "header"
+      ? "flex items-center gap-1"
+      : "flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2";
+
   return (
-    <nav className={`${home && "hidden lg:block md:block"}`}>
-      <ul className="flex space-x-8">
-        <li className={`nav-link ${pathname === "/" ? "nav-link-active" : ""}`}>
-          <Link href="/">Home</Link>
+    <nav>
+      <ul className={listClass}>
+        <li>
+          <Link
+            href="/"
+            className={`${linkClass} ${pathname === "/" ? activeClass : ""}`}
+          >
+            Home
+          </Link>
         </li>
-        <li className={`nav-link ${pathname === "/projects" ? "nav-link-active" : ""}`}>
-          <Link href="/projects">Projects</Link>
+        <li>
+          <Link
+            href="/projects"
+            className={`${linkClass} ${pathname === "/projects" ? activeClass : ""}`}
+          >
+            Projects
+          </Link>
         </li>
-        <li className={`nav-link ${pathname === "/about" ? "nav-link-active" : ""}`}>
-          <Link href="/about">About</Link>
+        <li>
+          <Link
+            href="/about"
+            className={`${linkClass} ${pathname === "/about" ? activeClass : ""}`}
+          >
+            About
+          </Link>
         </li>
         {isContactVisible && (
-          <li className={`nav-link ${pathname === "/contact" ? "nav-link-active" : ""}`}>
-            <Link href="/contact">Contact</Link>
+          <li>
+            <Link
+              href="/contact"
+              className={`${linkClass} ${pathname === "/contact" ? activeClass : ""}`}
+            >
+              {variant === "header" ? "Get In Touch" : "Contact"}
+            </Link>
           </li>
         )}
       </ul>

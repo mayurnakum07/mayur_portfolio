@@ -25,10 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen`}>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased page-shell`}
+      >
         <Header />
         <ScrollButtons />
-        {children}
+        <div className="page-content">{children}</div>
         <Footer />
         <SpeedInsights />
         <Analytics />

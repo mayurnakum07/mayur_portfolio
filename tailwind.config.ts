@@ -56,7 +56,12 @@ const config: Config = {
         "container-xl": "6rem",
       },
       maxWidth: {
-        page: "1400px",
+        page: "1200px",
+        content: "720px",
+        wide: "1400px",
+      },
+      screens: {
+        xs: "475px",
       },
       borderRadius: {
         lg: "var(--radius)",

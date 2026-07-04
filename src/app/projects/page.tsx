@@ -36,11 +36,11 @@ export const metadata: Metadata = {
 
 const Projects = () => {
   return (
-    <main className="container-page relative w-full">
-      <section className="section-spacing relative overflow-hidden">
-        <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="icon-box-accent p-3 rounded-xl">
+    <main className="container-page">
+      <section className="section-spacing">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-24">
+          <div className="flex items-start gap-5">
+            <div className="icon-box-accent p-3 rounded-xl shrink-0">
               <Code className="text-accent-purple" size={28} />
             </div>
             <div>
@@ -49,43 +49,43 @@ const Projects = () => {
               </h1>
             </div>
           </div>
+        </div>
 
-          <div className="max-w-4xl">
-            <p className="text-body-lg px-2 border-l-2 border-accent-cyan mb-12">
-              Designing and Developing Robust and Stylish Web Applications for a
-              Decade and Counting
-            </p>
+        <div className="max-w-4xl space-y-12 lg:space-y-16">
+          <p className="text-body-lg border-l-2 border-accent-cyan pl-6 lg:pl-8">
+            Designing and Developing Robust and Stylish Web Applications for a
+            Decade and Counting
+          </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <div className="card p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Sparkles className="text-accent-cyan" size={22} />
-                  <h3 className="text-lg font-semibold text-foreground">
-                    Projects Completed
-                  </h3>
-                </div>
-                <p className="text-3xl font-bold text-gradient">10+</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Sparkles className="text-accent-cyan" size={22} />
+                <h3 className="text-lg font-semibold text-foreground">
+                  Projects Completed
+                </h3>
               </div>
+              <p className="text-3xl font-bold text-gradient">10+</p>
+            </div>
 
-              <div className="card p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Zap className="text-accent-cyan" size={22} />
-                  <h3 className="text-lg font-semibold text-foreground">
-                    Technologies
-                  </h3>
-                </div>
-                <p className="text-3xl font-bold text-gradient">8+</p>
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Zap className="text-accent-cyan" size={22} />
+                <h3 className="text-lg font-semibold text-foreground">
+                  Technologies
+                </h3>
               </div>
+              <p className="text-3xl font-bold text-gradient">8+</p>
+            </div>
 
-              <div className="card p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Code className="text-accent-cyan" size={22} />
-                  <h3 className="text-lg font-semibold text-foreground">
-                    Years Experience
-                  </h3>
-                </div>
-                <p className="text-3xl font-bold text-gradient">2+</p>
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Code className="text-accent-cyan" size={22} />
+                <h3 className="text-lg font-semibold text-foreground">
+                  Years Experience
+                </h3>
               </div>
+              <p className="text-3xl font-bold text-gradient">2+</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ const Projects = () => {
 
       <MyProjects />
 
-      <section className="section-spacing">
+      <section className="section-spacing-sm">
         <div className="surface-panel-accent p-8 lg:p-12">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
