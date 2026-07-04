@@ -1,9 +1,226 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
-    --radius: 0.5rem
+    /* Core palette — dark-first */
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+
+    --surface-1: 240 6% 7%;
+    --surface-2: 240 5% 10%;
+    --surface-3: 240 5% 13%;
+    --surface-elevated: 240 4% 16%;
+
+    --accent-cyan: 187 85% 53%;
+    --accent-purple: 258 90% 66%;
+
+    --border: 240 4% 16%;
+    --border-hover: 240 4% 24%;
+
+    --grid-line: 240 4% 16% / 0.4;
+
+    /* Radius & shadows */
+    --radius: 0.625rem;
+    --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.3), 0 4px 16px hsl(0 0% 0% / 0.2);
+    --shadow-soft-lg: 0 2px 4px hsl(0 0% 0% / 0.3), 0 8px 32px hsl(0 0% 0% / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--accent-cyan) / 0.08);
+    --shadow-glow-purple: 0 0 40px hsl(var(--accent-purple) / 0.08);
+  }
+
+  *,
+  *::before,
+  *::after {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--accent-cyan) / 0.07), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--accent-purple) / 0.05), transparent),
+      linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px);
+    background-size: 256px 256px, 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsl(var(--accent-purple) / 0.3);
+    color: hsl(var(--foreground));
   }
 }
 
+@layer components {
+  /* ── Layout ── */
+  .container-page {
+    @apply w-full mx-auto max-w-page px-6 md:px-10 lg:px-16 xl:px-24;
+  }
+
+  .section-spacing {
+    @apply py-24 lg:py-32;
+  }
+
+  .section-divider {
+    @apply border-t border-border;
+  }
+
+  /* ── Typography ── */
+  .heading-display {
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground;
+  }
+
+  .heading-section {
+    @apply text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground;
+  }
+
+  .heading-subsection {
+    @apply text-2xl lg:text-3xl font-semibold tracking-tight text-foreground;
+  }
+
+  .text-body {
+    @apply text-base lg:text-lg text-muted-foreground leading-relaxed;
+  }
+
+  .text-body-lg {
+    @apply text-lg lg:text-xl text-muted-foreground leading-relaxed;
+  }
+
+  .text-accent {
+    @apply text-accent-purple;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-purple bg-clip-text text-transparent;
+  }
+
+  .label-text {
+    @apply text-xs uppercase text-muted-foreground tracking-widest font-medium;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .btn-primary {
+    @apply btn px-6 py-3 bg-foreground text-background hover:bg-foreground/90 shadow-soft;
+  }
+
+  .btn-accent {
+    @apply btn px-6 py-3 bg-accent-purple text-white hover:bg-accent-purple/90 shadow-soft;
+  }
+
+  .btn-secondary {
+    @apply btn px-6 py-3 bg-transparent border border-border text-foreground hover:border-border-hover hover:bg-surface-2;
+  }
+
+  .btn-outline-accent {
+    @apply btn px-6 py-3 bg-transparent border border-accent-purple/40 text-accent-purple hover:bg-accent-purple/10 hover:border-accent-purple/60;
+  }
+
+  .btn-ghost {
+    @apply btn px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-surface-2;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center p-2.5 rounded-full bg-surface-2 border border-border text-foreground hover:border-border-hover hover:bg-surface-3 transition-all duration-200;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-surface-1 border border-border rounded-xl shadow-soft;
+  }
+
+  .card-elevated {
+    @apply bg-surface-2 border border-border rounded-xl shadow-soft-lg;
+  }
+
+  .card-interactive {
+    @apply card transition-all duration-300 hover:border-border-hover hover:shadow-soft-lg;
+  }
+
+  .card-glass {
+    @apply bg-surface-1/60 border border-border rounded-xl backdrop-blur-xl shadow-soft;
+  }
+
+  .surface-panel {
+    @apply bg-surface-2/50 border border-border rounded-2xl;
+  }
+
+  .surface-panel-accent {
+    @apply surface-panel bg-gradient-to-br from-surface-2 to-surface-1;
+  }
+
+  /* ── Navigation ── */
+  .nav-link {
+    @apply text-muted-foreground font-medium text-body-md transition-colors duration-200 hover:text-foreground;
+  }
+
+  .nav-link-active {
+    @apply text-accent-cyan;
+  }
+
+  .nav-header {
+    @apply fixed w-full z-50 border-b border-border bg-background/80 backdrop-blur-xl;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full px-4 py-3 bg-surface-1 border border-border rounded-lg text-foreground placeholder:text-muted-foreground transition-colors duration-200 focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/20;
+  }
+
+  .input-label {
+    @apply block text-body-sm font-medium text-muted-foreground mb-2;
+  }
+
+  /* ── Badges & Tags ── */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-surface-2 border border-border text-accent-cyan;
+  }
+
+  .badge-accent {
+    @apply inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple;
+  }
+
+  .badge-status {
+    @apply inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan;
+  }
+
+  .tag {
+    @apply inline-flex px-3 py-1 text-sm font-medium rounded-full bg-surface-2 text-muted-foreground border border-border transition-colors duration-200 hover:border-accent-cyan/30 hover:text-foreground;
+  }
+
+  .tag-highlight {
+    @apply inline-flex px-4 py-2 text-sm font-medium rounded-full bg-surface-2 text-accent-cyan border border-accent-cyan/20;
+  }
+
+  /* ── Icon containers ── */
+  .icon-box {
+    @apply p-3 bg-surface-3 rounded-lg border border-border;
+  }
+
+  .icon-box-accent {
+    @apply icon-box bg-accent-purple/10 border-accent-purple/20;
+  }
+
+  /* ── Links ── */
+  .link-accent {
+    @apply text-accent-purple hover:text-accent-cyan transition-colors duration-200 font-semibold;
+  }
+
+  .link-subtle {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+}

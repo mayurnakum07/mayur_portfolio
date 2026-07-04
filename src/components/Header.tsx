@@ -15,7 +15,6 @@ const Header = () => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
@@ -30,37 +29,29 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header
-      className={`fixed w-full ${
-        !menuOpen ? "backdrop-blur-xl" : "bg-white"
-      } shadow-md z-50`}
-    >
-      <main className="flex-none h-auto px-4 md:px-8 lg:px-28 w-full m-auto py-4">
+    <header className={`nav-header ${menuOpen ? "bg-surface-1" : ""}`}>
+      <main className="container-page py-4">
         <section className="flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="text-black text-[20px] font-bold">
-            Mayur<span className="text-purple-600">.</span>
+          <Link href="/" className="text-foreground text-xl font-bold tracking-tight">
+            Mayur<span className="text-accent-cyan">.</span>
           </Link>
 
-          {/* Menu Button for Mobile/Tablet */}
           <button
-            className="lg:hidden md:hidden p-2 rounded-md focus:outline-none"
+            className="lg:hidden md:hidden btn-icon"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent closing immediately
+              e.stopPropagation();
               setMenuOpen(!menuOpen);
             }}
           >
-            {menuOpen ? <X /> : <AlignJustify />}
+            {menuOpen ? <X size={20} /> : <AlignJustify size={20} />}
           </button>
 
-          {/* Desktop Menu */}
           <Menubar home={true} />
 
-          {/* Contact Button */}
           <Link
             href="/contact"
-            className={`hidden md:block lg:block bg-black p-2 rounded-full hover:bg-gray-700 ${
-              pathname === "/contact" && "bg-purple-600"
+            className={`hidden md:block lg:block btn-icon ${
+              pathname === "/contact" ? "border-accent-cyan/40 bg-accent-cyan/10" : ""
             }`}
           >
             <Image
@@ -68,47 +59,39 @@ const Header = () => {
               alt="contact"
               width={20}
               height={20}
+              className="invert"
             />
           </Link>
         </section>
 
-        {/* Mobile/Tablet Menu */}
         {menuOpen && (
           <div
             id="mobile-menu"
-            className="absolute top-16 left-0 w-full bg-white shadow-lg p-4 md:hidden lg:hidden z-50"
+            className="absolute top-16 left-0 w-full card-glass p-6 md:hidden lg:hidden z-50 mx-0 rounded-none border-x-0"
           >
             <nav>
-              <ul className="flex flex-col space-y-4 font-bold text-[20px] text-[#4e525a]">
+              <ul className="flex flex-col space-y-4 text-lg">
                 <Link
                   href="/"
-                  className={`hover:text-purple-600 ${
-                    pathname === "/" && "text-purple-600"
-                  }`}
+                  className={`nav-link ${pathname === "/" ? "nav-link-active" : ""}`}
                 >
                   <li>Home</li>
                 </Link>
                 <Link
                   href="/projects"
-                  className={`hover:text-purple-600 ${
-                    pathname === "/projects" && "text-purple-600"
-                  }`}
+                  className={`nav-link ${pathname === "/projects" ? "nav-link-active" : ""}`}
                 >
                   <li>Projects</li>
                 </Link>
                 <Link
                   href="/about"
-                  className={`hover:text-purple-600 ${
-                    pathname === "/about" && "text-purple-600"
-                  }`}
+                  className={`nav-link ${pathname === "/about" ? "nav-link-active" : ""}`}
                 >
                   <li>About</li>
                 </Link>
                 <Link
                   href="/contact"
-                  className={`hover:text-purple-600 ${
-                    pathname === "/contact" && "text-purple-600"
-                  }`}
+                  className={`nav-link ${pathname === "/contact" ? "nav-link-active" : ""}`}
                 >
                   <li>Get In Touch</li>
                 </Link>

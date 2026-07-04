@@ -21,7 +21,7 @@ const Skils = () => {
         "User Research",
         "Tailwind CSS",
       ],
-      color: "from-purple-500 to-purple-600",
+      accent: "cyan" as const,
     },
     {
       icon: Code,
@@ -33,13 +33,13 @@ const Skils = () => {
         "React Ionic",
         "NextJS",
       ],
-      color: "from-blue-500 to-blue-600",
+      accent: "purple" as const,
     },
     {
       icon: Database,
       title: "Backend",
       skills: ["Firebase", "Vercel", "Node JS (Beginner)"],
-      color: "from-green-500 to-green-600",
+      accent: "cyan" as const,
     },
     {
       icon: Users,
@@ -50,137 +50,137 @@ const Skils = () => {
         "Commitment",
         "Leadership",
       ],
-      color: "from-orange-500 to-orange-600",
+      accent: "purple" as const,
     },
   ];
 
-  return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-purple-100 rounded-full opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 left-10 w-24 h-24 bg-purple-200 rounded-full opacity-30 animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-300 rounded-full opacity-20 animate-pulse delay-500"></div>
+  const accentStyles = {
+    cyan: {
+      header: "border-accent-cyan/20 bg-accent-cyan/5",
+      icon: "text-accent-cyan",
+      dot: "bg-accent-cyan",
+    },
+    purple: {
+      header: "border-accent-purple/20 bg-accent-purple/5",
+      icon: "text-accent-purple",
+      dot: "bg-accent-purple",
+    },
+  };
 
+  return (
+    <section className="section-spacing relative overflow-hidden">
       <div className="relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 mb-6 animate-fade-in-up">
-            Skills<span className="text-purple-600">.</span>
+        <div className="text-center mb-20">
+          <h1 className="heading-section mb-6">
+            Skills<span className="text-accent-cyan">.</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up delay-200">
+          <p className="text-body-lg max-w-3xl mx-auto">
             A comprehensive toolkit of technical expertise and soft skills that
             enable me to deliver exceptional digital solutions across various
             platforms and technologies.
           </p>
         </div>
 
-        {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {skillCategories.map((category, index) => (
-            <div
-              key={category.title}
-              className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up"
-              style={{ animationDelay: `${300 + index * 100}ms` }}
-            >
-              {/* Category Header */}
+          {skillCategories.map((category) => {
+            const styles = accentStyles[category.accent];
+            return (
               <div
-                className={`bg-gradient-to-r ${category.color} p-6 text-white`}
+                key={category.title}
+                className="group card-interactive overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <category.icon className="w-8 h-8" />
-                  <h3 className="text-xl font-bold">{category.title}</h3>
+                <div
+                  className={`p-6 border-b ${styles.header}`}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <category.icon className={`w-7 h-7 ${styles.icon}`} />
+                    <h3 className="text-xl font-bold text-foreground">{category.title}</h3>
+                  </div>
+                  <div className={`w-10 h-0.5 ${styles.dot} rounded-full opacity-60`}></div>
                 </div>
-                <div className="w-12 h-1 bg-white rounded-full opacity-80"></div>
-              </div>
 
-              {/* Skills List */}
-              <div className="p-6">
-                <ul className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <li
-                      key={skill}
-                      className="flex items-center gap-3 text-gray-700 group-hover:text-gray-800 transition-colors duration-200"
-                      style={{
-                        animationDelay: `${
-                          500 + index * 100 + skillIndex * 50
-                        }ms`,
-                      }}
-                    >
-                      <div
-                        className={`w-2 h-2 bg-gradient-to-r ${category.color} rounded-full flex-shrink-0`}
-                      ></div>
-                      <span className="text-sm lg:text-base font-medium">
-                        {skill}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="p-6">
+                  <ul className="space-y-3">
+                    {category.skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="flex items-center gap-3 text-muted-foreground"
+                      >
+                        <div
+                          className={`w-1.5 h-1.5 ${styles.dot} rounded-full flex-shrink-0`}
+                        ></div>
+                        <span className="text-body-sm font-medium">
+                          {skill}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Additional Skills Section */}
-        <div className="mt-16 animate-fade-in-up delay-700">
-          <div className="bg-gradient-to-r from-purple-50 to-gray-50 rounded-2xl p-8 lg:p-12 border border-purple-100">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
+        <div className="mt-20">
+          <div className="surface-panel-accent p-8 lg:p-12">
+            <div className="text-center mb-10">
+              <h3 className="heading-subsection mb-4">
                 Additional Expertise
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-body-lg">
                 Beyond core skills, I bring specialized knowledge in modern
                 development practices
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 group hover:shadow-md transition-all duration-300">
-                <div className="p-3 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors duration-200">
-                  <Smartphone className="w-6 h-6 text-purple-600" />
+              <div className="flex items-center gap-4 p-4 card-interactive">
+                <div className="icon-box-accent">
+                  <Smartphone className="w-5 h-5 text-accent-purple" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800">
+                  <h4 className="font-semibold text-foreground">
                     Mobile Development
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-body-sm text-muted-foreground">
                     Cross-platform solutions
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 group hover:shadow-md transition-all duration-300">
-                <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-200">
-                  <Globe className="w-6 h-6 text-blue-600" />
+              <div className="flex items-center gap-4 p-4 card-interactive">
+                <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
+                  <Globe className="w-5 h-5 text-accent-cyan" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800">
+                  <h4 className="font-semibold text-foreground">
                     Web Performance
                   </h4>
-                  <p className="text-sm text-gray-600">Optimization & SEO</p>
+                  <p className="text-body-sm text-muted-foreground">Optimization & SEO</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 group hover:shadow-md transition-all duration-300">
-                <div className="p-3 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors duration-200">
-                  <Zap className="w-6 h-6 text-green-600" />
+              <div className="flex items-center gap-4 p-4 card-interactive">
+                <div className="icon-box-accent">
+                  <Zap className="w-5 h-5 text-accent-purple" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800">
+                  <h4 className="font-semibold text-foreground">
                     Rapid Development
                   </h4>
-                  <p className="text-sm text-gray-600">Quick prototyping</p>
+                  <p className="text-body-sm text-muted-foreground">Quick prototyping</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 group hover:shadow-md transition-all duration-300">
-                <div className="p-3 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition-colors duration-200">
-                  <Shield className="w-6 h-6 text-orange-600" />
+              <div className="flex items-center gap-4 p-4 card-interactive">
+                <div className="icon-box bg-accent-cyan/10 border-accent-cyan/20">
+                  <Shield className="w-5 h-5 text-accent-cyan" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800">
+                  <h4 className="font-semibold text-foreground">
                     Security Best Practices
                   </h4>
-                  <p className="text-sm text-gray-600">Safe & secure code</p>
+                  <p className="text-body-sm text-muted-foreground">Safe & secure code</p>
                 </div>
               </div>
             </div>

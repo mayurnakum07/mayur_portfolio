@@ -5,23 +5,23 @@ import React from "react";
 const SocialsMenu = () => {
   return (
     <nav>
-      <ul className="flex space-x-6 font-bold text-[20px] text-[#4e525a]">
-        <li className="hover:text-purple-600">
+      <ul className="flex space-x-6">
+        <li className="link-subtle">
           <Link href="https://instagram.com/mr_mayur_nakum" target="_blank">
-            <Instagram />
+            <Instagram size={22} />
           </Link>
         </li>
-        <li className="hover:text-purple-600">
+        <li className="link-subtle">
           <Link
             href="https://linkedin.com/in/mayur-nakum-178777250"
             target="_blank"
           >
-            <Linkedin />
+            <Linkedin size={22} />
           </Link>
         </li>
-        <li className="hover:text-purple-600">
+        <li className="link-subtle">
           <Link href="https://github.com/mayurnakum07" target="_blank">
-            <Github />
+            <Github size={22} />
           </Link>
         </li>
       </ul>
