@@ -5,7 +5,7 @@ import waveBible from "../../public/assets/projects/waveBibleApp.png";
 import speedApp from "../../public/assets/projects/speedApp.webp";
 import scrapyT from "../../public/assets/projects/scrapyT.png";
 import basilWholesale from "../../public/assets/projects/basilMerchant.png";
-import byDesign from "../../public/assets/projects/byDesign.png";
+import byDesign from "../../public/assets/projects/bydesign.png";
 import shivansh from "../../public/assets/projects/shivansh.png";
 
 export interface Project {
