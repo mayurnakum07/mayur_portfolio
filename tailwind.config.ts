@@ -56,7 +56,7 @@ const config: Config = {
         "container-xl": "6rem",
       },
       maxWidth: {
-        page: "1200px",
+        page: "1280px",
         content: "720px",
         wide: "1400px",
       },

@@ -31,17 +31,17 @@ const Header = () => {
     <header className="nav-floating">
       <div id="site-nav" className="container-page relative">
         <div
-          className={`nav-glass grid grid-cols-[1fr_auto_1fr] items-center gap-3 ${menuOpen ? "nav-glass-open" : ""}`}
+          className={`nav-glass flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:gap-3 ${menuOpen ? "nav-glass-open" : ""}`}
         >
-          <Link href="/" className="nav-logo justify-self-start">
+          <Link href="/" className="nav-logo min-w-0">
             Mayur<span className="text-accent-cyan">.</span>
           </Link>
 
-          <div className="justify-self-center hidden md:block">
+          <div className="hidden md:block md:justify-self-center">
             <Menubar home={true} variant="header" />
           </div>
 
-          <div className="nav-actions justify-self-end col-start-3">
+          <div className="nav-actions md:col-start-3 md:justify-self-end">
             <Link
               href="/contact"
               className={`hidden md:inline-flex btn-accent text-sm px-4 py-2 ${
@@ -52,7 +52,7 @@ const Header = () => {
             </Link>
 
             <button
-              className="md:hidden btn-icon h-9 w-9 p-0 col-start-3"
+              className="md:hidden btn-icon h-9 w-9 shrink-0 p-0"
               onClick={(e) => {
                 e.stopPropagation();
                 setMenuOpen(!menuOpen);

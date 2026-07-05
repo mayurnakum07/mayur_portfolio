@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { Eye } from "lucide-react";
 import Menubar from "./Menubar";
 import SocialsMenu from "./SocialsMenu";
 import Link from "next/link";
@@ -22,7 +22,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="btn-secondary w-full sm:w-auto flex gap-2 justify-center"
               >
-                <Download size={18} /> Download CV
+                <Eye size={18} /> View my CV
               </Link>
             </div>
           </div>
