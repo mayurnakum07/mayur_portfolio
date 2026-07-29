@@ -1,11 +1,14 @@
 import ProjectsHero from "@/components/projects/ProjectsHero";
 import ProjectShowcase from "@/components/projects/ProjectShowcase";
-import { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Projects | Mayur - AI Software Engineer",
+export const metadata = createPageMetadata({
+  title: `Projects | Mayur - ${siteConfig.title}`,
   description:
     "A curated collection of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
+  path: "/projects",
+  ogImage: "projects",
   keywords: [
     "Software Products",
     "AI Applications",
@@ -15,22 +18,7 @@ export const metadata: Metadata = {
     "Mobile Applications",
     "Web Applications",
   ],
-  robots: "index, follow",
-  openGraph: {
-    images: "https://i.ibb.co/C5QRJzQF/image.png",
-    title: "Projects | Mayur - AI Software Engineer",
-    description:
-      "A curated collection of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
-  },
-  twitter: {
-    images: "https://i.ibb.co/C5QRJzQF/image.png",
-    title: "Projects | Mayur - AI Software Engineer",
-    description:
-      "A curated collection of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
-  },
-  viewport: "width=device-width, initial-scale=1.0",
-  themeColor: "#09090b",
-};
+});
 
 export default function ProjectsPage() {
   return (

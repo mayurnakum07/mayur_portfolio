@@ -16,7 +16,7 @@ export default function Hero() {
           gap-10 py-12
           sm:gap-12
           md:grid-cols-[1.05fr_0.95fr] md:gap-8 md:py-8
-          md:min-h-[calc(100svh-7rem)] md:max-h-[calc(100svh-7rem)]
+          md:min-h-[calc(100svh-7rem)]
           lg:gap-12
           xl:gap-16
           [@media(max-height:800px)]:md:gap-6

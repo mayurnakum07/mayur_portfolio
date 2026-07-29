@@ -92,11 +92,11 @@
   }
 
   .page-content {
-    @apply flex-1 pt-24 md:pt-28 overflow-x-clip max-w-full min-w-0;
+    @apply flex-1 pt-20 md:pt-28 overflow-x-clip max-w-full min-w-0;
   }
 
   .container-page {
-    @apply w-full min-w-0 mx-auto max-w-page px-6 md:px-12;
+    @apply w-full min-w-0 mx-auto max-w-page px-4 sm:px-6 md:px-12;
   }
 
   .container-wide {
@@ -203,7 +203,7 @@
   }
 
   .footer-cta {
-    @apply surface-panel-accent p-8 md:p-10 lg:p-12 mb-12 lg:mb-16;
+    @apply surface-panel-accent p-5 sm:p-8 md:p-10 lg:p-12 mb-12 lg:mb-16;
   }
 
   .footer-grid {

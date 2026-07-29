@@ -80,7 +80,7 @@ export default function FeaturedProjectCard({
         </div>
 
         <div className="mt-3 border-t border-border/40 pt-3 lg:border-0 lg:pt-0">
-          <div className="flex flex-col gap-2 lg:flex-row lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100">
+          <div className="flex flex-col gap-2 lg:flex-row lg:opacity-100 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100">
             <Link
               href={project.liveUrl}
               target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
@@ -95,10 +95,10 @@ export default function FeaturedProjectCard({
               <ArrowUpRight size={13} className="shrink-0" />
             </Link>
             <Link
-              href={project.caseStudyUrl}
-              className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg border border-border/80 px-3 text-xs font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 lg:h-8 lg:flex-1 lg:rounded-md"
+              href={project.detailsUrl}
+              className="inline-flex h-9 w-full min-h-[44px] items-center justify-center gap-1.5 rounded-lg border border-border/80 px-3 text-xs font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 lg:h-8 lg:flex-1 lg:rounded-md lg:opacity-100"
             >
-              Case Study
+              {project.detailsLabel}
             </Link>
           </div>
 

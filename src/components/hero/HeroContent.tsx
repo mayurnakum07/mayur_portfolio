@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -11,33 +12,30 @@ const fadeUp = (delay = 0) => ({
 });
 
 const STATS = [
-  { value: "2+", label: "Years Experience" },
-  { value: "10+", label: "Projects Delivered" },
-  { value: "8+", label: "Technologies" },
+  { value: siteConfig.stats.yearsExperience, label: "Years Experience" },
+  {
+    value: siteConfig.stats.projectsDelivered,
+    label: "Projects Delivered",
+  },
+  { value: siteConfig.stats.technologies, label: "Technologies" },
 ] as const;
 
 const SOCIALS = [
-  { href: "https://github.com/mayurnakum07", label: "GitHub", icon: Github },
-  {
-    href: "https://linkedin.com/in/mayur-nakum-178777250",
-    label: "LinkedIn",
-    icon: Linkedin,
-  },
-  { href: "mailto:mayurnakum07@gmail.com", label: "Email", icon: Mail },
+  { href: siteConfig.github, label: "GitHub", icon: Github },
+  { href: siteConfig.linkedIn, label: "LinkedIn", icon: Linkedin },
+  { href: `mailto:${siteConfig.email}`, label: "Email", icon: Mail },
 ] as const;
 
 export default function HeroContent() {
   return (
     <div className="flex min-w-0 flex-col items-center gap-5 text-center sm:gap-6 md:items-start md:gap-5 md:text-left lg:gap-6 [@media(max-height:800px)]:md:gap-4">
-      {/* Badge */}
       <motion.div {...fadeUp(0)}>
-        <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface-1/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-md">
+        <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/60 bg-surface-1/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-md">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
           Available for AI Product Development
         </span>
       </motion.div>
 
-      {/* Heading — natural line breaks, no ch constraint */}
       <motion.div {...fadeUp(0.06)} className="w-full min-w-0">
         <h1 className="font-semibold tracking-[-0.02em] text-foreground">
           <span className="mb-2 block text-base font-medium text-muted-foreground md:text-lg">
@@ -54,20 +52,19 @@ export default function HeroContent() {
               backgroundClip: "text",
             }}
           >
-            Mayur Nakum
+            {siteConfig.name}
           </span>
 
           <span className="mt-2 block text-[clamp(1.75rem,4.5vw,3.75rem)] leading-[1.12] md:mt-2 lg:text-[clamp(1.875rem,3vw,3.5rem)] [@media(max-height:800px)]:lg:text-[clamp(1.5rem,2.5vw,2.75rem)]">
-            AI Software Engineer
+            {siteConfig.title}
           </span>
 
           <span className="mt-2 block text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-foreground/85 md:mt-3">
-            Building Intelligent Digital Products.
+            {siteConfig.tagline}
           </span>
         </h1>
       </motion.div>
 
-      {/* Description */}
       <motion.p
         {...fadeUp(0.12)}
         className="w-full max-w-lg text-base leading-relaxed text-foreground/80 md:text-lg"
@@ -76,26 +73,23 @@ export default function HeroContent() {
         stacks with AI to build fast, reliable software.
       </motion.p>
 
-      {/* Buttons */}
       <motion.div
         {...fadeUp(0.18)}
         className="flex w-full max-w-md flex-col gap-3 sm:flex-row md:max-w-none"
       >
         <Link
           href="/projects"
-          className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-foreground px-5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 sm:w-auto"
+          className="inline-flex h-11 min-h-[44px] w-full items-center justify-center rounded-lg bg-foreground px-5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 sm:w-auto"
         >
           Explore Projects
         </Link>
         <Link
           href="/contact"
-          className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border/80 px-5 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 sm:w-auto"
+          className="inline-flex h-11 min-h-[44px] w-full items-center justify-center rounded-lg border border-border/80 px-5 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 sm:w-auto"
         >
           Book a Call
         </Link>
       </motion.div>
-
-      {/* Social */}
       <motion.div {...fadeUp(0.24)} className="flex items-center gap-4">
         {SOCIALS.map(({ href, label, icon: Icon }) => (
           <Link
@@ -104,14 +98,13 @@ export default function HeroContent() {
             target={href.startsWith("mailto") ? undefined : "_blank"}
             rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
             aria-label={label}
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/40"
           >
             <Icon size={18} strokeWidth={1.75} />
           </Link>
         ))}
       </motion.div>
 
-      {/* Stats */}
       <motion.div
         {...fadeUp(0.3)}
         className="flex w-full flex-wrap items-center justify-center gap-6 border-t border-border/50 pt-5 md:justify-start md:gap-8 md:pt-6 lg:gap-10"

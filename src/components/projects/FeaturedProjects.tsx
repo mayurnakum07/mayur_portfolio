@@ -33,7 +33,7 @@ export default function FeaturedProjects() {
         </motion.div>
 
         {/* 3 columns · 1 row on desktop */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
           {featuredProjects.map((project, index) => (
             <FeaturedProjectCard
               key={project.id}

@@ -1,3 +1,6 @@
+import type { Metadata, Viewport } from "next";
+import { siteConfig } from "@/lib/site";
+import { defaultDescription } from "@/lib/metadata";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,6 +20,21 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `Mayur | ${siteConfig.title} Portfolio`,
+    template: `%s`,
+  },
+  description: defaultDescription,
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#09090b",
+};
 
 export default function RootLayout({
   children,

@@ -2,8 +2,11 @@ import { Eye } from "lucide-react";
 import Menubar from "./Menubar";
 import SocialsMenu from "./SocialsMenu";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="footer-shell">
       <div className="container-page pt-16 lg:pt-20">
@@ -17,7 +20,7 @@ const Footer = () => {
                 Get In Touch
               </Link>
               <Link
-                href="https://mayurnakum-portfolio.vercel.app/mayurResume.pdf"
+                href={siteConfig.resumePath}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary w-full sm:w-auto flex gap-2 justify-center"
@@ -40,7 +43,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <h3 className="text-body-sm text-muted-foreground">
-            ©2024 All Rights Reserved.
+            ©{year} All Rights Reserved.
           </h3>
           <h3 className="text-body-sm text-muted-foreground">
             Made with 💜 by Mayur Nakum

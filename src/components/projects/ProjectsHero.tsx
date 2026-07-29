@@ -15,7 +15,7 @@ export default function ProjectsHero() {
           Projects
         </p>
 
-        <h1 className="text-[36px] font-semibold leading-[1.1] tracking-tight text-foreground md:text-[48px] lg:text-[64px]">
+        <h1 className="text-[clamp(1.75rem,6vw,2.25rem)] font-semibold leading-[1.12] tracking-tight text-foreground md:text-[48px] lg:text-[64px] md:leading-[1.1]">
           Products I&apos;ve Built.
           <br />
           Problems I&apos;ve Solved.

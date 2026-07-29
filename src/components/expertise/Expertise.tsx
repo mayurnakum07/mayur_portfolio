@@ -18,7 +18,7 @@ export default function Expertise() {
       aria-labelledby="expertise-heading"
       className="w-full overflow-x-clip border-t border-border/40"
     >
-      <div className="container-page py-[100px] md:py-[120px] lg:py-[140px]">
+      <div className="container-page py-16 md:py-[100px] lg:py-[120px]">
         <motion.header
           {...fadeUp(0)}
           className="mx-auto mb-12 max-w-2xl text-center md:mb-16"
@@ -35,8 +35,9 @@ export default function Expertise() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Building modern digital products across AI, web, mobile and cloud
-            technologies.
+            What I know — and what I ship for teams: AI features, web platforms,
+            mobile apps, and cloud-backed products without repeating the same
+            stack twice.
           </p>
         </motion.header>
 

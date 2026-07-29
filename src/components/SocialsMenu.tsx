@@ -1,26 +1,38 @@
 import { Github, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { siteConfig } from "@/lib/site";
 
 const SocialsMenu = () => {
   return (
-    <nav>
+    <nav aria-label="Social links">
       <ul className="flex space-x-6">
         <li className="link-subtle">
-          <Link href="https://instagram.com/mr_mayur_nakum" target="_blank">
+          <Link
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
             <Instagram size={22} />
           </Link>
         </li>
         <li className="link-subtle">
           <Link
-            href="https://linkedin.com/in/mayur-nakum-178777250"
+            href={siteConfig.linkedIn}
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
           >
             <Linkedin size={22} />
           </Link>
         </li>
         <li className="link-subtle">
-          <Link href="https://github.com/mayurnakum07" target="_blank">
+          <Link
+            href={siteConfig.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
             <Github size={22} />
           </Link>
         </li>

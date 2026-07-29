@@ -6,6 +6,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+function getDiSolutionsDuration() {
+  const leaveDate = new Date(2026, 7, 15);
+
+  return new Date() < leaveDate
+    ? "August 2023 — Present"
+    : "August 2023 — August 2026";
+}
+
 export interface Contribution {
   id: string;
   title: string;
@@ -14,12 +22,12 @@ export interface Contribution {
 }
 
 export const primaryExperience = {
-  title: "Frontend & Mobile Application Developer",
+  title: "AI Software Engineer",
   company: "DI Solutions",
   companyUrl: "https://disolutions.net",
   location: "Surat, Gujarat",
   employmentType: "Full Time",
-  duration: "August 2023 — Present",
+  duration: getDiSolutionsDuration(),
   description:
     "Developing production-grade web and mobile applications using React, Next.js and React Native while collaborating with designers, backend developers and clients to deliver scalable digital products.",
   technologies: [

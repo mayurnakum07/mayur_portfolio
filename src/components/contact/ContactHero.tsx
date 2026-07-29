@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Eye, Mail } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -16,7 +17,7 @@ const AVAILABILITY_ITEMS = [
   "AI Product Development",
 ] as const;
 
-const RESUME_URL = "https://mayurnakum-portfolio.vercel.app/mayurResume.pdf";
+const RESUME_URL = siteConfig.resumePath;
 
 export default function ContactHero() {
   return (
@@ -93,7 +94,7 @@ export default function ContactHero() {
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="mailto:mayurnakum07@gmail.com"
+                href={`mailto:${siteConfig.email}`}
                 className="inline-flex h-12 w-full min-w-[160px] items-center justify-center gap-2 rounded-xl bg-foreground px-6 text-sm font-medium text-background transition-colors duration-300 hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto"
               >
                 <Mail size={16} strokeWidth={1.75} aria-hidden />

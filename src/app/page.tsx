@@ -1,45 +1,27 @@
 import About from "@/components/about/About";
-import WhatIBuild from "@/components/capabilities/WhatIBuild";
 import HowIBuildProducts from "@/components/process/HowIBuildProducts";
-import Journey from "@/components/journey/Journey";
 import Expertise from "@/components/expertise/Expertise";
 import Experience from "@/components/experience/Experience";
 import FeaturedProjects from "@/components/projects/FeaturedProjects";
 import Hero from "@/components/hero/Hero";
-import { Metadata } from "next";
+import { createPageMetadata, defaultDescription } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Mayur | Frontend Web Developer Portfolio",
-  description:
-    "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
+export const metadata = createPageMetadata({
+  title: `Mayur | ${siteConfig.title} Portfolio`,
+  description: defaultDescription,
+  path: "/",
+  ogImage: "home",
   keywords: [
-    "Frontend Web Developer",
+    siteConfig.title,
     "React Developer",
     "Next.js Developer",
-    "React Ionic Developer",
-    "JavaScript Expert",
+    "React Native Developer",
     "TypeScript Developer",
-    "Web Application Developer",
-    "UI/UX Developer",
+    "AI Product Development",
     "Modern Web Development",
-    "Responsive Web Design",
   ],
-  robots: "index, follow",
-  openGraph: {
-    images: "https://i.ibb.co/JR9gd9Xk/image.png",
-    title: "Mayur | Frontend Web Developer Portfolio",
-    description:
-      "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
-  },
-  twitter: {
-    images: "https://i.ibb.co/JR9gd9Xk/image.png",
-    title: "Mayur | Frontend Web Developer Portfolio",
-    description:
-      "Frontend Developer with expertise in React, Next.js, TypeScript, React Ionic, and React Native. Passionate about building dynamic, responsive web and mobile applications. Skilled in integrating Firebase to deliver scalable and efficient backend solutions.",
-  },
-  viewport: "width=device-width, initial-scale=1.0",
-  themeColor: "#09090b",
-};
+});
 
 const Home = () => {
   return (
@@ -49,9 +31,7 @@ const Home = () => {
       <Experience />
       <FeaturedProjects />
       <Expertise />
-      <WhatIBuild />
       <HowIBuildProducts />
-      <Journey />
     </main>
   );
 };

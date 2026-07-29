@@ -27,6 +27,8 @@ export interface Project {
   githubUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
+  availabilityNote?: string;
+  caseStudyUrl?: string;
 }
 
 export const projectData: Project[] = [
@@ -86,6 +88,8 @@ export const projectData: Project[] = [
     ],
 
     liveUrl: "https://www.bydesign.io/",
+
+    caseStudyUrl: "/projects/bydesign",
 
     appStoreUrl:
       "https://apps.apple.com/in/app/bydesign-todo-list-calendar/id1554933824",
@@ -318,6 +322,9 @@ export const projectData: Project[] = [
       "Incident reporting",
       "GPS analytics",
     ],
+
+    availabilityNote:
+      "Client fleet project — no public store listing or demo; details available on request.",
   },
 
   {

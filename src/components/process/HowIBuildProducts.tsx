@@ -18,7 +18,7 @@ export default function HowIBuildProducts() {
       aria-labelledby="process-heading"
       className="w-full overflow-x-clip border-t border-border/40"
     >
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-[100px] md:px-12 md:py-[120px] lg:py-[140px]">
+      <div className="mx-auto w-full max-w-[1200px] px-4 py-16 sm:px-6 md:px-12 md:py-[120px] lg:py-[120px]">
         <motion.header
           {...fadeUp(0)}
           className="mx-auto mb-12 max-w-2xl text-center md:mb-16"

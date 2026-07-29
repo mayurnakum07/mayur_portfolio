@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, MapPin, type LucideIcon } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 export type ContactCardType = "email" | "link" | "location";
 
@@ -17,11 +18,11 @@ export const contactCards: ContactCardData[] = [
   {
     id: "email",
     title: "Email",
-    value: "mayurnakum07@gmail.com",
+    value: siteConfig.email,
     description: "Usually replies within 24 hours.",
     icon: Mail,
     type: "email",
-    href: "mailto:mayurnakum07@gmail.com",
+    href: `mailto:${siteConfig.email}`,
   },
   {
     id: "linkedin",
@@ -29,7 +30,7 @@ export const contactCards: ContactCardData[] = [
     description: "Professional networking",
     icon: Linkedin,
     type: "link",
-    href: "https://linkedin.com/in/mayur-nakum-178777250",
+    href: siteConfig.linkedIn,
     buttonLabel: "Visit Profile",
   },
   {
@@ -38,7 +39,7 @@ export const contactCards: ContactCardData[] = [
     description: "Explore open-source work",
     icon: Github,
     type: "link",
-    href: "https://github.com/mayurnakum07",
+    href: siteConfig.github,
     buttonLabel: "View Projects",
   },
   {

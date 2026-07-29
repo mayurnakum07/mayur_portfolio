@@ -1,6 +1,7 @@
 import { StaticImageData } from "next/image";
+import byDesignImg from "../../public/assets/projects/bydesign.png";
 import networkedImg from "../../public/assets/projects/networked.png";
-import luxcartImg from "../../public/assets/projects/luxcartApp.webp";
+import shivanshImg from "../../public/assets/projects/shivansh.png";
 import waveBibleImg from "../../public/assets/projects/waveBibleApp.png";
 
 export type ProjectCategory =
@@ -18,11 +19,25 @@ export interface FeaturedProject {
   techStack: string[];
   metrics: string[];
   liveUrl: string;
-  caseStudyUrl: string;
+  detailsUrl: string;
+  detailsLabel: "View details" | "Read case study";
   githubUrl?: string;
 }
 
 export const featuredProjects: FeaturedProject[] = [
+  {
+    id: "bydesign",
+    image: byDesignImg,
+    title: "ByDesign",
+    category: "AI Platform",
+    description:
+      "Cross-platform productivity workspace with AI assistant and Model Context Protocol (MCP) integration.",
+    techStack: ["React Native", "TypeScript", "MCP", "Firebase"],
+    metrics: ["App Store", "Google Play", "Web & macOS"],
+    liveUrl: "https://www.bydesign.io/",
+    detailsUrl: "/projects/bydesign",
+    detailsLabel: "Read case study",
+  },
   {
     id: "networked-ai",
     image: networkedImg,
@@ -33,19 +48,21 @@ export const featuredProjects: FeaturedProject[] = [
     techStack: ["React", "TypeScript", "Firebase"],
     metrics: ["AI Powered", "Real-time", "Production Ready"],
     liveUrl: "https://app.net-worked.ai/",
-    caseStudyUrl: "/projects",
+    detailsUrl: "/projects#networked-ai",
+    detailsLabel: "View details",
   },
   {
     id: "shivansh-jewellery",
-    image: luxcartImg,
+    image: shivanshImg,
     title: "Shivansh Jewellery",
-    category: "Mobile App",
+    category: "SaaS",
     description:
-      "Premium jewellery commerce with mobile-first discovery and secure checkout.",
-    techStack: ["React", "TypeScript", "Firebase"],
-    metrics: ["Cross Platform", "Production Ready", "Real-time"],
-    liveUrl: "/projects",
-    caseStudyUrl: "/projects",
+      "Premium jewellery commerce with admin dashboard and performance-focused storefront.",
+    techStack: ["Next.js", "TypeScript", "Firebase"],
+    metrics: ["Production", "Admin Dashboard", "E-commerce"],
+    liveUrl: "https://shivansh-jewellery.vercel.app/",
+    detailsUrl: "/projects#shivansh-jewellery",
+    detailsLabel: "View details",
   },
   {
     id: "waves-bible",
@@ -54,9 +71,10 @@ export const featuredProjects: FeaturedProject[] = [
     category: "Mobile App",
     description:
       "AI-powered scripture app with personalized verses and an intelligent chatbot.",
-    techStack: ["React", "TypeScript", "Firebase", "OpenAI"],
-    metrics: ["AI Powered", "Cross Platform", "Production Ready"],
+    techStack: ["React Native", "TypeScript", "Firebase", "OpenAI"],
+    metrics: ["AI Powered", "iOS", "Production Ready"],
     liveUrl: "https://wavesbibleapp.com/",
-    caseStudyUrl: "/projects",
+    detailsUrl: "/projects#waves-bible",
+    detailsLabel: "View details",
   },
 ];
