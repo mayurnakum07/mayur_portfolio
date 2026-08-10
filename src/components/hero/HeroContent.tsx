@@ -11,14 +11,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
 
-const STATS = [
-  { value: siteConfig.stats.yearsExperience, label: "Years Experience" },
-  {
-    value: siteConfig.stats.projectsDelivered,
-    label: "Projects Delivered",
-  },
-  { value: siteConfig.stats.technologies, label: "Technologies" },
-] as const;
+const STATS = siteConfig.stats;
 
 const SOCIALS = [
   { href: siteConfig.github, label: "GitHub", icon: Github },
@@ -107,14 +100,16 @@ export default function HeroContent() {
 
       <motion.div
         {...fadeUp(0.3)}
-        className="flex w-full flex-wrap items-center justify-center gap-6 border-t border-border/50 pt-5 md:justify-start md:gap-8 md:pt-6 lg:gap-10"
+        className="grid w-full grid-cols-2 gap-x-6 gap-y-5 border-t border-border/50 pt-5 text-left sm:grid-cols-4 md:pt-6"
       >
         {STATS.map(({ value, label }) => (
           <div key={label}>
             <p className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
               {value}
             </p>
-            <p className="mt-0.5 text-xs text-muted-foreground">{label}</p>
+            <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
+              {label}
+            </p>
           </div>
         ))}
       </motion.div>

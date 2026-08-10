@@ -39,7 +39,7 @@ export default function ProcessCard({ step, index, isLast }: ProcessCardProps) {
         />
       )}
 
-      <article className="flex h-full flex-col rounded-[20px] border border-border/50 bg-surface-1 p-6 transition-all duration-[250ms] hover:-translate-y-1 hover:border-border-hover md:p-7">
+      <article className="flex h-full flex-col rounded-[20px] border border-border/50 bg-surface-1 p-6 transition-all [transition-duration:250ms] hover:-translate-y-1 hover:border-border-hover md:p-7">
         <span className="text-xs font-medium tracking-widest text-muted-foreground">
           {step.step}
         </span>

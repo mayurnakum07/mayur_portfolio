@@ -1,4 +1,4 @@
-import type { Project } from "@/data/projectData";
+import type { Project } from "@/data/projects";
 
 interface ProjectMetaRowProps {
   project: Project;
@@ -6,11 +6,11 @@ interface ProjectMetaRowProps {
 
 export default function ProjectMetaRow({ project }: ProjectMetaRowProps) {
   const items = [
-    { label: "Role", value: project.role },
-    { label: "Platform", value: project.platform.join(" · ") },
+    project.role && { label: "Role", value: project.role },
+    { label: "Platform", value: project.platforms.join(" · ") },
     { label: "Year", value: project.year },
     { label: "Status", value: project.status },
-  ];
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
     <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-[14px] text-muted-foreground">

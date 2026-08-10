@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollButtons from "@/components/ScrollingUpButton";
+import MotionProvider from "@/components/MotionProvider";
 import { Inter, JetBrains_Mono } from "next/font/google";
 
 const inter = Inter({
@@ -46,10 +47,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased page-shell`}
       >
-        <Header />
-        <ScrollButtons />
-        <div className="page-content">{children}</div>
-        <Footer />
+        <MotionProvider>
+          <Header />
+          <ScrollButtons />
+          <div className="page-content">{children}</div>
+          <Footer />
+        </MotionProvider>
         <SpeedInsights />
         <Analytics />
       </body>

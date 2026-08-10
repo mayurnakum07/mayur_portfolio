@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { featuredProjects } from "@/data/featuredProjects";
+import { featuredProjects } from "@/data/projects";
 import FeaturedProjectCard from "./FeaturedProjectCard";
 
 export default function FeaturedProjects() {
@@ -32,11 +32,10 @@ export default function FeaturedProjects() {
           </p>
         </motion.div>
 
-        {/* 3 columns · 1 row on desktop */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
           {featuredProjects.map((project, index) => (
             <FeaturedProjectCard
-              key={project.id}
+              key={project.slug}
               project={project}
               index={index}
             />

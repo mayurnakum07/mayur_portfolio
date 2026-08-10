@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mayurnakum-portfolio.vercel.app/sitemap.xml

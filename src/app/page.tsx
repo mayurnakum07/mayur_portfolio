@@ -4,7 +4,9 @@ import Expertise from "@/components/expertise/Expertise";
 import Experience from "@/components/experience/Experience";
 import FeaturedProjects from "@/components/projects/FeaturedProjects";
 import Hero from "@/components/hero/Hero";
+import JsonLd from "@/components/JsonLd";
 import { createPageMetadata, defaultDescription } from "@/lib/metadata";
+import { personSchema } from "@/lib/structuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -26,6 +28,7 @@ export const metadata = createPageMetadata({
 const Home = () => {
   return (
     <main className="w-full overflow-x-clip">
+      <JsonLd data={personSchema()} />
       <Hero />
       <About />
       <Experience />

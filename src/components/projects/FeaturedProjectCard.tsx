@@ -1,25 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
-import type { FeaturedProject } from "@/data/featuredProjects";
+import { ArrowUpRight } from "lucide-react";
+import type { Project } from "@/data/projects";
+import ProjectImage from "./ProjectImage";
 
 interface FeaturedProjectCardProps {
-  project: FeaturedProject;
+  project: Project;
   index: number;
-}
-
-function isGithubUrl(url?: string) {
-  return url?.includes("github.com") ?? false;
 }
 
 export default function FeaturedProjectCard({
   project,
   index,
 }: FeaturedProjectCardProps) {
-  const showGithub = isGithubUrl(project.githubUrl);
+  /** Card badges come from the data, never from literals in JSX. */
+  const badges = project.metrics?.length
+    ? project.metrics.slice(0, 3).map((m) => `${m.value} ${m.label}`)
+    : [project.status, ...project.platforms.slice(0, 2)];
 
   return (
     <motion.article
@@ -30,12 +29,11 @@ export default function FeaturedProjectCard({
       className="group flex flex-col rounded-xl border border-border/50 bg-surface-1 p-3 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:p-4"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-surface-2">
-        <Image
-          src={project.image}
-          alt={`${project.title} preview`}
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          sizes="(max-width: 1024px) 50vw, 400px"
-          loading="lazy"
+        <ProjectImage
+          src={project.images.card}
+          alt={project.imageAlt}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+          className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
       </div>
 
@@ -45,15 +43,15 @@ export default function FeaturedProjectCard({
         </span>
 
         <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
-          {project.title}
+          {project.name}
         </h3>
 
-        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          {project.description}
+        <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          {project.summary}
         </p>
 
         <div className="mt-2.5 flex flex-wrap gap-1">
-          {project.techStack.map((tech) => (
+          {project.stack.slice(0, 4).map((tech) => (
             <span
               key={tech}
               className="rounded-full border border-border/60 bg-surface-2/80 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
@@ -64,9 +62,9 @@ export default function FeaturedProjectCard({
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
-          {project.metrics.map((metric, i) => (
+          {badges.map((badge, i) => (
             <span
-              key={metric}
+              key={badge}
               className="flex items-center gap-1.5 text-[10px] font-medium text-foreground/65"
             >
               {i > 0 && (
@@ -74,45 +72,31 @@ export default function FeaturedProjectCard({
                   ·
                 </span>
               )}
-              {metric}
+              {badge}
             </span>
           ))}
         </div>
 
-        <div className="mt-3 border-t border-border/40 pt-3 lg:border-0 lg:pt-0">
-          <div className="flex flex-col gap-2 lg:flex-row lg:opacity-100 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100">
+        <div className="mt-auto pt-3">
+          <div className="flex flex-col gap-2 border-t border-border/40 pt-3 lg:flex-row lg:border-0 lg:pt-0">
+            {project.links.live && (
+              <Link
+                href={project.links.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 text-xs font-medium text-background transition-colors hover:bg-foreground/90 lg:h-9 lg:flex-1"
+              >
+                Live Demo
+                <ArrowUpRight size={13} className="shrink-0" />
+              </Link>
+            )}
             <Link
-              href={project.liveUrl}
-              target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
-              rel={
-                project.liveUrl.startsWith("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-              className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 text-xs font-medium text-background transition-colors hover:bg-foreground/90 lg:h-8 lg:flex-1 lg:rounded-md"
+              href={`/projects/${project.slug}`}
+              className="inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-lg border border-border/80 px-3 text-xs font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 lg:h-9 lg:flex-1"
             >
-              Live Demo
-              <ArrowUpRight size={13} className="shrink-0" />
-            </Link>
-            <Link
-              href={project.detailsUrl}
-              className="inline-flex h-9 w-full min-h-[44px] items-center justify-center gap-1.5 rounded-lg border border-border/80 px-3 text-xs font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface-2/50 lg:h-8 lg:flex-1 lg:rounded-md lg:opacity-100"
-            >
-              {project.detailsLabel}
+              Read case study
             </Link>
           </div>
-
-          {showGithub && project.githubUrl && (
-            <Link
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex h-8 w-full items-center justify-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground lg:mt-2 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
-            >
-              <Github size={13} />
-              Github
-            </Link>
-          )}
         </div>
       </div>
     </motion.article>

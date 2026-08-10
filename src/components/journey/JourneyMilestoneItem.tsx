@@ -24,7 +24,7 @@ export default function JourneyMilestoneItem({
         delay: 0.15 + index * 0.1,
         ease: "easeOut",
       }}
-      className={`group relative pl-8 transition-transform duration-[250ms] hover:-translate-y-[3px] ${
+      className={`group relative pl-8 transition-transform [transition-duration:250ms] hover:-translate-y-[3px] ${
         isLast ? "" : "pb-10 md:pb-12"
       }`}
     >

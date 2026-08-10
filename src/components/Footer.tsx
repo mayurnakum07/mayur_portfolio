@@ -1,8 +1,6 @@
-import { Eye } from "lucide-react";
 import Menubar from "./Menubar";
 import SocialsMenu from "./SocialsMenu";
-import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import FooterCta from "./FooterCta";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -10,26 +8,7 @@ const Footer = () => {
   return (
     <footer className="footer-shell">
       <div className="container-page pt-16 lg:pt-20">
-        <div className="footer-cta">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <h1 className="heading-subsection text-xl md:text-2xl text-center lg:text-left">
-              Interested in working together?
-            </h1>
-            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-              <Link href="/contact" className="btn-accent w-full sm:w-auto">
-                Get In Touch
-              </Link>
-              <Link
-                href={siteConfig.resumePath}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary w-full sm:w-auto flex gap-2 justify-center"
-              >
-                <Eye size={18} /> View my CV
-              </Link>
-            </div>
-          </div>
-        </div>
+        <FooterCta />
 
         <div className="footer-grid">
           <div className="footer-nav">
@@ -42,12 +21,12 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <h3 className="text-body-sm text-muted-foreground">
+          <p className="text-body-sm text-muted-foreground">
             ©{year} All Rights Reserved.
-          </h3>
-          <h3 className="text-body-sm text-muted-foreground">
+          </p>
+          <p className="text-body-sm text-muted-foreground">
             Made with 💜 by Mayur Nakum
-          </h3>
+          </p>
         </div>
       </div>
     </footer>

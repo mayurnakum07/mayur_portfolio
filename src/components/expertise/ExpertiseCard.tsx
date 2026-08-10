@@ -21,7 +21,7 @@ export default function ExpertiseCard({ category, index }: ExpertiseCardProps) {
         delay: 0.1 + index * 0.1,
         ease: "easeOut",
       }}
-      className="group flex h-full flex-col rounded-[20px] border border-border/50 bg-surface-1 p-7 transition-all duration-[250ms] hover:-translate-y-1 hover:border-border-hover md:p-8"
+      className="group flex h-full flex-col rounded-[20px] border border-border/50 bg-surface-1 p-7 transition-all [transition-duration:250ms] hover:-translate-y-1 hover:border-border-hover md:p-8"
     >
       <Icon
         size={18}
@@ -44,7 +44,7 @@ export default function ExpertiseCard({ category, index }: ExpertiseCardProps) {
       >
         {category.technologies.map((tech) => (
           <li key={tech}>
-            <span className="inline-block rounded-full border border-border/60 bg-surface-2/40 px-3 py-1 text-sm text-muted-foreground transition-all duration-[250ms] hover:-translate-y-px hover:border-border-hover hover:text-foreground/80">
+            <span className="inline-block rounded-full border border-border/60 bg-surface-2/40 px-3 py-1 text-sm text-muted-foreground transition-all [transition-duration:250ms] hover:-translate-y-px hover:border-border-hover hover:text-foreground/80">
               {tech}
             </span>
           </li>

@@ -114,7 +114,7 @@ export default function Experience() {
             >
               {primaryExperience.technologies.map((tech) => (
                 <li key={tech}>
-                  <span className="inline-block rounded-full border border-border/60 bg-surface-2/40 px-3 py-1 text-sm text-muted-foreground transition-all duration-[250ms] hover:-translate-y-px hover:border-border-hover hover:text-foreground/80">
+                  <span className="inline-block rounded-full border border-border/60 bg-surface-2/40 px-3 py-1 text-sm text-muted-foreground transition-all [transition-duration:250ms] hover:-translate-y-px hover:border-border-hover hover:text-foreground/80">
                     {tech}
                   </span>
                 </li>

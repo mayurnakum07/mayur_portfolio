@@ -1,5 +1,7 @@
 import ContactPage from "@/components/contact/ContactPage";
+import JsonLd from "@/components/JsonLd";
 import { createPageMetadata } from "@/lib/metadata";
+import { faqSchema } from "@/lib/structuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -20,5 +22,10 @@ export const metadata = createPageMetadata({
 });
 
 export default function Contact() {
-  return <ContactPage />;
+  return (
+    <>
+      <JsonLd data={faqSchema()} />
+      <ContactPage />
+    </>
+  );
 }

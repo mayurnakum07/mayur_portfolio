@@ -24,7 +24,7 @@ export default function ContributionCard({
         delay: 0.2 + index * 0.08,
         ease: "easeOut",
       }}
-      className="group flex h-full flex-col rounded-[20px] border border-border/40 bg-surface-2/30 p-5 transition-all duration-[250ms] hover:-translate-y-1 hover:border-border-hover md:p-6"
+      className="group flex h-full flex-col rounded-[20px] border border-border/40 bg-surface-2/30 p-5 transition-all [transition-duration:250ms] hover:-translate-y-1 hover:border-border-hover md:p-6"
     >
       <Icon
         size={18}

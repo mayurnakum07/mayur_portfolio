@@ -5,7 +5,9 @@ type PageMetaOptions = {
   title: string;
   description: string;
   path: string;
-  ogImage: "home" | "projects" | "about" | "contact";
+  /** A named OG image under /public/og ("home"), or a root-absolute path. */
+  ogImage: string;
+  ogType?: "website" | "article";
   keywords?: string[];
 };
 
@@ -14,9 +16,11 @@ export function createPageMetadata({
   description,
   path,
   ogImage,
+  ogType = "website",
   keywords = [],
 }: PageMetaOptions): Metadata {
-  const imageUrl = absoluteUrl(`/og/${ogImage}.png`);
+  const imagePath = ogImage.startsWith("/") ? ogImage : `/og/${ogImage}.png`;
+  const imageUrl = absoluteUrl(imagePath);
   const canonical = absoluteUrl(path);
 
   return {
@@ -26,7 +30,7 @@ export function createPageMetadata({
     robots: "index, follow",
     alternates: { canonical },
     openGraph: {
-      type: "website",
+      type: ogType,
       url: canonical,
       title,
       description,
