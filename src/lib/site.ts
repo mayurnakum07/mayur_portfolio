@@ -18,9 +18,9 @@ export const siteConfig = {
    */
   stats: [
     { value: "3", label: "Years Experience" },
-    { value: "9", label: "Products in Production" },
-    { value: "5", label: "Live on App Store & Google Play" },
-    { value: "4", label: "Platforms Shipped" },
+    { value: "15+", label: "Products in Production" },
+    { value: "8+", label: "Live on App Store & Google Play" },
+    { value: "6+", label: "Platforms Shipped" },
   ],
   /**
    * Formspree form ID. Set NEXT_PUBLIC_FORMSPREE_ID in the environment to
