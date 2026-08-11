@@ -28,12 +28,12 @@ export default function FeaturedProjectCard({
       transition={{ duration: 0.45, delay: index * 0.1, ease: "easeOut" }}
       className="group flex flex-col rounded-xl border border-border/50 bg-surface-1 p-3 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:p-4"
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-surface-2">
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/40 bg-surface-2 p-2">
         <ProjectImage
           src={project.images.card}
           alt={project.imageAlt}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-          className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="rounded-md transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
       </div>
 

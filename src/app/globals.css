@@ -46,37 +46,35 @@
     overflow-x: clip;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    /*
+     * The reduced-motion site is complete and static, not degraded: anything
+     * authored to animate in is simply already there.
+     */
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /*
+   * The grid, wash and crawling lines live in the fixed .ambient layer, not
+   * here. Body keeps only the film grain, which must tile with the document.
+   */
   body {
     @apply bg-background text-foreground font-sans;
     overflow-x: clip;
     max-width: 100%;
-    background-image:
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
-      radial-gradient(
-        ellipse 80% 50% at 50% -20%,
-        hsl(var(--accent-cyan) / 0.07),
-        transparent
-      ),
-      radial-gradient(
-        ellipse 60% 40% at 80% 60%,
-        hsl(var(--accent-purple) / 0.05),
-        transparent
-      ),
-      linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px);
-    background-size:
-      256px 256px,
-      100% 100%,
-      100% 100%,
-      64px 64px,
-      64px 64px;
-    background-attachment: scroll;
-  }
-
-  @media (min-width: 768px) {
-    body {
-      background-attachment: fixed;
-    }
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
   }
 
   ::selection {
@@ -368,5 +366,254 @@
 
   .link-subtle {
     @apply text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+
+  /* ── Ambient backdrop ── */
+
+  .ambient {
+    @apply pointer-events-none fixed inset-0 -z-10 overflow-hidden;
+  }
+
+  .ambient__grid {
+    @apply absolute inset-0;
+    background-image:
+      linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px);
+    background-size:
+      64px 64px,
+      64px 64px;
+  }
+
+  .ambient__wash {
+    @apply absolute inset-0;
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        hsl(var(--accent-cyan) / 0.07),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 80% 60%,
+        hsl(var(--accent-purple) / 0.05),
+        transparent
+      );
+  }
+
+  .ambient__lines {
+    @apply absolute inset-0;
+  }
+
+  .ambient__line {
+    @apply absolute block;
+    will-change: transform;
+  }
+
+  /*
+   * Vertical pulse: a tall thin gradient that is transparent at both ends, so
+   * what the eye follows is a bright segment travelling down a line rather
+   * than a bar entering and leaving the screen.
+   */
+  .ambient__line--v {
+    top: 0;
+    height: 42vh;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      hsl(var(--accent-cyan) / 0.5) 45%,
+      hsl(var(--accent-purple) / 0.35) 60%,
+      transparent
+    );
+    animation-name: crawl-v;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.45, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .ambient__line--h {
+    left: 0;
+    width: 38vw;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(var(--accent-purple) / 0.4) 45%,
+      hsl(var(--accent-cyan) / 0.3) 60%,
+      transparent
+    );
+    animation-name: crawl-h;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.45, 1);
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes crawl-v {
+    0% {
+      transform: translateY(-45vh);
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes crawl-h {
+    0% {
+      transform: translateX(-40vw);
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+  }
+
+  /* ── Hero ambience ── */
+
+  .hero-star {
+    animation-name: star-twinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes star-twinkle {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.75;
+    }
+  }
+
+  /* ── Intro ── */
+
+  .preloader {
+    @apply fixed inset-0 z-[200] flex items-center justify-center;
+  }
+
+  /* Two panels that split apart, so the page is revealed rather than faded to. */
+  .preloader__panel {
+    @apply absolute inset-x-0 h-1/2 bg-background;
+    transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .preloader__panel--top {
+    top: 0;
+  }
+
+  .preloader__panel--bottom {
+    bottom: 0;
+  }
+
+  .preloader__inner {
+    @apply relative flex flex-col items-center gap-3 px-6 text-center;
+    transition:
+      opacity 0.4s ease,
+      transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .preloader__name {
+    @apply text-sm font-medium tracking-[0.28em] text-foreground/80 uppercase;
+  }
+
+  .preloader__role {
+    @apply text-[11px] uppercase tracking-[0.22em] text-muted-foreground;
+  }
+
+  .preloader__count {
+    @apply font-mono text-[clamp(3.5rem,14vw,9rem)] font-semibold leading-none tracking-tighter text-foreground;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .preloader__rail {
+    @apply mt-2 block h-px w-[min(280px,60vw)] overflow-hidden bg-border;
+  }
+
+  .preloader__rail-fill {
+    @apply block h-full origin-left bg-gradient-to-r from-accent-cyan to-accent-purple;
+  }
+
+  .preloader.is-leaving .preloader__panel--top {
+    transform: translateY(-100%);
+  }
+
+  .preloader.is-leaving .preloader__panel--bottom {
+    transform: translateY(100%);
+  }
+
+  .preloader.is-leaving .preloader__inner {
+    @apply opacity-0;
+    transform: translateY(-16px);
+  }
+
+  /*
+   * Failsafe: if the script never runs or dies mid-way, the overlay takes
+   * itself off screen rather than holding the site hostage.
+   *
+   * Must sit well clear of the real lifetime (3s count + 0.9s curtain ≈ 3.9s
+   * from mount). A tight margin means a busy main thread on a slow first load
+   * delays the exit past the failsafe, which snaps the curtain to transparent
+   * mid-split. It only exists for a dead script, so it costs nothing to be
+   * generous here.
+   */
+  .preloader {
+    animation: preloader-failsafe 0s linear 6s forwards;
+  }
+
+  @keyframes preloader-failsafe {
+    to {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  /* ── Motion ── */
+
+  /* First tabbable element on every page. Visible only when focused. */
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus-visible {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-lg bg-foreground px-4 py-2.5
+           text-sm font-medium text-background shadow-soft-lg;
+  }
+
+  /*
+   * Word-by-word reading scrub. Words are authored at full opacity and dimmed
+   * by GSAP, so reduced-motion and no-JS readers get normal prose. The spans
+   * are inline, so selection and screen-reader output are unaffected.
+   */
+  .scrub-word {
+    @apply inline-block;
+  }
+
+  /*
+   * Masked line reveal. The wrapper clips; the inner span is what moves. GSAP
+   * sets the starting offset, so unanimated markup renders in place.
+   */
+  .line-mask {
+    display: block;
+    overflow: hidden;
+    /* Descenders and gradient-clipped text would otherwise be cut by the mask. */
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+
+  .line-mask > * {
+    @apply block;
   }
 }

@@ -2,14 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
+import MaskReveal from "@/components/motion/MaskReveal";
 import { Eye, Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: "easeOut" as const },
-});
 
 const AVAILABILITY_ITEMS = [
   "Full-Time Opportunities",
@@ -37,34 +33,41 @@ export default function ContactHero() {
             aria-hidden
           />
 
-          <motion.p
-            {...fadeUp(0)}
+          <Reveal
+            as="p"
+            variant="down"
             className="relative mb-5 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground"
           >
             Contact
-          </motion.p>
+          </Reveal>
 
-          <motion.h1
-            id="contact-heading"
-            {...fadeUp(0.08)}
+          <MaskReveal
+            as="h1"
+            immediate
             className="relative text-[clamp(2.25rem,5.5vw,3.75rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-foreground"
           >
-            Let&apos;s Build Something
-            <br />
-            Meaningful Together.
-          </motion.h1>
+            <span className="line-mask">
+              <span>Let&apos;s Build Something</span>
+            </span>
+            <span className="line-mask">
+              <span>Meaningful Together.</span>
+            </span>
+          </MaskReveal>
 
-          <motion.p
-            {...fadeUp(0.16)}
+          <Reveal
+            as="p"
+            variant="up"
+            delay={0.12}
             className="relative mt-6 max-w-[640px] text-base leading-relaxed text-muted-foreground md:text-lg md:leading-relaxed"
           >
             Whether you&apos;re looking to build an AI-powered application, a
             scalable web platform, or a cross-platform mobile experience,
             I&apos;d love to hear about your idea.
-          </motion.p>
+          </Reveal>
 
-          <motion.div
-            {...fadeUp(0.24)}
+          <Reveal
+            variant="scale"
+            delay={0.2}
             className="relative mt-8 flex max-w-full flex-col items-center gap-2 rounded-2xl border border-border/60 bg-surface-1/50 px-5 py-3.5 text-sm text-muted-foreground backdrop-blur-md sm:inline-flex sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 sm:gap-y-2 sm:rounded-full sm:py-3"
           >
             <span className="inline-flex items-center gap-2 font-medium text-foreground/90">
@@ -86,10 +89,11 @@ export default function ContactHero() {
                 </span>
               ))}
             </span>
-          </motion.div>
+          </Reveal>
 
-          <motion.div
-            {...fadeUp(0.32)}
+          <Reveal
+            variant="up"
+            delay={0.28}
             className="relative mt-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center"
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -113,7 +117,7 @@ export default function ContactHero() {
                 View my CV
               </Link>
             </motion.div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

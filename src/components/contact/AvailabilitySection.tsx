@@ -1,14 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import { Clock, Globe, MessageSquare } from "lucide-react";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
 
 const AVAILABILITY_DETAILS = [
   {
@@ -39,7 +33,7 @@ export default function AvailabilitySection() {
     >
       <div className="container-page py-20 md:py-24 lg:py-28">
         <div className="mx-auto max-w-[900px]">
-          <motion.header {...fadeUp(0)} className="mb-12 text-center md:mb-16">
+          <Reveal as="header" variant="blur-up" className="mb-12 text-center md:mb-16">
             <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Availability
             </p>
@@ -53,7 +47,7 @@ export default function AvailabilitySection() {
               Currently accepting new projects and open to meaningful
               full-time opportunities.
             </p>
-          </motion.header>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
             {AVAILABILITY_DETAILS.map((item, index) => {

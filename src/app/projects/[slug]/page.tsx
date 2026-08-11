@@ -7,12 +7,17 @@ import {
   getProjectNeighbours,
   hasCaseStudyContent,
   projects,
+  type CaseStudySection,
   type Project,
 } from "@/data/projects";
 import { createPageMetadata } from "@/lib/metadata";
 import { projectSchema } from "@/lib/structuredData";
 import JsonLd from "@/components/JsonLd";
 import ProjectImage from "@/components/projects/ProjectImage";
+import ScrollProgress from "@/components/motion/ScrollProgress";
+import Reveal from "@/components/motion/Reveal";
+import MaskReveal from "@/components/motion/MaskReveal";
+import WordScrub from "@/components/motion/WordScrub";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -87,8 +92,16 @@ function MetaBar({ project }: { project: Project }) {
 function MetricStrip({ project }: { project: Project }) {
   if (!project.metrics?.length) return null;
 
+  /** Two metrics should be two half-width tiles, not two thirds and a gap. */
+  const columns =
+    project.metrics.length === 1
+      ? "sm:grid-cols-1"
+      : project.metrics.length === 2
+        ? "sm:grid-cols-2"
+        : "sm:grid-cols-3";
+
   return (
-    <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <div className={`mt-4 grid grid-cols-1 gap-4 ${columns}`}>
       {project.metrics.map((metric) => (
         <div
           key={metric.label}
@@ -119,6 +132,18 @@ export default async function CaseStudyPage({ params }: Params) {
   const { prev, next } = getProjectNeighbours(project.slug);
   const showCaseStudy = hasCaseStudyContent(project);
 
+  /** Only sections with content get a heading, an anchor and a nav entry. */
+  const sections = caseStudySectionOrder
+    .map((key) => ({ key, section: project.caseStudy?.[key] }))
+    .filter(
+      (entry) =>
+        entry.section &&
+        (entry.section.body.length > 0 || entry.section.bullets?.length)
+    ) as {
+    key: (typeof caseStudySectionOrder)[number];
+    section: CaseStudySection;
+  }[];
+
   const links = [
     project.links.live && { label: "Visit product", href: project.links.live },
     project.links.appStore && {
@@ -135,6 +160,7 @@ export default async function CaseStudyPage({ params }: Params) {
   return (
     <main className="w-full overflow-x-clip">
       <JsonLd data={projectSchema(project)} />
+      <ScrollProgress />
 
       <article className="container-page py-10 md:py-14 lg:py-16">
         {/* Breadcrumb */}
@@ -156,58 +182,123 @@ export default async function CaseStudyPage({ params }: Params) {
 
         {/* Hero */}
         <header className="mt-8 md:mt-10">
-          <p className="text-[10px] font-medium uppercase tracking-widest text-accent-cyan/80">
-            {project.category}
-          </p>
-          <h1 className="mt-3 max-w-4xl text-[clamp(1.875rem,5vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
-            {project.name}
-          </h1>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="rounded-full border border-accent-cyan/25 bg-accent-cyan/5 px-3 py-1 text-[11px] font-medium uppercase tracking-widest text-accent-cyan/90">
+              {project.category}
+            </span>
+            {project.status === "Production" && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-surface-2/60 px-2.5 py-1 text-[11px] font-medium tracking-wide text-muted-foreground">
+                <span
+                  aria-hidden
+                  className="h-1.5 w-1.5 rounded-full bg-emerald-400/90"
+                />
+                Live in production
+              </span>
+            )}
+          </div>
+
+          <MaskReveal
+            as="h1"
+            immediate
+            className="mt-5 max-w-4xl text-[clamp(1.875rem,5vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-foreground"
+          >
+            <span className="line-mask">
+              <span>{project.name}</span>
+            </span>
+          </MaskReveal>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {project.tagline}
           </p>
 
-          <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/50 bg-surface-2">
+          <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/50 bg-surface-2 p-3 shadow-soft-lg sm:p-5">
             <ProjectImage
               src={project.images.hero}
               alt={project.imageAlt}
               sizes="(max-width: 1280px) 100vw, 1280px"
+              className="rounded-lg"
               priority
             />
           </div>
         </header>
 
         {/* Meta bar + metrics */}
-        <div className="mt-10 md:mt-12">
+        <Reveal variant="blur-up" className="mt-10 flex flex-col gap-4 md:mt-12">
           <MetaBar project={project} />
           <MetricStrip project={project} />
-        </div>
+        </Reveal>
 
         {/* Case study body */}
         {showCaseStudy ? (
-          <div className="mx-auto mt-14 max-w-3xl space-y-12 md:mt-20">
-            {caseStudySectionOrder.map((key) => {
-              const section = project.caseStudy?.[key];
-              if (
-                !section ||
-                (section.body.length === 0 && !section.bullets?.length)
-              ) {
-                return null;
-              }
-
-              return (
-                <section key={key}>
-                  <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-                    {section.heading}
-                  </h2>
-
-                  {section.body.map((paragraph) => (
-                    <p
-                      key={paragraph.slice(0, 48)}
-                      className="mt-4 text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-relaxed"
+          <div className="mt-14 gap-16 md:mt-20 lg:grid lg:grid-cols-[180px_minmax(0,1fr)]">
+            {/* Section index — decorative on mobile, sticky from lg up */}
+            <nav
+              aria-label="Case study sections"
+              className="hidden lg:sticky lg:top-28 lg:block lg:self-start"
+            >
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
+                On this page
+              </p>
+              <ol className="mt-4 space-y-2.5">
+                {sections.map(({ key, section }, index) => (
+                  <li key={key}>
+                    <Link
+                      href={`#${key}`}
+                      className="group flex items-baseline gap-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {paragraph}
-                    </p>
-                  ))}
+                      <span className="font-mono text-[11px] text-muted-foreground/50 transition-colors group-hover:text-accent-cyan/80">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      {section.heading}
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <div className="max-w-3xl space-y-14">
+              {sections.map(({ key, section }, index) => (
+                <section key={key} id={key} className="scroll-mt-28">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs text-accent-cyan/70">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+                    />
+                  </div>
+
+                  <MaskReveal
+                    as="h2"
+                    className="mt-3 text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
+                  >
+                    <span className="line-mask">
+                      <span>{section.heading}</span>
+                    </span>
+                  </MaskReveal>
+
+                  {section.body.map((paragraph, paragraphIndex) =>
+                    /*
+                     * The opening line of "The problem" is the sharpest writing
+                     * on the page, so it gets read to the visitor a word at a
+                     * time. Once per page — the effect stops meaning anything
+                     * if everything does it.
+                     */
+                    key === "problem" && paragraphIndex === 0 ? (
+                      <WordScrub
+                        key={paragraph.slice(0, 48)}
+                        text={paragraph}
+                        className="mt-4 text-lg leading-relaxed text-foreground/90 md:text-xl md:leading-relaxed"
+                      />
+                    ) : (
+                      <p
+                        key={paragraph.slice(0, 48)}
+                        className="mt-4 text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-relaxed"
+                      >
+                        {paragraph}
+                      </p>
+                    )
+                  )}
 
                   {section.bullets && (
                     <ul className="mt-5 space-y-3">
@@ -226,8 +317,8 @@ export default async function CaseStudyPage({ params }: Params) {
                     </ul>
                   )}
                 </section>
-              );
-            })}
+              ))}
+            </div>
           </div>
         ) : (
           <p className="mx-auto mt-14 max-w-3xl text-base leading-relaxed text-muted-foreground md:mt-20">
@@ -249,11 +340,12 @@ export default async function CaseStudyPage({ params }: Params) {
             <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {project.images.gallery.map((shot) => (
                 <figure key={shot.src}>
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/50 bg-surface-2">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/50 bg-surface-2 p-2">
                     <ProjectImage
                       src={shot.src}
                       alt={shot.alt}
                       sizes="(max-width: 640px) 100vw, 50vw"
+                      className="rounded-lg"
                     />
                   </div>
                   <figcaption className="mt-3 text-sm text-muted-foreground">

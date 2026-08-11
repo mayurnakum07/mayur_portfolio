@@ -2,15 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import { ChevronDown } from "lucide-react";
 import { contactFAQ } from "@/data/contactFAQ";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
 
 function FAQItem({
   question,
@@ -95,7 +89,7 @@ export default function ContactFAQ() {
     >
       <div className="container-page py-20 md:py-24 lg:py-28">
         <div className="mx-auto max-w-[900px]">
-          <motion.header {...fadeUp(0)} className="mb-10 text-center md:mb-14">
+          <Reveal as="header" variant="scale" className="mb-10 text-center md:mb-14">
             <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
               FAQ
             </p>
@@ -105,7 +99,7 @@ export default function ContactFAQ() {
             >
               Common questions.
             </h2>
-          </motion.header>
+          </Reveal>
 
           <div className="rounded-[22px] border border-border/50 bg-surface-1 px-6 md:px-8">
             {contactFAQ.map((item, index) => (

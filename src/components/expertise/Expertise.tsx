@@ -1,15 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import { expertiseCategories } from "@/data/expertiseCategories";
 import ExpertiseCard from "./ExpertiseCard";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
 
 export default function Expertise() {
   return (
@@ -19,8 +12,9 @@ export default function Expertise() {
       className="w-full overflow-x-clip border-t border-border/40"
     >
       <div className="container-page py-16 md:py-[100px] lg:py-[120px]">
-        <motion.header
-          {...fadeUp(0)}
+        <Reveal
+          as="header"
+          variant="blur-up"
           className="mx-auto mb-12 max-w-2xl text-center md:mb-16"
         >
           <p className="mb-4 text-[10px] uppercase tracking-widest text-accent-cyan/80">
@@ -39,7 +33,7 @@ export default function Expertise() {
             mobile apps, and cloud-backed products without repeating the same
             stack twice.
           </p>
-        </motion.header>
+        </Reveal>
 
         <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {expertiseCategories.map((category, index) => (

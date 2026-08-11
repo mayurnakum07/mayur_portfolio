@@ -1,15 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import { contactCards } from "@/data/contactCards";
 import ContactCard from "./ContactCard";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
 
 export default function ContactCards() {
   return (
@@ -18,7 +11,7 @@ export default function ContactCards() {
       className="w-full overflow-x-clip border-t border-border/40"
     >
       <div className="container-page py-20 md:py-24 lg:py-28">
-        <motion.header {...fadeUp(0)} className="mx-auto mb-12 max-w-[900px] text-center md:mb-16">
+        <Reveal as="header" variant="up" className="mx-auto mb-12 max-w-[900px] text-center md:mb-16">
           <h2
             id="contact-cards-heading"
             className="sr-only"
@@ -32,7 +25,7 @@ export default function ContactCards() {
             Choose the channel that works best for you. Every message gets a
             thoughtful reply.
           </p>
-        </motion.header>
+        </Reveal>
 
         <div className="mx-auto grid max-w-[900px] auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {contactCards.map((card, index) => (

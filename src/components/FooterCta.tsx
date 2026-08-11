@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Eye } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+import MaskReveal from "@/components/motion/MaskReveal";
+import MagneticLink from "@/components/motion/MagneticLink";
 
 export default function FooterCta() {
   const pathname = usePathname();
@@ -19,13 +21,18 @@ export default function FooterCta() {
   return (
     <div className="footer-cta">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-        <p className="heading-subsection text-center text-xl md:text-2xl lg:text-left">
-          Interested in working together?
-        </p>
+        <MaskReveal
+          as="p"
+          className="heading-subsection text-center text-xl md:text-2xl lg:text-left"
+        >
+          <span className="line-mask">
+            <span>Interested in working together?</span>
+          </span>
+        </MaskReveal>
         <div className="flex shrink-0 flex-col items-center gap-4 sm:flex-row">
-          <Link href={primaryHref} className="btn-accent w-full sm:w-auto">
+          <MagneticLink href={primaryHref} className="btn-accent w-full sm:w-auto">
             {primaryLabel}
-          </Link>
+          </MagneticLink>
           <Link
             href={siteConfig.resumePath}
             target="_blank"

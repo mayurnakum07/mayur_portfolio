@@ -4,6 +4,7 @@ import Expertise from "@/components/expertise/Expertise";
 import Experience from "@/components/experience/Experience";
 import FeaturedProjects from "@/components/projects/FeaturedProjects";
 import Hero from "@/components/hero/Hero";
+import Statement from "@/components/Statement";
 import JsonLd from "@/components/JsonLd";
 import { createPageMetadata, defaultDescription } from "@/lib/metadata";
 import { personSchema } from "@/lib/structuredData";
@@ -30,6 +31,7 @@ const Home = () => {
     <main className="w-full overflow-x-clip">
       <JsonLd data={personSchema()} />
       <Hero />
+      <Statement />
       <About />
       <Experience />
       <FeaturedProjects />

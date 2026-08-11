@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import {
   aboutIntro,
   beyondCode,
@@ -9,19 +9,12 @@ import {
 } from "@/data/aboutPage";
 import { siteConfig } from "@/lib/site";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
-
 export default function AboutIntro() {
   return (
     <section className="w-full overflow-x-clip">
       <div className="container-page py-[50px] md:py-[70px]">
         {/* Intro */}
-        <motion.div {...fadeUp(0)} className="max-w-3xl">
+        <Reveal variant="left" className="max-w-3xl">
           <p className="mb-4 text-[10px] uppercase tracking-widest text-accent-cyan/80">
             About
           </p>
@@ -44,34 +37,35 @@ export default function AboutIntro() {
               </p>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* How I work */}
         <div className="mt-20 border-t border-border/40 pt-14 md:mt-24">
-          <motion.h2
-            {...fadeUp(0)}
+          <Reveal
+            as="h2"
+            variant="blur-up"
             className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
             How I work
-          </motion.h2>
+          </Reveal>
 
           <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
             {howIWork.map((principle, index) => (
-              <motion.div key={principle.title} {...fadeUp(index * 0.05)}>
+              <Reveal key={principle.title} variant="up" delay={index * 0.05}>
                 <h3 className="text-base font-medium text-foreground">
                   {principle.title}
                 </h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
                   {principle.description}
                 </p>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
 
         {/* Currently learning */}
         <div className="mt-20 grid grid-cols-1 gap-12 border-t border-border/40 pt-14 md:mt-24 lg:grid-cols-2 lg:gap-20">
-          <motion.div {...fadeUp(0)}>
+          <Reveal variant="right">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Currently learning
             </h2>
@@ -93,16 +87,16 @@ export default function AboutIntro() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </Reveal>
 
-          <motion.div {...fadeUp(0.08)}>
+          <Reveal variant="scale" delay={0.08}>
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Beyond code
             </h2>
             <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground md:text-base">
               {beyondCode}
             </p>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

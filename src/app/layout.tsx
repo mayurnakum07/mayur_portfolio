@@ -8,6 +8,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollButtons from "@/components/ScrollingUpButton";
 import MotionProvider from "@/components/MotionProvider";
+import ScrollProvider from "@/components/motion/ScrollProvider";
+import Preloader from "@/components/motion/Preloader";
+import AmbientBackground from "@/components/motion/AmbientBackground";
 import { Inter, JetBrains_Mono } from "next/font/google";
 
 const inter = Inter({
@@ -47,11 +50,20 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased page-shell`}
       >
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <AmbientBackground />
+        <Preloader />
         <MotionProvider>
-          <Header />
-          <ScrollButtons />
-          <div className="page-content">{children}</div>
-          <Footer />
+          <ScrollProvider>
+            <Header />
+            <ScrollButtons />
+            <div id="main-content" className="page-content">
+              {children}
+            </div>
+            <Footer />
+          </ScrollProvider>
         </MotionProvider>
         <SpeedInsights />
         <Analytics />

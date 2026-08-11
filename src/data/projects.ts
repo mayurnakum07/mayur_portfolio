@@ -420,8 +420,8 @@ const allProjects: Project[] = [
       },
     },
     images: {
-      card: "/assets/projects/speedApp.webp",
-      hero: "/assets/projects/speedApp.webp",
+      card: "/assets/projects/speedApp.png",
+      hero: "/assets/projects/speedApp.png",
       ogImage: DEFAULT_OG,
     },
     imageAlt:
@@ -644,26 +644,88 @@ const allProjects: Project[] = [
   {
     slug: "techifuze",
     name: "Techifuze",
-    tagline: "Connect projects with perfect partners",
+    tagline: "Enterprise contract intelligence and vendor execution platform",
     summary:
-      "A production web product built for Techifuze. The public case study is pending client sign-off on scope and messaging.",
-    category: "Web",
+      "A platform enterprises use to run outsourced services end to end — match a project to the right vendor, track it against milestones, catch schedule risk before it becomes a slipped deadline, and release payment when the work is signed off. A public marketing site fronts an authenticated product with separate client and admin applications behind it, kept live by a websocket layer.",
+    category: "Platform",
     featured: false,
     order: 8,
-    platforms: ["Web"],
+    role: "Frontend Developer",
+    platforms: ["Web", "Admin Dashboard"],
     year: "2026",
     status: "Production",
-    stack: ["Next.js", "React", "TypeScript"],
-    highlights: [],
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "TanStack Query",
+      "Socket.IO",
+      "Stripe",
+      "JWT Auth",
+      "REST APIs",
+    ],
+    highlights: [
+      "Vendor matching & milestone tracking",
+      "AI risk alerts on live projects",
+      "Role-based client and admin dashboards",
+      "Stripe subscription billing",
+    ],
     links: {
       live: "https://techifuze.com/",
+    },
+    caseStudy: {
+      context: {
+        heading: "Context",
+        body: [
+          "Techifuze positions itself as an enterprise contract intelligence platform — its own framing is “the source of truth for execution, spend and accountability.” An enterprise scopes a project, is matched to vendors, tracks delivery against milestones, and pays out as work is signed off, all inside one system.",
+          "The product has two halves. A public marketing site sells it — feature, platform, how-it-works and enterprise sections, a fourteen-day trial with no card required, and a SOC 2 badge in the trust row. Behind the sign-in are two separate applications: a client dashboard showing active projects, active vendors, total spend and on-time rate, and an admin console with its own routes and permissions.",
+        ],
+      },
+      problem: {
+        heading: "The problem",
+        body: [
+          "When a large company buys services, the truth about that work is split across three places that never agree. The contract says what was promised. Email, calls and spreadsheets hold what actually happened. Invoices move money on a schedule that reconciles to neither. By the time anyone notices a project is late, it has been late for weeks.",
+          "So the platform's job is not project management — that market is full. It is closing the gap between the contract and reality fast enough to act on: surfacing a timeline deviation while there is still time to fix it, and tying payment release to a milestone actually being met rather than to an invoice date.",
+          "That premise sets the frontend brief. If the dashboard is stale, the product is a spreadsheet with better typography. Freshness is not a nice-to-have here, it is the entire value proposition rendered on screen.",
+        ],
+      },
+      contribution: {
+        heading: "What I built",
+        body: [],
+        bullets: [
+          "Built the product frontend in Next.js App Router and TypeScript, with Tailwind and a shadcn/ui component layer shared across the marketing site and both authenticated applications",
+          "Implemented the real-time layer — a Socket.IO provider at the app root feeding live project state, milestone completions, payment releases and AI risk alerts into the dashboard without a refresh",
+          "Built the authentication and routing guard: JWT-backed sessions restored from storage, role resolution, and a guard that routes admins and clients to their own dashboards and keeps each out of the other's routes before anything renders",
+          "Wired server state through TanStack Query against the REST API, so the websocket feed and fetched data stay coherent instead of fighting each other",
+          "Integrated Stripe subscription billing for the trial-to-paid conversion path",
+          "Built the marketing site: animated hero with rotating headline, a live dashboard mock-up as the product shot, trust row, feature, platform, how-it-works and enterprise sections, and a full light/dark theme",
+        ],
+      },
+      challenges: {
+        heading: "Engineering challenges",
+        body: [
+          "Two sources of truth for the same screen. Every dashboard value arrives twice — once from a fetch, once from a socket event — and the two disagree constantly, because a payment can be released between the request and the response. Getting this right means treating the socket as an invalidation signal into the query cache rather than as a second store writing to the same UI. Get it wrong and the number on screen flickers between two values, which on a spend dashboard is worse than being slow.",
+          "An auth guard is a rendering problem, not just a security one. Clients and admins share a codebase and a domain but must never see each other's routes. The check has to resolve the stored session, decode the token, read the role and redirect before the protected view paints — otherwise a client sees an admin screen for one frame, which is both a leak and a bug report. Doing that without a loading spinner on every navigation is the actual work.",
+          "A marketing site that has to look expensive and load like it does not. The audience is enterprise procurement, so the front page carries an animated gradient headline, blurred ambient lighting and a full dashboard mock — and it is also the first thing a buyer judges the product's competence by. The resolution is keeping the heavy sections below the fold and out of the initial payload, so the hero is interactive long before the rest of the page has arrived.",
+          "Shipping a trial that has to convert. Fourteen days, no card up front, then a Stripe subscription at the end of it. Subscription state has to stay correct through trial expiry, payment failure and re-subscription, because every one of those states changes what a logged-in user is allowed to see.",
+        ],
+      },
+      outcome: {
+        heading: "Outcome",
+        body: [
+          "Techifuze is live at techifuze.com with the marketing site, the free-trial signup path and both authenticated dashboards in production.",
+        ],
+      },
     },
     images: {
       card: "/assets/projects/techifuze.png",
       hero: "/assets/projects/techifuze.png",
       ogImage: DEFAULT_OG,
     },
-    imageAlt: "Techifuze — web platform",
+    imageAlt:
+      "Techifuze enterprise platform dashboard showing active projects, vendor spend and live risk alerts",
   },
 
   {

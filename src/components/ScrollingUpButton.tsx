@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronUp } from "lucide-react";
+import { smoothScrollTo } from "@/lib/scrollTo";
 
 const SCROLL_UP_THRESHOLD = 0.45;
 const SCROLL_DOWN_HIDE = 80;
@@ -56,21 +57,18 @@ export default function ScrollButtons() {
     };
   }, [isHome]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  // Routed through the scroll engine — native smooth scroll is off under Lenis.
+  const scrollToTop = () => smoothScrollTo(0);
 
   const scrollToContent = () => {
     const about = document.getElementById("about");
+
     if (about) {
-      about.scrollIntoView({ behavior: "smooth", block: "start" });
+      smoothScrollTo(about, { offset: -96 });
       return;
     }
 
-    window.scrollTo({
-      top: window.innerHeight * 0.85,
-      behavior: "smooth",
-    });
+    smoothScrollTo(window.innerHeight * 0.85);
   };
 
   return (
@@ -113,13 +111,16 @@ export default function ScrollButtons() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="group flex flex-col items-center gap-2.5 focus-visible:outline-none"
             >
-              <span className="flex h-10 w-6 items-start justify-center rounded-full border border-border/50 bg-surface-1/70 p-1.5 shadow-soft backdrop-blur-md transition-colors duration-200 group-hover:border-border-hover group-hover:bg-surface-2/80">
+              {/* A rail that fills, rather than a bouncing mouse icon. */}
+              <span
+                aria-hidden
+                className="relative block h-12 w-px overflow-hidden rounded-full bg-border/60"
+              >
                 <motion.span
-                  aria-hidden
-                  className="block h-1.5 w-1.5 rounded-full bg-foreground/55"
-                  animate={{ y: [0, 10, 0], opacity: [0.45, 1, 0.45] }}
+                  className="absolute inset-x-0 top-0 block h-1/2 rounded-full bg-gradient-to-b from-accent-cyan/0 via-accent-cyan to-accent-cyan/0"
+                  animate={{ y: ["-100%", "200%"] }}
                   transition={{
-                    duration: 1.6,
+                    duration: 2.2,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}

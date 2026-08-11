@@ -1,20 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Reveal from "@/components/motion/Reveal";
 import { Check } from "lucide-react";
 import {
   contributions,
   primaryExperience,
 } from "@/data/experience";
 import ContributionCard from "./ContributionCard";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, delay, ease: "easeOut" as const },
-});
 
 export default function Experience() {
   return (
@@ -24,8 +17,9 @@ export default function Experience() {
       className="w-full overflow-x-clip border-t border-border/40"
     >
       <div className="container-page py-[100px] md:py-[120px] lg:py-[140px]">
-        <motion.header
-          {...fadeUp(0)}
+        <Reveal
+          as="header"
+          variant="right"
           className="mx-auto mb-12 max-w-2xl text-center md:mb-16"
         >
           <p className="mb-4 text-[10px] uppercase tracking-widest text-accent-cyan/80">
@@ -43,10 +37,11 @@ export default function Experience() {
             Real-world experience developing scalable web and mobile applications
             used by businesses and customers.
           </p>
-        </motion.header>
+        </Reveal>
 
-        <motion.div
-          {...fadeUp(0.08)}
+        <Reveal
+          variant="scale"
+          delay={0.05}
           className="rounded-[24px] border border-border/50 bg-surface-1 p-6 md:p-10 lg:p-12"
         >
           {/* Top row */}
@@ -141,7 +136,7 @@ export default function Experience() {
               ))}
             </ul>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
