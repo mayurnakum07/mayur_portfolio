@@ -9,7 +9,7 @@ export const siteConfig = {
   email: "mayurnakum07@gmail.com",
   github: "https://github.com/mayurnakum07",
   linkedIn: "https://www.linkedin.com/in/mayurnakum",
-  instagram: "https://instagram.com/mr_mayur_nakum",
+  instagram: "https://instagram.com/mayurnakum_07",
   url: "https://mayurnakum-portfolio.vercel.app",
   resumePath: "/Mayur-Nakum-Resume.pdf",
   /**

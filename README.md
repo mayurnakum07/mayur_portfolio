@@ -281,7 +281,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Email:** mayurnakum07@gmail.com
 - **LinkedIn:** [Mayur Nakum](https://linkedin.com/in/mayur-nakum-178777250)
 - **GitHub:** [mayurnakum07](https://github.com/mayurnakum07)
-- **Instagram:** [@mr_mayur_nakum](https://instagram.com/mr_mayur_nakum)
+- **Instagram:** [@mayurnakum_07](https://instagram.com/mayurnakum_07)
 
 ---
 
