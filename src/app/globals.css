@@ -499,8 +499,18 @@
 
   /* ── Intro ── */
 
+  html.is-loading body {
+    overflow: hidden;
+  }
+
   .preloader {
     @apply fixed inset-0 z-[200] flex items-center justify-center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preloader {
+      display: none !important;
+    }
   }
 
   /* Two panels that split apart, so the page is revealed rather than faded to. */
@@ -532,17 +542,67 @@
     @apply text-[11px] uppercase tracking-[0.22em] text-muted-foreground;
   }
 
-  .preloader__count {
-    @apply font-mono text-[clamp(3.5rem,14vw,9rem)] font-semibold leading-none tracking-tighter text-foreground;
-    font-variant-numeric: tabular-nums;
+  .preloader__spinner {
+    @apply relative mt-2 h-11 w-11;
+  }
+
+  .preloader__spinner-ring {
+    @apply absolute inset-0 rounded-full;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      hsl(var(--accent-cyan) / 0.15) 20%,
+      hsl(var(--accent-cyan)) 45%,
+      hsl(var(--accent-purple)) 70%,
+      transparent 100%
+    );
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 2px),
+      #000 calc(100% - 2px)
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 2px),
+      #000 calc(100% - 2px)
+    );
+    animation: preloader-spin 1.1s linear infinite;
+  }
+
+  .preloader__spinner-core {
+    @apply absolute inset-[11px] rounded-full bg-background;
+    box-shadow:
+      inset 0 0 0 1px hsl(var(--border) / 0.6),
+      0 0 24px hsl(var(--accent-cyan) / 0.12);
+  }
+
+  @keyframes preloader-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .preloader__rail {
-    @apply mt-2 block h-px w-[min(280px,60vw)] overflow-hidden bg-border;
+    @apply mt-1 block h-px w-[min(220px,52vw)] overflow-hidden rounded-full bg-border/80;
   }
 
-  .preloader__rail-fill {
-    @apply block h-full origin-left bg-gradient-to-r from-accent-cyan to-accent-purple;
+  .preloader__rail-shimmer {
+    @apply block h-full w-2/5 rounded-full bg-gradient-to-r from-accent-cyan to-accent-purple;
+    animation: preloader-shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes preloader-shimmer {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(320%);
+      opacity: 0.4;
+    }
   }
 
   .preloader.is-leaving .preloader__panel--top {
@@ -561,15 +621,9 @@
   /*
    * Failsafe: if the script never runs or dies mid-way, the overlay takes
    * itself off screen rather than holding the site hostage.
-   *
-   * Must sit well clear of the real lifetime (3s count + 0.9s curtain ≈ 3.9s
-   * from mount). A tight margin means a busy main thread on a slow first load
-   * delays the exit past the failsafe, which snaps the curtain to transparent
-   * mid-split. It only exists for a dead script, so it costs nothing to be
-   * generous here.
    */
   .preloader {
-    animation: preloader-failsafe 0s linear 6s forwards;
+    animation: preloader-failsafe 0s linear 20s forwards;
   }
 
   @keyframes preloader-failsafe {

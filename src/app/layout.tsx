@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark is-loading">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased page-shell`}
       >

@@ -1,67 +1,61 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { isStaticTier } from "@/lib/motion";
-import { markReady, PRELOADER_DURATION_MS } from "@/lib/preloader";
+import { markReady } from "@/lib/preloader";
+
+/** How long the curtain exit runs before the overlay unmounts. */
+const EXIT_MS = 900;
 
 /**
- * The intro: a full-screen count from 00 to 100, then the curtain splits and
- * the hero plays behind it.
+ * Full-screen loader shown from the first server paint until the browser
+ * `load` event fires (all subresources done). Entrance animations behind it
+ * await `markReady()` so they do not play under the overlay.
  *
- * Deliberate constraints:
- *  - plays on every full page load. It lives in the layout, so client-side
- *    navigation between pages does not replay it — only a real load does.
- *  - skipped entirely on reduced motion / Data Saver — an unskippable three
- *    second animation is exactly what that setting is asking you not to do.
- *  - the count is aria-hidden and the whole overlay is inert to the reader; a
- *    single polite "Loading" is all a screen reader gets.
- *  - a CSS failsafe removes it after 4s even if this component never runs.
+ *  - SSR-visible: starts active so there is no flash before hydration.
+ *  - skipped on reduced motion / Data Saver.
+ *  - client-side navigations do not replay it — layout mounts once per load.
  */
 export default function Preloader() {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [leaving, setLeaving] = useState(false);
-  const [count, setCount] = useState(0);
-  const rafRef = useRef(0);
+
+  const finish = useCallback(() => {
+    setLeaving(true);
+    markReady();
+    document.documentElement.classList.remove("is-loading");
+    document.body.style.overflow = "";
+    window.setTimeout(() => setActive(false), EXIT_MS);
+  }, []);
 
   useEffect(() => {
     if (isStaticTier()) {
+      document.documentElement.classList.remove("is-loading");
+      document.body.style.overflow = "";
+      setActive(false);
       markReady();
       return;
     }
 
-    setActive(true);
+    document.documentElement.classList.add("is-loading");
     document.body.style.overflow = "hidden";
 
-    const start = performance.now();
+    const onLoad = () => finish();
 
-    const tick = (now: number) => {
-      const progress = Math.min(1, (now - start) / PRELOADER_DURATION_MS);
-      // Ease-out so the number sprints early and settles on 100.
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(eased * 100));
-
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-        return;
-      }
-
-      // Curtain lifts and the entrance animations behind it are released.
-      setLeaving(true);
-      markReady();
-      document.body.style.overflow = "";
-
-      window.setTimeout(() => setActive(false), 900);
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("load", onLoad);
+      document.documentElement.classList.remove("is-loading");
       document.body.style.overflow = "";
       markReady();
     };
-  }, []);
+  }, [finish]);
 
   if (!active) return null;
 
@@ -70,10 +64,10 @@ export default function Preloader() {
       className={`preloader ${leaving ? "is-leaving" : ""}`}
       role="status"
       aria-live="polite"
+      aria-busy={!leaving}
     >
       <span className="sr-only">Loading</span>
 
-      {/* Two panels that split apart to reveal the page. */}
       <div className="preloader__panel preloader__panel--top" aria-hidden />
       <div className="preloader__panel preloader__panel--bottom" aria-hidden />
 
@@ -81,15 +75,13 @@ export default function Preloader() {
         <p className="preloader__name">{siteConfig.name}</p>
         <p className="preloader__role">{siteConfig.title}</p>
 
-        <p className="preloader__count">
-          {String(count).padStart(3, "0")}
-        </p>
+        <div className="preloader__spinner">
+          <span className="preloader__spinner-ring" />
+          <span className="preloader__spinner-core" />
+        </div>
 
         <span className="preloader__rail">
-          <span
-            className="preloader__rail-fill"
-            style={{ transform: `scaleX(${count / 100})` }}
-          />
+          <span className="preloader__rail-shimmer" />
         </span>
       </div>
     </div>

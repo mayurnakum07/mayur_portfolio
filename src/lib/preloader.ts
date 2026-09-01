@@ -11,9 +11,6 @@
  * case they are in.
  */
 
-/** Time the counter takes to reach 100 before the curtain starts lifting. */
-export const PRELOADER_DURATION_MS = 3000;
-
 let resolveReady: (() => void) | undefined;
 
 /**
