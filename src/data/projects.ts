@@ -165,6 +165,97 @@ const allProjects: Project[] = [
   },
 
   {
+    slug: "devli",
+    name: "Devli",
+    tagline: "Single-store pooja e-commerce app on Grocup",
+    summary:
+      "A React Native + Expo customer app for Devli, a pooja / ritual essentials store. It was migrated from a multi-store grocery+pharmacy MargERP marketplace into a single-seller Grocup experience — catalog, cart, OTP auth, orders, maps, voice search and deep links — with saffron/maroon Pooja branding for Android and iOS.",
+    category: "Mobile",
+    featured: true,
+    order: 2,
+    role: "Frontend & Mobile Engineer",
+    platforms: ["iOS", "Android"],
+    year: "2026 – Present",
+    status: "Production",
+    stack: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "React Navigation",
+      "Axios",
+      "AsyncStorage",
+      "Grocup REST API",
+      "Razorpay",
+      "Google Maps",
+      "Google Cloud Speech-to-Text",
+      "expo-speech-recognition",
+      "expo-location",
+      "Native OTP SMS Consent",
+      "EAS Build",
+    ],
+    highlights: [
+      "MargERP → Grocup API migration",
+      "Single-store pooja commerce",
+      "Voice search & QR deep links",
+      "OTP auth with SMS user consent",
+    ],
+    links: {
+      live: "https://www.devli.in/",
+      playStore: "https://play.google.com/store/apps/details?id=com.devli.grocup",
+    },
+    caseStudy: {
+      context: {
+        heading: "Context",
+        body: [
+          "Devli is the customer-facing mobile app for a single pooja store on Grocup (sellerId 6, www.devli.in / devli.grocup.com). Shoppers browse ritual essentials, add to cart, authenticate with phone OTP, set delivery location, and place orders for home delivery or store pickup.",
+          "The codebase started as a fork of a multi-store grocery + pharmacy marketplace (Paas Ki Dukaan / MargERP). The project was a full domain and API migration into a branded single-store Pooja app.",
+        ],
+      },
+      problem: {
+        heading: "The problem",
+        body: [
+          "The source app assumed a marketplace: pincode → nearby stores, grocery vs pharmacy catalogs, prescriptions, dual carts, and MargERP-specific auth and banners. None of that matched Devli’s model — one seller, one catalog, no Rx, Grocup headers (`origin` + `gc-customer-token`), and local cart state.",
+          "Shipping a store-ready app meant rewriting the API layer and stripping marketplace concepts without breaking checkout, deep links, or release builds.",
+        ],
+      },
+      contribution: {
+        heading: "What I built",
+        body: [],
+        bullets: [
+          "Migrated the entire network layer from MargERP to Grocup (`api.grocup.com`): store details, categories, products, banners, sections, search, OTP login, addresses, and orders — with `origin: https://devli.grocup.com` and `gc-customer-token` on every authenticated call",
+          "Collapsed multi-store marketplace flows into a single-store entry: splash → home, store details cached on launch, pincode only where delivery needs it",
+          "Removed grocery/pharmacy/prescription surfaces; unified cart, product detail, categories, and home sections around a Pooja catalog",
+          "Rebranded the app as Devli (saffron/maroon theme, icons, scheme `devli://`, package `com.devli.grocup`) and simplified navigation to Home, Categories, Cart, Orders, Profile",
+          "Shipped commerce extras: wishlist, location picker + Google Maps, Razorpay checkout wiring, invoice preview, banner/section home layouts, brands and offer grids",
+          "Added voice search (expo-speech-recognition + Google Speech-to-Text), QR scanning, and deep links for `devli://`, `devli.grocup.com`, and `www.devli.in`",
+          "Built a custom Android Expo module for SMS User Consent OTP autofill, plus EAS profiles for development, preview APK, and production AAB",
+        ],
+      },
+      challenges: {
+        heading: "Engineering challenges",
+        body: [
+          "API contract mismatch. MargERP paths were store-scoped and split by grocery/pharma; Grocup is origin-scoped and unified. Every service had to be remapped without leaving dead endpoints or dual-cart assumptions in checkout.",
+          "Domain deletion without regressions. Pharmacy screens, Rx tags, store-list discovery, and section-based theming were woven through navigation and context. Removing them meant careful navigator cleanup so deep links and product stacks still worked.",
+          "Native friction on a shared Expo codebase. Location, camera/QR, speech recognition, Maps keys, network security config for `api.grocup.com`, and Play Services SMS consent all needed platform-correct wiring while keeping TypeScript app code shared.",
+        ],
+      },
+      outcome: {
+        heading: "Outcome",
+        body: [
+          "Devli ships as a single-store Pooja commerce app on Expo 57 / React Native, backed by Grocup, with production EAS Android builds (v1.0.1) and a live storefront at www.devli.in.",
+        ],
+      },
+    },
+    images: {
+      card: "/assets/projects/devli.png",
+      hero: "/assets/projects/devli.png",
+      ogImage: DEFAULT_OG,
+    },
+    imageAlt:
+      "Devli pooja store app showing home catalog, categories and cart in a saffron-branded mobile UI",
+  },
+
+  {
     slug: "shivansh-luxe",
     name: "Shivansh Luxe",
     tagline: "Enquiry-led luxury jewellery commerce",
@@ -172,7 +263,7 @@ const allProjects: Project[] = [
       "The storefront for a Surat jewellery house — over 100 pieces across curated collections, with an enquiry and consultation flow instead of a checkout. Behind it is an admin dashboard where the client manages products, categories and incoming enquiries.",
     category: "Web",
     featured: false,
-    order: 2,
+    order: 3,
     role: "Full Stack Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2026",
@@ -254,7 +345,7 @@ const allProjects: Project[] = [
       "An iOS app that delivers Bible verses curated to what someone is actually going through. A daily mood check-in shapes which scripture surfaces, widgets refresh through the day, and an AI chat explains verses and generates devotionals in context.",
     category: "Mobile",
     featured: true,
-    order: 3,
+    order: 4,
     role: "React Native Developer",
     platforms: ["iOS"],
     year: "2025 – 2026",
@@ -279,7 +370,11 @@ const allProjects: Project[] = [
       appStore: "https://apps.apple.com/us/app/waves-bible-verse/id6742439914",
     },
     metrics: [
-      { value: "4.8★", label: "App Store rating", source: "App Store, Aug 2026" },
+      {
+        value: "4.8★",
+        label: "App Store rating",
+        source: "App Store, Aug 2026",
+      },
       { value: "246", label: "Ratings", source: "App Store, Aug 2026" },
       {
         value: "7",
@@ -345,7 +440,7 @@ const allProjects: Project[] = [
       "A driving safety app used in Taiwan. Drivers report mobile speed cameras and road conditions in real time; other drivers get voice alerts as they approach, delivered through a floating window that stays visible over their navigation app.",
     category: "Mobile",
     featured: true,
-    order: 4,
+    order: 5,
     role: "React Native Developer",
     platforms: ["Android"],
     year: "2024 – 2026",
@@ -436,7 +531,7 @@ const allProjects: Project[] = [
       "An event platform for people who host professional communities. It covers the full lifecycle — create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards — shipped to web, iOS and Android from a shared React and Ionic codebase.",
     category: "AI",
     featured: true,
-    order: 5,
+    order: 6,
     role: "Frontend & Mobile Developer",
     platforms: ["Web", "iOS", "Android"],
     year: "2025",
@@ -513,7 +608,7 @@ const allProjects: Project[] = [
       "A point-of-sale platform for restaurants spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing — a cash/card price split that lets an operator run at effectively zero card processing fees.",
     category: "Web",
     featured: false,
-    order: 6,
+    order: 7,
     role: "Frontend Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2025 – 2026",
@@ -575,7 +670,7 @@ const allProjects: Project[] = [
       "A mobile app that lets a family record, visualise and pass down its medical history. Health events, diagnoses and milestones map onto an interactive family tree, and a structured summary can be shared with relatives or a doctor.",
     category: "Mobile",
     featured: false,
-    order: 7,
+    order: 8,
     role: "React Native Developer",
     platforms: ["iOS", "Android"],
     year: "2026",
@@ -649,7 +744,7 @@ const allProjects: Project[] = [
       "A platform enterprises use to run outsourced services end to end — match a project to the right vendor, track it against milestones, catch schedule risk before it becomes a slipped deadline, and release payment when the work is signed off. A public marketing site fronts an authenticated product with separate client and admin applications behind it, kept live by a websocket layer.",
     category: "Platform",
     featured: false,
-    order: 8,
+    order: 9,
     role: "Frontend Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2026",
@@ -736,7 +831,7 @@ const allProjects: Project[] = [
       "The front door for a program that helps professional athletes move from a sports career into business. It explains the programs, tells success stories, publishes insights, and routes visitors into either a booked call or the course platform.",
     category: "Web",
     featured: false,
-    order: 9,
+    order: 10,
     role: "Frontend Developer",
     platforms: ["Web"],
     year: "2025 – 2026",
@@ -802,7 +897,7 @@ const allProjects: Project[] = [
 
 /** Display order everywhere on the site. */
 export const projects: Project[] = [...allProjects].sort(
-  (a, b) => a.order - b.order
+  (a, b) => a.order - b.order,
 );
 
 export const featuredProjects = projects.filter((p) => p.featured);
@@ -826,7 +921,8 @@ export function hasCaseStudyContent(project: Project): boolean {
   if (!project.caseStudy) return false;
   return Object.values(project.caseStudy).some(
     (section) =>
-      section && (section.body.length > 0 || (section.bullets?.length ?? 0) > 0)
+      section &&
+      (section.body.length > 0 || (section.bullets?.length ?? 0) > 0),
   );
 }
 
