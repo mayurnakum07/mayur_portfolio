@@ -48,13 +48,19 @@ mayur_portfolio/
 │   │   └── projectData.ts      # Project data array
 │   └── lib/
 │       └── utils.ts            # Utility functions
-├── public/
-│   ├── assets/
-│   │   ├── meta/               # Meta images for social sharing
-│   │   └── projects/           # Project preview images
+├── image-sources/              # Full-size originals (never served)
+│   ├── assets/projects/        # Project screenshots
+│   ├── og/                     # Social card artwork
+│   └── profile.jpg             # Profile image
+├── public/                     # Everything here except icon/ + PDF is generated
+│   ├── optimized/              # One WebP per image, served as-is
+│   ├── og/                     # 1200x630 social cards
 │   ├── icon/                   # SVG icons
 │   ├── MayurResume.pdf         # Downloadable resume
-│   └── profile.jpg             # Profile image
+│   └── profile.jpg             # Compressed profile image
+├── scripts/
+│   ├── optimize-images.mjs     # Builds public/ images from image-sources/
+│   └── verify-images.mjs       # Post-build guard against /_next/image
 ├── package.json
 ├── tailwind.config.ts
 ├── tsconfig.json
@@ -205,8 +211,29 @@ Edit `src/data/projectData.ts`:
 }
 ```
 
+### Images
+
+Originals live in `image-sources/`; everything under `public/optimized/` (plus
+`public/og/*.jpg` and `public/profile.jpg`) is generated. After adding or
+replacing an original, rebuild the derived assets and commit them:
+
+```bash
+npm run images
+```
+
+That script writes one WebP per image (only for originals the code actually
+references), the four 1200x630 social cards, and `src/lib/image-manifest.json`,
+which the custom `next/image` loader (`src/lib/imageLoader.ts`) reads. Images are
+therefore plain CDN files and never consume Vercel's metered image
+transformations. `npm run build` runs `scripts/verify-images.mjs`, which fails if
+a page reaches for `/_next/image` or references an image that is not on disk.
+
+Do not add `images.formats` to `next.config.mjs`. Changing the format list
+invalidates every optimized image Vercel has cached, which is what exhausted the
+transformation quota and blanked the images in production.
+
 ### Updating Personal Information
-- **Profile Image:** Replace `public/profile.jpg`
+- **Profile Image:** Replace `image-sources/profile.jpg`, then run `npm run images`
 - **Resume:** Replace `public/MayurResume.pdf`
 - **Contact Info:** Update in `src/app/contact/page.tsx`
 - **Social Links:** Edit `src/components/SocialsMenu.tsx`

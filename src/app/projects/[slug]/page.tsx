@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: Params) {
     title: `${project.name} — Case Study | Mayur Nakum`,
     description: project.summary,
     path: `/projects/${project.slug}`,
-    // Prefer the case-study hero over the generic projects OG card
-    ogImage: project.images.hero || project.images.ogImage,
+    // Screenshots have no social card of their own, so use the shared one.
+    ogImage: project.images.ogImage,
     ogType: "article",
     keywords: [project.name, project.category, "Case Study", ...project.stack],
   });

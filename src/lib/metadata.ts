@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImagePath } from "./images";
 import { absoluteUrl, siteConfig } from "./site";
 
 type PageMetaOptions = {
@@ -22,8 +23,9 @@ export function createPageMetadata({
   keywords = [],
   noIndex = false,
 }: PageMetaOptions): Metadata {
-  const imagePath = ogImage.startsWith("/") ? ogImage : `/og/${ogImage}.png`;
-  const imageUrl = absoluteUrl(imagePath);
+  // Resolve through the manifest so cards get the 1200x630 crop, not the original.
+  const source = ogImage.startsWith("/") ? ogImage : `/og/${ogImage}.png`;
+  const imageUrl = absoluteUrl(socialImagePath(source));
   const canonical = absoluteUrl(path);
 
   return {

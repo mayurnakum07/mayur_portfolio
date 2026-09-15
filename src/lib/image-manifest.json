@@ -1,0 +1,47 @@
+{
+  "/assets/projects/athlete-to-mogul.png": {
+    "file": "/optimized/assets/projects/athlete-to-mogul.webp"
+  },
+  "/assets/projects/basilMerchant.png": {
+    "file": "/optimized/assets/projects/basilMerchant.webp"
+  },
+  "/assets/projects/bydesign.png": {
+    "file": "/optimized/assets/projects/bydesign.webp"
+  },
+  "/assets/projects/devli.png": {
+    "file": "/optimized/assets/projects/devli.webp"
+  },
+  "/assets/projects/medicestry.png": {
+    "file": "/optimized/assets/projects/medicestry.webp"
+  },
+  "/assets/projects/networked.png": {
+    "file": "/optimized/assets/projects/networked.webp"
+  },
+  "/assets/projects/shivansh.png": {
+    "file": "/optimized/assets/projects/shivansh.webp"
+  },
+  "/assets/projects/speedApp.png": {
+    "file": "/optimized/assets/projects/speedApp.webp"
+  },
+  "/assets/projects/techifuze.png": {
+    "file": "/optimized/assets/projects/techifuze.webp"
+  },
+  "/assets/projects/waveBibleApp.png": {
+    "file": "/optimized/assets/projects/waveBibleApp.webp"
+  },
+  "/og/about.png": {
+    "social": "/og/about.jpg"
+  },
+  "/og/contact.png": {
+    "social": "/og/contact.jpg"
+  },
+  "/og/home.png": {
+    "social": "/og/home.jpg"
+  },
+  "/og/projects.png": {
+    "social": "/og/projects.jpg"
+  },
+  "/profile.jpg": {
+    "file": "/optimized/profile.webp"
+  }
+}

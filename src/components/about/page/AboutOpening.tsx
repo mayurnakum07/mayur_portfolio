@@ -2,7 +2,9 @@ import Image from "next/image";
 import IndexRail from "@/components/ui/IndexRail";
 import MaskReveal from "@/components/motion/MaskReveal";
 import { siteConfig } from "@/lib/site";
-import profileImg from "../../../../public/profile.jpg";
+
+/** Path, not a static import: the custom loader resolves it against the manifest. */
+const PROFILE_SRC = "/profile.jpg";
 
 export default function AboutOpening() {
   return (
@@ -42,7 +44,7 @@ export default function AboutOpening() {
                 <figure className="artifact-frame-slot">
                   <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
                     <Image
-                      src={profileImg}
+                      src={PROFILE_SRC}
                       alt={`${siteConfig.name} — ${siteConfig.title}`}
                       fill
                       priority
@@ -65,7 +67,7 @@ export default function AboutOpening() {
             <figure className="artifact-frame-slot">
               <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
                 <Image
-                  src={profileImg}
+                  src={PROFILE_SRC}
                   alt={`${siteConfig.name} — ${siteConfig.title}`}
                   fill
                   priority

@@ -7,7 +7,9 @@ import SignalLink from "@/components/ui/SignalLink";
 import useScrollFx from "@/components/motion/useScrollFx";
 import { siteConfig } from "@/lib/site";
 import { TIER_FULL, TIER_LITE } from "@/lib/motion";
-import profileImg from "../../../public/profile.jpg";
+
+/** Path, not a static import: the custom loader resolves it against the manifest. */
+const PROFILE_SRC = "/profile.jpg";
 
 function Portrait({
   sizes,
@@ -20,7 +22,7 @@ function Portrait({
     <figure data-hero-item className={`artifact-frame-slot ${className ?? ""}`}>
       <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
         <Image
-          src={profileImg}
+          src={PROFILE_SRC}
           alt={`${siteConfig.name} — ${siteConfig.title}`}
           fill
           priority
