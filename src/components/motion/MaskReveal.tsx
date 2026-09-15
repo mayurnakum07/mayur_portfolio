@@ -53,7 +53,10 @@ export default function MaskReveal({
             ease: "expo.out",
             scrollTrigger: immediate
               ? undefined
-              : { trigger: scope, start: "top 85%", once: true },
+              : { trigger: scope, start: "top 90%", once: true },
+            onComplete: () => {
+              gsap.set(lines, { clearProps: "transform" });
+            },
           }
         );
       });

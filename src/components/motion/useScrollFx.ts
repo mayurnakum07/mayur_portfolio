@@ -53,22 +53,27 @@ export default function useScrollFx(
 
       if (destroyed) return;
 
+      gsap.registerPlugin(ScrollTrigger);
+
       /*
-       * Entrance animations that play "on load" must not play behind the intro
-       * overlay — the visitor would watch the curtain lift onto a hero that has
-       * already finished animating. Resolves immediately when no intro runs.
+       * Load GSAP before awaiting the intro so the first frame after the
+       * curtain lifts can apply from-state and play — not flash final state.
        */
       if (awaitIntro) {
         await whenReady();
         if (destroyed) return;
       }
 
-      gsap.registerPlugin(ScrollTrigger);
-
       const mm = gsap.matchMedia();
       const ctx = gsap.context(() => {
         register({ gsap, ScrollTrigger, mm, scope });
       }, scope);
+
+      if (awaitIntro) {
+        requestAnimationFrame(() => {
+          if (!destroyed) ScrollTrigger.refresh();
+        });
+      }
 
       cleanup = () => {
         mm.revert();

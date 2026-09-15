@@ -41,5 +41,5 @@ export function isStaticTier(): boolean {
   return prefersReducedMotion() || prefersSaveData();
 }
 
-/** Standard scrub smoothing. `true` reads stepped; 1s catch-up reads intentional. */
-export const SCRUB = 1;
+/** Standard scrub smoothing — M4: 0.8s catch-up against scroll input. */
+export const SCRUB = 0.8;

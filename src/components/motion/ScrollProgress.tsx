@@ -5,10 +5,8 @@ import useScrollFx from "./useScrollFx";
 import { TIER_FULL, TIER_LITE } from "@/lib/motion";
 
 /**
- * Reading progress for long-form pages: a hairline that fills as the article is
- * read. Decorative and duplicated by the scrollbar, so it is aria-hidden.
- *
- * Scaled on the X axis rather than sized, so it never triggers layout.
+ * Reading progress for long-form pages: a 2px signal bar that fills as the
+ * article is read. Decorative — aria-hidden. M4: case study only.
  */
 export default function ScrollProgress() {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +26,7 @@ export default function ScrollProgress() {
             trigger: document.documentElement,
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.3,
+            scrub: true,
             invalidateOnRefresh: true,
           },
         }
@@ -40,9 +38,9 @@ export default function ScrollProgress() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-0.5"
+      className="pointer-events-none fixed inset-x-0 z-[60] h-0.5 bg-ink-border top-[calc(3.5rem+env(safe-area-inset-top,0px))] lg:top-[calc(4rem+env(safe-area-inset-top,0px))]"
     >
-      <div className="h-full origin-left scale-x-0 bg-gradient-to-r from-accent-cyan to-accent-purple" />
+      <div className="h-full origin-left scale-x-0 bg-signal" />
     </div>
   );
 }

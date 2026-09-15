@@ -10,83 +10,115 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        ink: {
+          DEFAULT: "var(--ink)",
+          raised: "var(--ink-raised)",
+          surface: "var(--ink-surface)",
+          border: "var(--ink-border)",
+          "border-hover": "var(--ink-border-hover)",
+        },
+        paper: {
+          DEFAULT: "var(--paper)",
+          muted: "var(--paper-muted)",
+          faint: "var(--paper-faint)",
+        },
+        signal: {
+          DEFAULT: "var(--signal)",
+          dim: "var(--signal-dim)",
+          muted: "var(--signal-muted)",
+        },
+        invert: {
+          bg: "var(--invert-bg)",
+          fg: "var(--invert-fg)",
+          muted: "var(--invert-muted)",
+          border: "var(--invert-border)",
+        },
+        success: "var(--success)",
+        error: "var(--error)",
+        /* Legacy aliases — other pages until migrated */
+        background: "var(--ink)",
+        foreground: "var(--paper)",
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--ink-surface)",
+          foreground: "var(--paper-muted)",
         },
         surface: {
-          1: "hsl(var(--surface-1))",
-          2: "hsl(var(--surface-2))",
-          3: "hsl(var(--surface-3))",
-          elevated: "hsl(var(--surface-elevated))",
+          1: "var(--ink-raised)",
+          2: "var(--ink-surface)",
+          3: "var(--ink-surface)",
+          elevated: "var(--ink-surface)",
         },
         accent: {
-          cyan: "hsl(var(--accent-cyan))",
-          purple: "hsl(var(--accent-purple))",
-          DEFAULT: "hsl(var(--accent-purple))",
+          DEFAULT: "var(--signal)",
         },
         border: {
-          DEFAULT: "hsl(var(--border))",
-          hover: "hsl(var(--border-hover))",
+          DEFAULT: "var(--ink-border)",
+          hover: "var(--ink-border-hover)",
         },
       },
       fontFamily: {
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        "display-xl": ["4.5rem", { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "700" }],
-        "display-lg": ["3.75rem", { lineHeight: "1.08", letterSpacing: "-0.025em", fontWeight: "700" }],
-        "display-md": ["3rem", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
-        "heading-lg": ["2.25rem", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "600" }],
-        "heading-md": ["1.5rem", { lineHeight: "1.25", letterSpacing: "-0.015em", fontWeight: "600" }],
-        "body-lg": ["1.125rem", { lineHeight: "1.7", fontWeight: "400" }],
-        "body-md": ["1rem", { lineHeight: "1.65", fontWeight: "400" }],
-        "body-sm": ["0.875rem", { lineHeight: "1.6", fontWeight: "400" }],
-        "label": ["0.75rem", { lineHeight: "1.5", letterSpacing: "0.04em", fontWeight: "500" }],
-      },
-      spacing: {
-        section: "6rem",
-        "section-lg": "8rem",
-        container: "1.5rem",
-        "container-md": "2.5rem",
-        "container-lg": "4rem",
-        "container-xl": "6rem",
+        "display-xl": [
+          "clamp(2.75rem, 7.5vw, 6.5rem)",
+          { lineHeight: "1.02", letterSpacing: "-0.035em", fontWeight: "700" },
+        ],
+        "display-lg": [
+          "clamp(2.25rem, 5.5vw, 4.25rem)",
+          { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "700" },
+        ],
+        "display-md": [
+          "clamp(1.875rem, 3.5vw, 2.75rem)",
+          { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "700" },
+        ],
+        "heading-lg": [
+          "clamp(1.625rem, 3vw, 2.125rem)",
+          { lineHeight: "1.22", letterSpacing: "-0.02em", fontWeight: "700" },
+        ],
+        "heading-md": [
+          "clamp(1.3125rem, 2.4vw, 1.625rem)",
+          { lineHeight: "1.3", letterSpacing: "-0.015em", fontWeight: "600" },
+        ],
+        "body-lg": [
+          "clamp(1.125rem, 1.8vw, 1.3125rem)",
+          { lineHeight: "1.65", fontWeight: "400" },
+        ],
+        "body-md": ["1.125rem", { lineHeight: "1.7", fontWeight: "400" }],
+        "body-sm": ["0.9375rem", { lineHeight: "1.65", fontWeight: "400" }],
+        "meta-lg": [
+          "0.8125rem",
+          { lineHeight: "1.55", letterSpacing: "0.04em", fontWeight: "400" },
+        ],
+        "meta-sm": [
+          "0.75rem",
+          { lineHeight: "1.55", letterSpacing: "0.05em", fontWeight: "400" },
+        ],
+        "meta-xs": [
+          "0.75rem",
+          { lineHeight: "1.5", letterSpacing: "0.04em", fontWeight: "400" },
+        ],
       },
       maxWidth: {
-        page: "1280px",
-        content: "720px",
-        wide: "1400px",
-      },
-      screens: {
-        xs: "475px",
+        page: "1440px",
+        prose: "62ch",
+        narrow: "640px",
+        measure: "38rem",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-        xl: "calc(var(--radius) + 4px)",
-        "2xl": "calc(var(--radius) + 8px)",
+        sm: "2px",
+        DEFAULT: "2px",
+        md: "2px",
+        lg: "2px",
       },
       boxShadow: {
-        soft: "var(--shadow-soft)",
-        "soft-lg": "var(--shadow-soft-lg)",
-        glow: "var(--shadow-glow)",
-        "glow-purple": "var(--shadow-glow-purple)",
+        artifact: "8px 8px 0 var(--ink-border)",
+        "artifact-sm": "4px 4px 0 var(--ink-border)",
       },
-      backgroundImage: {
-        "grid-pattern":
-          "linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px)",
-        "gradient-radial-cyan":
-          "radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--accent-cyan) / 0.08), transparent)",
-        "gradient-radial-purple":
-          "radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--accent-purple) / 0.06), transparent)",
-        "gradient-accent": "linear-gradient(135deg, hsl(var(--accent-cyan)), hsl(var(--accent-purple)))",
-      },
-      backgroundSize: {
-        grid: "64px 64px",
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

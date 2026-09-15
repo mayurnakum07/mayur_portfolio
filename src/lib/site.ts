@@ -1,5 +1,6 @@
 /**
  * Single source of truth for portfolio copy — update here first, then resume/LinkedIn.
+ * Production counts live in `getProofStats()` from projects.ts so they stay checkable.
  */
 export const siteConfig = {
   name: "Mayur Nakum",
@@ -12,21 +13,8 @@ export const siteConfig = {
   instagram: "https://instagram.com/mayurnakum_07",
   url: "https://mayurnakum-portfolio.vercel.app",
   resumePath: "/Mayur-Nakum-Resume.pdf",
-  /**
-   * Every number here is checkable against /projects — that is the point.
-   * If the project list changes, change these in the same sitting.
-   */
-  stats: [
-    { value: "3", label: "Years Experience" },
-    { value: "15+", label: "Products in Production" },
-    { value: "8+", label: "Live on App Store & Google Play" },
-    { value: "6+", label: "Platforms Shipped" },
-  ],
-  /**
-   * Formspree form ID. Set NEXT_PUBLIC_FORMSPREE_ID in the environment to
-   * enable the contact form; without it the form falls back to mailto.
-   */
-  formspreeId: process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "",
+  /** Full-time start — used for tenure copy, not as a marketing stat. */
+  experienceStart: "2023-08",
 } as const;
 
 export function absoluteUrl(path: string): string {

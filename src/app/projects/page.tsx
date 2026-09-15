@@ -1,12 +1,13 @@
-import ProjectsHero from "@/components/projects/ProjectsHero";
-import ProjectShowcase from "@/components/projects/ProjectShowcase";
+import { Suspense } from "react";
+import ProjectsArchiveHeader from "@/components/projects/archive/ProjectsArchiveHeader";
+import ProjectsArchive from "@/components/projects/archive/ProjectsArchive";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: `Projects | Mayur - ${siteConfig.title}`,
   description:
-    "A curated collection of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
+    "A curated archive of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
   path: "/projects",
   ogImage: "projects",
   keywords: [
@@ -20,11 +21,21 @@ export const metadata = createPageMetadata({
   ],
 });
 
+function ArchiveFallback() {
+  return (
+    <div className="container-page section-standard">
+      <p className="font-mono text-meta-sm text-paper-faint">Loading archive…</p>
+    </div>
+  );
+}
+
 export default function ProjectsPage() {
   return (
-    <main className="overflow-x-clip">
-      <ProjectsHero />
-      <ProjectShowcase />
+    <main className="w-full min-w-0">
+      <ProjectsArchiveHeader />
+      <Suspense fallback={<ArchiveFallback />}>
+        <ProjectsArchive />
+      </Suspense>
     </main>
   );
 }

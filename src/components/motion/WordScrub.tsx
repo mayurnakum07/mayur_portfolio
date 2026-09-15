@@ -48,7 +48,7 @@ export default function WordScrub({
           stagger: 0.08,
           scrollTrigger: {
             trigger: scope,
-            start: "top 78%",
+            start: "top 90%",
             end: "bottom 55%",
             scrub: SCRUB,
           },

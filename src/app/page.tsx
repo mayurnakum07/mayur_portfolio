@@ -1,44 +1,41 @@
-import About from "@/components/about/About";
-import HowIBuildProducts from "@/components/process/HowIBuildProducts";
-import Expertise from "@/components/expertise/Expertise";
-import Experience from "@/components/experience/Experience";
-import FeaturedProjects from "@/components/projects/FeaturedProjects";
-import Hero from "@/components/hero/Hero";
-import Statement from "@/components/Statement";
+import HomeAboutTeaser from "@/components/home/HomeAboutTeaser";
+import HomeCapabilities from "@/components/home/HomeCapabilities";
+import HomeContactBridge from "@/components/home/HomeContactBridge";
+import HomeLab from "@/components/home/HomeLab";
+import HomeOpening from "@/components/home/HomeOpening";
+import HomeProof from "@/components/home/HomeProof";
+import HomeSelectedWork from "@/components/home/HomeSelectedWork";
 import JsonLd from "@/components/JsonLd";
 import { createPageMetadata, defaultDescription } from "@/lib/metadata";
 import { personSchema } from "@/lib/structuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: `Mayur | ${siteConfig.title} Portfolio`,
+  title: `${siteConfig.name} — ${siteConfig.title}`,
   description: defaultDescription,
   path: "/",
   ogImage: "home",
   keywords: [
     siteConfig.title,
-    "React Developer",
-    "Next.js Developer",
-    "React Native Developer",
-    "TypeScript Developer",
-    "AI Product Development",
-    "Modern Web Development",
+    "React",
+    "Next.js",
+    "React Native",
+    "TypeScript",
+    "AI product development",
   ],
 });
 
-const Home = () => {
+export default function Home() {
   return (
-    <main className="w-full overflow-x-clip">
+    <main className="w-full min-w-0">
       <JsonLd data={personSchema()} />
-      <Hero />
-      <Statement />
-      <About />
-      <Experience />
-      <FeaturedProjects />
-      <Expertise />
-      <HowIBuildProducts />
+      <HomeOpening />
+      <HomeProof />
+      <HomeSelectedWork />
+      <HomeCapabilities />
+      <HomeLab />
+      <HomeAboutTeaser />
+      <HomeContactBridge />
     </main>
   );
-};
-
-export default Home;
+}

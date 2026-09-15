@@ -902,6 +902,52 @@ export const projects: Project[] = [...allProjects].sort(
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
+export const PROJECT_CATEGORIES = [
+  "AI",
+  "Web",
+  "Mobile",
+  "Platform",
+] as const satisfies readonly Category[];
+
+export const PROJECT_STATUSES = [
+  "Production",
+  "In Development",
+  "Completed",
+] as const satisfies readonly Status[];
+
+export function countProductionProjects(): number {
+  return projects.filter((p) => p.status === "Production").length;
+}
+
+/** Numbers used on Home Proof — derived from the archive so they stay checkable. */
+export function getProofStats() {
+  const products = countProductionProjects();
+  const platforms = new Set(projects.flatMap((p) => p.platforms)).size;
+  const onStores = projects.filter(
+    (p) => Boolean(p.links.appStore || p.links.playStore)
+  ).length;
+
+  return {
+    products: String(products),
+    platforms: String(platforms),
+    onStores: String(onStores),
+  };
+}
+
+export function filterProjects(options: {
+  category?: Category | "All";
+  status?: Status | "All";
+}): Project[] {
+  const { category = "All", status = "All" } = options;
+
+  return projects.filter((project) => {
+    const categoryMatch =
+      category === "All" || project.category === category;
+    const statusMatch = status === "All" || project.status === status;
+    return categoryMatch && statusMatch;
+  });
+}
+
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }

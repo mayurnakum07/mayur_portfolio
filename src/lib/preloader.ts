@@ -17,7 +17,7 @@ let resolveReady: (() => void) | undefined;
  * Created eagerly at module load so a component can await it before the
  * preloader has mounted — the race is real and silent if this is lazy.
  */
-const readyPromise: Promise<void> = new Promise((resolve) => {
+let readyPromise: Promise<void> = new Promise((resolve) => {
   resolveReady = resolve;
 });
 
@@ -28,6 +28,19 @@ export function markReady() {
   if (settled) return;
   settled = true;
   resolveReady?.();
+}
+
+/**
+ * Ensure a waiter exists for the next intro cycle. Safe no-op after the first
+ * successful markReady — client navigations should not re-block the gate.
+ */
+export function ensureReadyGate() {
+  if (settled) return;
+  if (!resolveReady) {
+    readyPromise = new Promise((resolve) => {
+      resolveReady = resolve;
+    });
+  }
 }
 
 export function whenReady(): Promise<void> {

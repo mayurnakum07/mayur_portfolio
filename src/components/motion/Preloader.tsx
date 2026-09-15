@@ -3,20 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { isStaticTier } from "@/lib/motion";
-import { markReady } from "@/lib/preloader";
+import { ensureReadyGate, markReady } from "@/lib/preloader";
 
-/** How long the curtain exit runs before the overlay unmounts. */
-const EXIT_MS = 900;
+/** M4 — Typographic Mark Fade exit duration. */
+const EXIT_MS = 420;
 
-/**
- * Full-screen loader shown from the first server paint until the browser
- * `load` event fires (all subresources done). Entrance animations behind it
- * await `markReady()` so they do not play under the overlay.
- *
- *  - SSR-visible: starts active so there is no flash before hydration.
- *  - skipped on reduced motion / Data Saver.
- *  - client-side navigations do not replay it — layout mounts once per load.
- */
 export default function Preloader() {
   const [active, setActive] = useState(true);
   const [leaving, setLeaving] = useState(false);
@@ -30,6 +21,8 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
+    ensureReadyGate();
+
     if (isStaticTier()) {
       document.documentElement.classList.remove("is-loading");
       document.body.style.overflow = "";
@@ -41,19 +34,36 @@ export default function Preloader() {
     document.documentElement.classList.add("is-loading");
     document.body.style.overflow = "hidden";
 
-    const onLoad = () => finish();
+    let finished = false;
+    const runFinish = () => {
+      if (finished) return;
+      finished = true;
+      finish();
+    };
+
+    const holdTimer = window.setTimeout(runFinish, 450);
+
+    const onLoad = () => {
+      window.clearTimeout(holdTimer);
+      // Brief hold after load so the mark is readable, then lift.
+      window.setTimeout(runFinish, 180);
+    };
 
     if (document.readyState === "complete") {
-      onLoad();
+      window.clearTimeout(holdTimer);
+      window.setTimeout(runFinish, 280);
     } else {
       window.addEventListener("load", onLoad, { once: true });
     }
 
     return () => {
+      window.clearTimeout(holdTimer);
       window.removeEventListener("load", onLoad);
-      document.documentElement.classList.remove("is-loading");
+      /*
+       * Do NOT markReady() here. React Strict Mode remounts effects; releasing
+       * the gate in cleanup lets hero entrance play under the curtain.
+       */
       document.body.style.overflow = "";
-      markReady();
     };
   }, [finish]);
 
@@ -67,22 +77,9 @@ export default function Preloader() {
       aria-busy={!leaving}
     >
       <span className="sr-only">Loading</span>
-
-      <div className="preloader__panel preloader__panel--top" aria-hidden />
-      <div className="preloader__panel preloader__panel--bottom" aria-hidden />
-
       <div className="preloader__inner" aria-hidden>
         <p className="preloader__name">{siteConfig.name}</p>
         <p className="preloader__role">{siteConfig.title}</p>
-
-        <div className="preloader__spinner">
-          <span className="preloader__spinner-ring" />
-          <span className="preloader__spinner-core" />
-        </div>
-
-        <span className="preloader__rail">
-          <span className="preloader__rail-shimmer" />
-        </span>
       </div>
     </div>
   );

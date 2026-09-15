@@ -4,7 +4,7 @@
  */
 
 export const aboutIntro = [
-  "I build web and mobile products, mostly in React, Next.js and React Native, and I have been doing it full time since August 2023 at DI Solutions in Surat. Nine of the things I have worked on are in production right now, across four platforms and clients in three countries.",
+  "I build web and mobile products, mostly in React, Next.js and React Native, and I have been doing it full time since August 2023 at DI Solutions in Surat. Ten of the things I have worked on are in production right now, across five platforms and clients in three countries.",
   "I got here the unglamorous way — starting on interfaces, then following the problems underneath them. A screen that had to stay responsive on cheap Android hardware taught me more about rendering than any tutorial did. A calendar that had to agree with Google, Apple and Microsoft at the same time taught me that most hard frontend problems are actually data problems in a costume.",
   "What I am doing now is the part I find most interesting: making products legible to AI systems rather than bolting a chat box onto them. On ByDesign that meant designing Model Context Protocol tools with schemas tight enough that a model picks the right one without guessing — which turns out to be a product design problem as much as an engineering one.",
 ];

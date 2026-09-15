@@ -1,5 +1,4 @@
 import type { Project } from "@/data/projects";
-import { contactFAQ } from "@/data/contactFAQ";
 import { absoluteUrl, siteConfig } from "./site";
 
 export function personSchema() {
@@ -27,18 +26,6 @@ export function personSchema() {
       "AI product development",
       "Cross-platform mobile development",
     ],
-  };
-}
-
-export function faqSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: contactFAQ.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
   };
 }
 

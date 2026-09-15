@@ -1,17 +1,12 @@
-import {
-  Brain,
-  Layout,
-  Smartphone,
-  Cloud,
-  type LucideIcon,
-} from "lucide-react";
-
+/**
+ * Technical strength categories for About — plain data, no icon deps.
+ * Links into the project archive by category where it maps cleanly.
+ */
 export interface ExpertiseCategory {
   id: string;
   title: string;
   description: string;
   technologies: string[];
-  icon: LucideIcon;
 }
 
 export const expertiseCategories: ExpertiseCategory[] = [
@@ -29,7 +24,6 @@ export const expertiseCategories: ExpertiseCategory[] = [
       "AI Agents",
       "MCP",
     ],
-    icon: Brain,
   },
   {
     id: "frontend",
@@ -42,11 +36,10 @@ export const expertiseCategories: ExpertiseCategory[] = [
       "TypeScript",
       "JavaScript",
       "Tailwind CSS",
-      "Framer Motion",
+      "GSAP",
       "Redux",
       "TanStack Query",
     ],
-    icon: Layout,
   },
   {
     id: "mobile",
@@ -54,7 +47,6 @@ export const expertiseCategories: ExpertiseCategory[] = [
     description:
       "Developing high-performance Android and iOS applications from a single codebase.",
     technologies: ["React Native", "Expo", "Android", "iOS", "Firebase"],
-    icon: Smartphone,
   },
   {
     id: "backend",
@@ -70,6 +62,5 @@ export const expertiseCategories: ExpertiseCategory[] = [
       "Cloud Functions",
       "Vercel",
     ],
-    icon: Cloud,
   },
 ];

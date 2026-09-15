@@ -9,6 +9,8 @@ type PageMetaOptions = {
   ogImage: string;
   ogType?: "website" | "article";
   keywords?: string[];
+  /** Soft pages (404) should not be indexed. */
+  noIndex?: boolean;
 };
 
 export function createPageMetadata({
@@ -18,6 +20,7 @@ export function createPageMetadata({
   ogImage,
   ogType = "website",
   keywords = [],
+  noIndex = false,
 }: PageMetaOptions): Metadata {
   const imagePath = ogImage.startsWith("/") ? ogImage : `/og/${ogImage}.png`;
   const imageUrl = absoluteUrl(imagePath);
@@ -26,12 +29,12 @@ export function createPageMetadata({
   return {
     title,
     description,
-    keywords,
-    robots: "index, follow",
-    alternates: { canonical },
+    keywords: keywords.length ? keywords : undefined,
+    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    alternates: noIndex ? undefined : { canonical },
     openGraph: {
       type: ogType,
-      url: canonical,
+      url: noIndex ? siteConfig.url : canonical,
       title,
       description,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
@@ -45,4 +48,4 @@ export function createPageMetadata({
   };
 }
 
-export const defaultDescription = `${siteConfig.title} with expertise in React, Next.js, TypeScript, React Native, and AI product development. Building fast, reliable web and mobile software.`;
+export const defaultDescription = `${siteConfig.name} — ${siteConfig.title}. React, Next.js, React Native, and AI-native products built for production.`;

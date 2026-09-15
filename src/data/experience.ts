@@ -1,24 +1,7 @@
-import {
-  Rocket,
-  Smartphone,
-  Layout,
-  Brain,
-  type LucideIcon,
-} from "lucide-react";
-
-function getDiSolutionsDuration() {
-  const leaveDate = new Date(2026, 7, 15);
-
-  return new Date() < leaveDate
-    ? "August 2023 — Present"
-    : "August 2023 — August 2026";
-}
-
 export interface Contribution {
   id: string;
   title: string;
   description: string;
-  icon: LucideIcon;
 }
 
 export const primaryExperience = {
@@ -27,7 +10,8 @@ export const primaryExperience = {
   companyUrl: "https://disolutions.net",
   location: "Surat, Gujarat",
   employmentType: "Full Time",
-  duration: getDiSolutionsDuration(),
+  /** Static string — avoid Date() at module load (SSR/client hydration drift). */
+  duration: "August 2023 — August 2026",
   description:
     "Developing production-grade web and mobile applications using React, Next.js and React Native while collaborating with designers, backend developers and clients to deliver scalable digital products.",
   technologies: [
@@ -56,27 +40,23 @@ export const contributions: Contribution[] = [
     title: "Production Apps",
     description:
       "Built and maintained production-ready applications used in real business environments.",
-    icon: Rocket,
   },
   {
     id: "cross-platform",
     title: "Cross-Platform Development",
     description:
       "Developed Android and iOS applications using React Native and Expo.",
-    icon: Smartphone,
   },
   {
     id: "modern-frontend",
     title: "Modern Frontend",
     description:
       "Built scalable interfaces using React, Next.js, TypeScript and Tailwind CSS.",
-    icon: Layout,
   },
   {
     id: "ai-integration",
     title: "AI Integration",
     description:
       "Integrated AI-powered features, APIs and automation into modern digital products.",
-    icon: Brain,
   },
 ];

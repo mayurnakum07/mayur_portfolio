@@ -1,6 +1,4 @@
-import AboutIntro from "@/components/about/AboutIntro";
-import Myplace from "@/components/Myplace";
-import Journey from "@/components/journey/Journey";
+import AboutPageContent from "@/components/about/page/AboutPageContent";
 import JsonLd from "@/components/JsonLd";
 import { createPageMetadata } from "@/lib/metadata";
 import { personSchema } from "@/lib/structuredData";
@@ -23,17 +21,11 @@ export const metadata = createPageMetadata({
   ],
 });
 
-const AboutPage = () => {
+export default function AboutPage() {
   return (
-    <main className="w-full overflow-x-clip">
+    <main className="w-full min-w-0">
       <JsonLd data={personSchema()} />
-      <AboutIntro />
-      <Journey />
-      <div className="container-page">
-        <Myplace />
-      </div>
+      <AboutPageContent />
     </main>
   );
-};
-
-export default AboutPage;
+}
