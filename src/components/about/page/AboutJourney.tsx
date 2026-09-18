@@ -22,7 +22,7 @@ export default function AboutJourney() {
           How I got here
         </h2>
         <p className="mt-4 max-w-prose text-body-md text-paper-muted">
-          Not a ladder of job titles — the problems that changed how I work.
+          Not a ladder of job titles. The problems that changed how I work.
         </p>
 
         <ol className="mt-10 space-y-10">

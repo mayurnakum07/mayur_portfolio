@@ -18,6 +18,33 @@ interface ProjectsFilterBarProps {
 const CATEGORY_OPTIONS: CategoryFilter[] = ["All", ...PROJECT_CATEGORIES];
 const STATUS_OPTIONS: StatusFilter[] = ["All", ...PROJECT_STATUSES];
 
+function FilterPill({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "min-h-[44px] rounded-sm px-2.5 font-mono text-meta-lg transition-colors duration-200",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal",
+        active
+          ? "bg-signal text-ink"
+          : "text-paper-muted [@media(hover:hover)_and_(pointer:fine)]:hover:bg-ink-surface [@media(hover:hover)_and_(pointer:fine)]:hover:text-paper"
+      )}
+    >
+      {label}
+    </button>
+  );
+}
+
 export default function ProjectsFilterBar({
   category,
   status,
@@ -28,70 +55,49 @@ export default function ProjectsFilterBar({
   return (
     <div className="flex flex-col gap-6 border-b border-ink-border pb-6 lg:flex-row lg:items-end lg:justify-between">
       <div className="min-w-0">
-        <p className="font-mono text-meta-xs text-paper-faint">Category</p>
+        <p className="font-mono text-meta-xs text-paper-faint" id="filter-category-label">
+          Category
+        </p>
         <ul
-          className="mt-2 flex flex-wrap items-center gap-x-1 gap-y-2"
+          className="mt-2 flex flex-wrap items-center gap-1.5"
           role="list"
+          aria-labelledby="filter-category-label"
         >
-          {CATEGORY_OPTIONS.map((option, index) => {
-            const active = category === option;
-            return (
-              <li key={option} className="flex items-center gap-1">
-                {index > 0 && (
-                  <span className="font-mono text-meta-lg text-paper-faint" aria-hidden>
-                    ·
-                  </span>
-                )}
-                <button
-                  type="button"
-                  onClick={() => onCategoryChange(option)}
-                  aria-pressed={active}
-                  className={cn(
-                    "relative min-h-[44px] px-1 font-mono text-meta-lg transition-colors duration-200",
-                    active
-                      ? "text-paper after:absolute after:bottom-3 after:left-1 after:right-1 after:h-px after:bg-signal"
-                      : "text-paper-muted [@media(hover:hover)_and_(pointer:fine)]:hover:text-paper"
-                  )}
-                >
-                  {option}
-                </button>
-              </li>
-            );
-          })}
+          {CATEGORY_OPTIONS.map((option) => (
+            <li key={option}>
+              <FilterPill
+                label={option}
+                active={category === option}
+                onClick={() => onCategoryChange(option)}
+              />
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-8">
-        <div>
-          <p className="font-mono text-meta-xs text-paper-faint">Status</p>
-          <ul className="mt-2 flex flex-wrap items-center gap-x-1 gap-y-2">
-            {STATUS_OPTIONS.map((option, index) => {
-              const active = status === option;
+      <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-end sm:gap-8">
+        <div className="min-w-0">
+          <p
+            className="font-mono text-meta-xs text-paper-faint"
+            id="filter-status-label"
+          >
+            Status
+          </p>
+          <ul
+            className="mt-2 flex flex-wrap items-center gap-1.5"
+            role="list"
+            aria-labelledby="filter-status-label"
+          >
+            {STATUS_OPTIONS.map((option) => {
               const label =
                 option === "In Development" ? "In Dev" : option;
               return (
-                <li key={option} className="flex items-center gap-1">
-                  {index > 0 && (
-                    <span
-                      className="font-mono text-meta-lg text-paper-faint"
-                      aria-hidden
-                    >
-                      ·
-                    </span>
-                  )}
-                  <button
-                    type="button"
+                <li key={option}>
+                  <FilterPill
+                    label={label}
+                    active={status === option}
                     onClick={() => onStatusChange(option)}
-                    aria-pressed={active}
-                    className={cn(
-                      "relative min-h-[44px] px-1 font-mono text-meta-lg transition-colors duration-200",
-                      active
-                        ? "text-paper after:absolute after:bottom-3 after:left-1 after:right-1 after:h-px after:bg-signal"
-                        : "text-paper-muted [@media(hover:hover)_and_(pointer:fine)]:hover:text-paper"
-                    )}
-                  >
-                    {label}
-                  </button>
+                  />
                 </li>
               );
             })}
@@ -101,8 +107,9 @@ export default function ProjectsFilterBar({
         <p
           className="font-mono text-meta-sm text-paper-faint sm:pb-3"
           aria-live="polite"
+          aria-atomic="true"
         >
-          {resultCount} {resultCount === 1 ? "project" : "projects"}
+          {resultCount} {resultCount === 1 ? "project" : "projects"} shown
         </p>
       </div>
     </div>

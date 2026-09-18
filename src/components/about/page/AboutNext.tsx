@@ -17,7 +17,7 @@ export default function AboutNext() {
             </h2>
             <p className="mt-5 max-w-measure text-body-lg text-invert-muted">
               The archive is the evidence. If you want to talk about a product,
-              a role, or a hard constraint — start there, or get in touch.
+              a role, or a hard constraint, start there or get in touch.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">

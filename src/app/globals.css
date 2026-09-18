@@ -246,12 +246,38 @@
 
   /* ── Ledger row ── */
   .ledger-row {
-    @apply relative grid min-h-[56px] grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-3 border-b border-ink-border py-5 transition-opacity duration-200 sm:gap-x-4 md:grid-cols-[2rem_minmax(0,1fr)_auto];
+    @apply relative grid min-h-[56px] grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-3 border-b border-ink-border py-5 transition-[opacity,background-color] duration-200 sm:gap-x-4 md:grid-cols-[2rem_minmax(0,1fr)_auto];
   }
 
   .ledger-row:focus-visible {
     @apply outline outline-2 outline-offset-2 outline-signal;
     border-radius: 2px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ledger-row:hover {
+      background-color: color-mix(in srgb, var(--ink-surface) 65%, transparent);
+    }
+  }
+
+  /* Archive list filter transition — respects prefers-reduced-motion */
+  .archive-list-transition {
+    animation: archive-list-in 180ms var(--ease-out);
+  }
+
+  @keyframes archive-list-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .archive-list-transition {
+      animation: none;
+    }
   }
 
   .ledger-row__name {

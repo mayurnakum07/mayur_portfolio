@@ -2,7 +2,11 @@ import Link from "next/link";
 import IndexRail from "@/components/ui/IndexRail";
 import FadeUp from "@/components/motion/FadeUp";
 import SignalLink from "@/components/ui/SignalLink";
-import { contributions, primaryExperience } from "@/data/experience";
+import {
+  contributions,
+  currentWork,
+  primaryExperience,
+} from "@/data/experience";
 
 export default function AboutExperience() {
   return (
@@ -28,6 +32,28 @@ export default function AboutExperience() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <div>
               <h3 className="font-display text-heading-md text-paper">
+                {currentWork.title}
+              </h3>
+              <p className="mt-1 text-body-md text-paper-muted">
+                {currentWork.label}
+                <span className="text-paper-faint"> · </span>
+                {currentWork.location}
+              </p>
+            </div>
+            <p className="shrink-0 font-mono text-meta-sm text-paper-faint">
+              {currentWork.duration}
+            </p>
+          </div>
+
+          <p className="mt-5 max-w-prose text-body-md text-paper-muted">
+            {currentWork.description}
+          </p>
+        </div>
+
+        <div className="mt-10 border-t border-ink-border pt-8">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <div>
+              <h3 className="font-display text-heading-md text-paper">
                 {primaryExperience.title}
               </h3>
               <p className="mt-1 text-body-md text-paper-muted">
@@ -43,7 +69,7 @@ export default function AboutExperience() {
                 {primaryExperience.location}
               </p>
             </div>
-            <p className="font-mono text-meta-sm text-paper-faint shrink-0">
+            <p className="shrink-0 font-mono text-meta-sm text-paper-faint">
               {primaryExperience.duration}
               <span className="text-paper-faint"> · </span>
               {primaryExperience.employmentType}
@@ -54,9 +80,7 @@ export default function AboutExperience() {
             {primaryExperience.description}
           </p>
 
-          <p className="mt-6 font-mono text-meta-xs text-paper-faint">
-            Stack
-          </p>
+          <p className="mt-6 font-mono text-meta-xs text-paper-faint">Stack</p>
           <p className="mt-2 max-w-prose font-mono text-meta-sm leading-relaxed text-paper-muted">
             {primaryExperience.technologies.join(" · ")}
           </p>
@@ -81,12 +105,13 @@ export default function AboutExperience() {
         </ul>
 
         <div className="mt-8">
-          <SignalLink href="/projects" variant="muted" className="group text-body-sm">
-            View projects from this role
-            <span
-              aria-hidden
-              className="hover-nudge-x"
-            >
+          <SignalLink
+            href="/projects"
+            variant="muted"
+            className="group text-body-sm"
+          >
+            View projects from DI Solutions
+            <span aria-hidden className="hover-nudge-x">
               →
             </span>
           </SignalLink>

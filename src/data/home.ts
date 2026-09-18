@@ -1,10 +1,10 @@
 import type { Category } from "@/data/projects";
 import { projects } from "@/data/projects";
 
-/** Editorial selection for Home §03 — three highest-impact production pieces. */
+/** Home §03 selection: three production pieces shown first. */
 export const homeSelectedSlugs = [
   "bydesign",
-  "devli",
+  "paas-ki-dukaan",
   "waves-bible-verse",
 ] as const;
 
@@ -26,25 +26,25 @@ function countByCategory(category: Category) {
 export const homeCapabilities: CapabilityRow[] = [
   {
     id: "ai",
-    label: "AI-native products",
+    label: "AI products",
     href: "/projects?category=AI",
     count: countByCategory("AI"),
   },
   {
     id: "web",
-    label: "Web platforms",
+    label: "Web apps",
     href: "/projects?category=Web",
     count: countByCategory("Web"),
   },
   {
     id: "mobile",
-    label: "Cross-platform mobile",
+    label: "Mobile apps",
     href: "/projects?category=Mobile",
     count: countByCategory("Mobile"),
   },
   {
     id: "methods",
-    label: "Production engineering",
+    label: "How I work",
     href: "/about#working-methods",
   },
 ];

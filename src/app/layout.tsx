@@ -35,7 +35,7 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.title}`,
+    default: `${siteConfig.name} · ${siteConfig.title}`,
     template: `%s`,
   },
   description: defaultDescription,

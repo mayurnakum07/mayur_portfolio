@@ -45,7 +45,7 @@ export default function HomeProof() {
           />
 
           <p className="mt-8 text-left font-mono text-meta-sm text-invert-muted sm:text-center lg:text-left">
-            {siteConfig.title} at DI Solutions · Surat · Aug 2023 — Present
+            {siteConfig.availability} · Surat · Freelance since Jan 2026
           </p>
         </div>
 

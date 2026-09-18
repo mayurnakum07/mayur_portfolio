@@ -11,7 +11,7 @@ import { personSchema } from "@/lib/structuredData";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: `${siteConfig.name} — ${siteConfig.title}`,
+  title: `${siteConfig.name} · ${siteConfig.title}`,
   description: defaultDescription,
   path: "/",
   ogImage: "home",

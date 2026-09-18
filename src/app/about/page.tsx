@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: `About | Mayur - ${siteConfig.title}`,
   description:
-    "How Mayur Nakum scopes work, makes technical decisions, and builds web, mobile and AI-powered products — plus what he is learning right now.",
+    "How Mayur Nakum scopes work, makes technical decisions, and builds web, mobile and AI products. Plus what he is learning right now.",
   path: "/about",
   ogImage: "about",
   keywords: [

@@ -43,7 +43,7 @@ export default function ArchiveLedgerRow({
           </span>
           {selected && (
             <span className="font-mono text-meta-xs text-paper-faint">
-              — selected
+              · selected
             </span>
           )}
         </div>
@@ -107,7 +107,7 @@ export default function ArchiveLedgerRow({
           {project.status}
         </span>
         <span
-          className="text-paper-faint transition-colors duration-200 group-focus-within:text-signal [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-signal"
+          className="text-paper-faint transition-[color,transform] duration-200 group-focus-within:text-signal [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-signal"
           aria-hidden
         >
           →

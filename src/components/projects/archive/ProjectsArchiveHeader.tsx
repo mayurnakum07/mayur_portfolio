@@ -41,8 +41,8 @@ export default function ProjectsArchiveHeader() {
             </MaskReveal>
 
             <p className="mt-8 max-w-measure text-body-lg text-paper-muted">
-              A curated catalog of production software across AI, web, and
-              mobile — featured pieces first, then the full indexed archive.
+              Work across AI, web, and mobile. Featured pieces up top, then every
+              project in the list below.
             </p>
           </div>
 
