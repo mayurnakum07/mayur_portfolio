@@ -3,7 +3,7 @@
  *
  * The homepage featured grid, the /projects showcase and every /projects/[slug]
  * case study read from this file. No project literals belong in JSX.
- * Display order follows array position — move entries to reorder.
+ * Display order follows array position. Move entries to reorder.
  */
 
 export type Platform = "Web" | "iOS" | "Android" | "macOS" | "Admin Dashboard";
@@ -84,7 +84,7 @@ const allProjects: Project[] = [
     featured: true,
     role: "Frontend & Mobile Engineer",
     platforms: ["Web", "iOS", "Android", "macOS"],
-    year: "2025 – Present",
+    year: "2025 to Present",
     status: "Production",
     stack: [
       "React Native",
@@ -123,7 +123,7 @@ const allProjects: Project[] = [
       problem: {
         heading: "The problem",
         body: [
-          "Productivity tools force a choice: a calendar that cannot hold a note, or a note app that cannot schedule anything. ByDesign's premise is that these are the same data viewed differently — a task on a page and a task on Tuesday at 3pm should be one object.",
+          "Productivity tools force a choice: a calendar that cannot hold a note, or a note app that cannot schedule anything. ByDesign's premise is that these are the same data viewed differently: a task on a page and a task on Tuesday at 3pm should be one object.",
           "That premise is easy to state and hard to build, because it means every surface has to agree about scheduling, timezones, recurrence and ownership at all times.",
         ],
       },
@@ -132,7 +132,7 @@ const allProjects: Project[] = [
         body: [],
         bullets: [
           "Built cross-platform UI in React Native and React covering tasks, pages/notes, calendar views, habits and the inbox",
-          "Implemented Model Context Protocol support, exposing the workspace as a tool surface an AI assistant can act on — reading the day's schedule, creating and rescheduling tasks, logging habits and editing notes through structured tool calls rather than screen-scraping",
+          "Implemented Model Context Protocol support, exposing the workspace as a tool surface an AI assistant can act on: reading the day's schedule, creating and rescheduling tasks, logging habits and editing notes through structured tool calls instead of screen-scraping",
           "Built two-way calendar sync against Google Calendar, Apple/iCloud Calendar and Microsoft Outlook, including event creation, attendee handling and RSVP",
           "Shipped home and lock screen widgets on iOS and Android",
           "Implemented multilingual support and timezone-aware scheduling across every surface",
@@ -142,8 +142,8 @@ const allProjects: Project[] = [
       challenges: {
         heading: "Engineering challenges",
         body: [
-          "Making the workspace legible to an AI assistant. An MCP integration is not a chatbot bolted onto a sidebar. Each capability has to be a tool with a strict schema, a clear description and predictable failure behaviour, because a model choosing between tools is only as good as the boundaries between them. The hard design work was granularity — one overloaded update_item tool makes the model guess, while fifty tiny tools bury the right one. I settled on tools scoped to what a user would recognise as a single intention: check today, add to inbox, reschedule, log a habit, share a page.",
-          "Two-way sync across three calendar providers. Google, Apple and Microsoft disagree about recurrence rules, timezone representation and what “deleted” means for one instance of a repeating event. Sync had to be idempotent — a device coming back online after hours offline cannot produce duplicates — and conflicts had to resolve without ever silently dropping something the user typed.",
+          "Making the workspace legible to an AI assistant. An MCP integration is not a chatbot bolted onto a sidebar. Each capability has to be a tool with a strict schema, a clear description and predictable failure behaviour, because a model choosing between tools is only as good as the boundaries between them. The hard design work was granularity: one overloaded update_item tool makes the model guess, while fifty tiny tools bury the right one. I settled on tools scoped to what a user would recognise as a single intention: check today, add to inbox, reschedule, log a habit, share a page.",
+          "Two-way sync across three calendar providers. Google, Apple and Microsoft disagree about recurrence rules, timezone representation and what “deleted” means for one instance of a repeating event. Sync had to be idempotent. A device coming back online after hours offline cannot produce duplicates. Conflicts had to resolve without ever silently dropping something the user typed.",
           "One codebase, four platforms. Widgets, notifications and calendar permissions are genuinely native on each platform. The work was drawing the line correctly: shared logic and shared UI where it holds, native modules where the platform demands it, and no leaky abstraction in between.",
         ],
       },
@@ -164,16 +164,108 @@ const allProjects: Project[] = [
   },
 
   {
-    slug: "devli",
-    name: "Devli",
-    tagline: "Single-store pooja e-commerce app on Grocup",
+    slug: "paas-ki-dukaan",
+    name: "Paas Ki Dukaan",
+    tagline: "Nearby grocery & pharmacy marketplace on MargERP",
     summary:
-      "A React Native + Expo customer app for Devli, a pooja / ritual essentials store. It was migrated from a multi-store grocery+pharmacy MargERP marketplace into a single-seller Grocup experience — catalog, cart, OTP auth, orders, maps, voice search and deep links — with saffron/maroon Pooja branding for Android and iOS.",
+      "A React Native + Expo marketplace that puts neighbourhood grocery and pharmacy stores online. Customers discover stores by pincode or GPS, shop grocery and pharma catalogs side by side, upload prescriptions, keep dual carts, and check out with Razorpay. All of it is backed by MargERP APIs.",
     category: "Mobile",
     featured: true,
     role: "Frontend & Mobile Engineer",
     platforms: ["iOS", "Android"],
-    year: "2026 – Present",
+    year: "2025 to Present",
+    status: "Production",
+    stack: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "React Navigation",
+      "Axios",
+      "AsyncStorage",
+      "MargERP REST API",
+      "Razorpay",
+      "Google Maps",
+      "Google Places / Geocoding",
+      "Google Cloud Speech-to-Text",
+      "expo-speech-recognition",
+      "expo-location",
+      "expo-image-picker",
+      "EAS Build",
+    ],
+    highlights: [
+      "Multi-store discovery by pincode & GPS",
+      "Dual grocery + pharmacy catalogs",
+      "Prescription upload & medicine flows",
+      "QR / deep-link store entry",
+    ],
+    links: {
+      appStore: "https://apps.apple.com/app/paas-ki-dukaan/id6755946890",
+      playStore:
+        "https://play.google.com/store/apps/details?id=com.marg.paaskidukaan",
+    },
+    caseStudy: {
+      context: {
+        heading: "Context",
+        body: [
+          "Paas Ki Dukaan brings local grocery and pharmacy stores online so customers order from neighbourhood shops they already trust, instead of distant warehouses. The Expo app talks to MargERP (`passkidukaanapi.margerp.com`) and ships for iOS and Android under the Paas Ki Dukaan brand.",
+          "Unlike a single-seller storefront, this product is a marketplace: location and pincode drive which stores appear, and grocery vs pharmacy are first-class sections with separate catalogs, carts and theming.",
+        ],
+      },
+      problem: {
+        heading: "The problem",
+        body: [
+          "Local retail is split across physical counters: a grocery store for daily essentials and a pharmacy for medicines. Big-app delivery feels distant and impersonal. Families still want their trusted nearby shops, just with digital browsing, prescriptions, reorder and payment.",
+          "Building that means one app has to handle store discovery, two product domains (including Rx rules), dual carts, payments and deep links into a specific store without collapsing into a generic warehouse catalog.",
+        ],
+      },
+      contribution: {
+        heading: "What I built",
+        body: [],
+        bullets: [
+          "Built the full customer app in React Native + Expo: splash → pincode/location → nearby store list → sectioned home (grocery / pharmacy) → cart → orders → profile",
+          "Implemented multi-store discovery against MargERP explore APIs (pincode and lat/lng), with last-visited grocery and pharmacy store memory",
+          "Shipped dual-domain commerce: separate grocery and pharma category/product endpoints, MedicineDetail vs ProductDetail, dual AsyncStorage carts, and section-aware theming",
+          "Built pharmacy-specific flows: prescription upload (camera / gallery), Rx-aware product handling, and order selection around prescription checkout",
+          "Integrated OTP phone auth, addresses, wishlist, banners (including MargERP encrypted banner API), offers grids, brands, invoices and Razorpay checkout",
+          "Added location permission + map picker (Google Maps / Places / Geocoding), voice search, QR scanning, and deep links (`paaskidukaan://`, `ecomm://store/{id}`) to open a specific store",
+          "Configured EAS development, preview APK and production Android builds for release",
+        ],
+      },
+      challenges: {
+        heading: "Engineering challenges",
+        body: [
+          "Two catalogs in one session. Grocery and pharmacy share navigation chrome but disagree on product shape, Rx requirements and cart ownership. Keeping section state, theme colours and cart totals consistent without leaking the wrong catalog into checkout was the main product-architecture problem.",
+          "Location-driven store selection. Explore results depend on pincode and GPS, stores can be grocery-only, pharma-only or both, and returning users expect their last pharmacy or grocery store, not a cold empty home. Fetch keys, tab filters and AsyncStorage last-visited stores had to stay in sync with the selected store context.",
+          "Marketplace deep links. A QR or shared URL must resolve to a store (and optionally type) before the catalog loads. Custom schemes and HTTPS hosts had to route through a single deep-link handler without breaking the normal pincode → store-list path.",
+        ],
+      },
+      outcome: {
+        heading: "Outcome",
+        body: [
+          "Paas Ki Dukaan is live as a neighbourhood grocery + pharmacy marketplace on iOS and Android, with production Expo builds and public listings on the App Store and Google Play.",
+        ],
+      },
+    },
+    images: {
+      card: "/assets/projects/paasKiDukaan.png",
+      hero: "/assets/projects/paasKiDukaan.png",
+      ogImage: DEFAULT_OG,
+    },
+    imageAlt:
+      "Paas Ki Dukaan app showing nearby store discovery with grocery and pharmacy shopping in one marketplace",
+  },
+
+  {
+    slug: "devli",
+    name: "Devli",
+    tagline: "Single-store pooja e-commerce app on Grocup",
+    summary:
+      "A React Native + Expo customer app for Devli, a pooja / ritual essentials store. It was migrated from a multi-store grocery+pharmacy MargERP marketplace into a single-seller Grocup experience: catalog, cart, OTP auth, orders, maps, voice search and deep links, with saffron/maroon Pooja branding for Android and iOS.",
+    category: "Mobile",
+    featured: true,
+    role: "Frontend & Mobile Engineer",
+    platforms: ["iOS", "Android"],
+    year: "2026 to Present",
     status: "Production",
     stack: [
       "React Native",
@@ -213,7 +305,7 @@ const allProjects: Project[] = [
       problem: {
         heading: "The problem",
         body: [
-          "The source app assumed a marketplace: pincode → nearby stores, grocery vs pharmacy catalogs, prescriptions, dual carts, and MargERP-specific auth and banners. None of that matched Devli’s model — one seller, one catalog, no Rx, Grocup headers (`origin` + `gc-customer-token`), and local cart state.",
+          "The source app assumed a marketplace: pincode → nearby stores, grocery vs pharmacy catalogs, prescriptions, dual carts, and MargERP-specific auth and banners. None of that matched Devli's model: one seller, one catalog, no Rx, Grocup headers (`origin` + `gc-customer-token`), and local cart state.",
           "Shipping a store-ready app meant rewriting the API layer and stripping marketplace concepts without breaking checkout, deep links, or release builds.",
         ],
       },
@@ -221,7 +313,7 @@ const allProjects: Project[] = [
         heading: "What I built",
         body: [],
         bullets: [
-          "Migrated the entire network layer from MargERP to Grocup (`api.grocup.com`): store details, categories, products, banners, sections, search, OTP login, addresses, and orders — with `origin: https://devli.grocup.com` and `gc-customer-token` on every authenticated call",
+          "Migrated the entire network layer from MargERP to Grocup (`api.grocup.com`): store details, categories, products, banners, sections, search, OTP login, addresses, and orders, with `origin: https://devli.grocup.com` and `gc-customer-token` on every authenticated call",
           "Collapsed multi-store marketplace flows into a single-store entry: splash → home, store details cached on launch, pincode only where delivery needs it",
           "Removed grocery/pharmacy/prescription surfaces; unified cart, product detail, categories, and home sections around a Pooja catalog",
           "Rebranded the app as Devli (saffron/maroon theme, icons, scheme `devli://`, package `com.devli.grocup`) and simplified navigation to Home, Categories, Cart, Orders, Profile",
@@ -259,7 +351,7 @@ const allProjects: Project[] = [
     name: "Shivansh Luxe",
     tagline: "Enquiry-led luxury jewellery commerce",
     summary:
-      "The storefront for a Surat jewellery house — over 100 pieces across curated collections, with an enquiry and consultation flow instead of a checkout. Behind it is an admin dashboard where the client manages products, categories and incoming enquiries.",
+      "The storefront for a Surat jewellery house. Over 100 pieces across named collections, with an enquiry and consultation flow instead of a checkout. Behind it is an admin dashboard where the client manages products, categories and incoming enquiries.",
     category: "Web",
     featured: false,
     role: "Full Stack Developer",
@@ -289,14 +381,14 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "Shivansh Luxe is the storefront for a Surat jewellery house. Over 100 pieces across rings, necklaces, earrings, bracelets, bangles, pendants, bridal and men's jewellery, organised into curated collections — Bridal Heritage, Forever Love, Diamond Classics, Timeless Elegance, Royal Collection.",
+          "Shivansh Luxe is the storefront for a Surat jewellery house. Over 100 pieces across rings, necklaces, earrings, bracelets, bangles, pendants, bridal and men's jewellery, organised into named collections: Bridal Heritage, Forever Love, Diamond Classics, Timeless Elegance, Royal Collection.",
           "Behind it is an admin dashboard where the client manages products, categories and incoming enquiries.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
-          "Fine jewellery does not sell through a checkout button. A bridal set is a consultation, a negotiation and a trust relationship — the transaction happens in a room, or over WhatsApp, not in a payment modal.",
+          "Fine jewellery does not sell through a checkout button. A bridal set is a consultation, a negotiation and a trust relationship. The transaction happens in a room, or over WhatsApp, not in a payment modal.",
           "So the site's job is not conversion-to-purchase, it is conversion-to-conversation: make someone want a piece enough to enquire, and get that enquiry to the client's phone fast. That inverts the usual e-commerce build. The product page is a pitch, not a cart step, and the admin dashboard is a CRM, not an order queue.",
         ],
       },
@@ -304,19 +396,19 @@ const allProjects: Project[] = [
         heading: "What I built",
         body: [],
         bullets: [
-          "Built the storefront in Next.js and TypeScript: category and collection browsing, product detail pages, curated editorial collections, wishlist and new arrivals",
-          "Built the enquiry flow — per-product enquiry, consultation booking and WhatsApp hand-off with a prefilled message",
-          "Built the admin dashboard: product and category management, collection curation and enquiry management",
-          "Implemented the visual layer — video hero, scroll-driven editorial sections and Framer Motion transitions in service of a premium feel",
+          "Built the storefront in Next.js and TypeScript: category and collection browsing, product detail pages, editorial collections, wishlist and new arrivals",
+          "Built the enquiry flow: per-product enquiry, consultation booking and WhatsApp hand-off with a prefilled message",
+          "Built the admin dashboard: product and category management, collections and enquiry management",
+          "Implemented the visual layer: video hero, scroll-driven editorial sections and Framer Motion transitions in service of a premium feel",
           "Handled performance and SEO: image optimisation across a heavy image catalogue, structured metadata and Vercel deployment",
         ],
       },
       challenges: {
         heading: "Engineering challenges",
         body: [
-          "A luxury feel that still loads fast. This category demands large, beautiful photography and a hero video, and the audience is largely on mobile data in India. Everything hinges on aggressive image optimisation, correct sizing and lazy loading — the visual ambition and the performance budget pull directly against each other, and the resolution is technical, not aesthetic.",
+          "A luxury feel that still loads fast. This category demands large, beautiful photography and a hero video, and the audience is largely on mobile data in India. Everything hinges on aggressive image optimisation, correct sizing and lazy loading. The visual ambition and the performance budget pull directly against each other, and the resolution is technical, not aesthetic.",
           "Enquiries are the product. If an enquiry is slow to reach the client, the sale is gone. The flow had to be short on mobile, capture the specific piece, and land reliably in the dashboard and on the client's phone.",
-          "A catalogue a non-technical owner can run. Categories, collections, tags like “New” and “Featured,” and 100+ pieces — all editable by a jeweller, not a developer.",
+          "A catalogue a non-technical owner can run. Categories, collections, tags like “New” and “Featured,” and 100+ pieces, all editable by a jeweller, not a developer.",
         ],
       },
       outcome: {
@@ -332,20 +424,20 @@ const allProjects: Project[] = [
       ogImage: DEFAULT_OG,
     },
     imageAlt:
-      "Shivansh Luxe storefront showing a curated luxury jewellery collection",
+      "Shivansh Luxe storefront showing a luxury jewellery collection",
   },
 
   {
     slug: "waves-bible-verse",
     name: "Waves: Bible Verse",
-    tagline: "AI scripture companion with mood-based curation",
+    tagline: "AI scripture companion matched to how you feel",
     summary:
-      "An iOS app that delivers Bible verses curated to what someone is actually going through. A daily mood check-in shapes which scripture surfaces, widgets refresh through the day, and an AI chat explains verses and generates devotionals in context.",
+      "An iOS app that delivers Bible verses matched to what someone is actually going through. A daily mood check-in shapes which scripture surfaces, widgets refresh through the day, and an AI chat explains verses and generates devotionals in context.",
     category: "Mobile",
     featured: true,
     role: "React Native Developer",
     platforms: ["iOS"],
-    year: "2025 – 2026",
+    year: "2025 to 2026",
     status: "Production",
     client: "Waves Studio LLC",
     stack: [
@@ -357,7 +449,7 @@ const allProjects: Project[] = [
       "In-App Purchase",
     ],
     highlights: [
-      "Mood-based verse curation",
+      "Mood-matched verses",
       "AI scripture chat",
       "Lock screen widgets",
       "Devotional streaks",
@@ -383,14 +475,14 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "Waves delivers Bible verses curated to what someone is actually going through. A daily mood check-in shapes which scripture surfaces; lock and home screen widgets refresh through the day; and an AI chat explains verses, generates devotionals and answers faith questions in context. It runs on a subscription with a free trial.",
+          "Waves delivers Bible verses matched to what someone is actually going through. A daily mood check-in shapes which scripture surfaces; lock and home screen widgets refresh through the day; and an AI chat explains verses, generates devotionals and answers faith questions in context. It runs on a subscription with a free trial.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
           "Devotional apps have a retention problem shaped like a calendar: a verse-of-the-day is the same verse for everyone, so it stops feeling addressed to you by roughly day four.",
-          "The product bet is that relevance beats volume — that a verse chosen for how you feel today outperforms a larger library served generically. That makes personalisation the product, not a feature of it.",
+          "The product bet is that relevance beats volume: that a verse chosen for how you feel today outperforms a larger library served generically. That makes personalisation the product, not a feature of it.",
         ],
       },
       contribution: {
@@ -398,8 +490,8 @@ const allProjects: Project[] = [
         body: [],
         bullets: [
           "Built the iOS app in React Native and TypeScript",
-          "Implemented the mood check-in slider that drives verse curation from a user's daily emotional state",
-          "Built Waves Chat on OpenAI — verse explanations, personalised devotionals and open faith-based questions, with prompting tuned to stay grounded in scripture rather than freelancing",
+          "Implemented the mood check-in slider that picks verses from a user's daily emotional state",
+          "Built Waves Chat on OpenAI: verse explanations, personalised devotionals and open faith-based questions, with prompting tuned to stay grounded in scripture instead of freelancing",
           "Built lock screen and home screen widgets that refresh on a schedule, keeping content present without requiring the app to be opened",
           "Implemented customisable reminder notifications and devotional streak tracking",
           "Integrated in-app purchases and subscription management across weekly, monthly, six-month and annual tiers with a free trial",
@@ -408,8 +500,8 @@ const allProjects: Project[] = [
       challenges: {
         heading: "Engineering challenges",
         body: [
-          "Widgets are a different execution environment. Lock and home screen widgets refresh on a schedule the OS controls, not on demand. Getting fresh, personalised content into a widget means pre-computing what it will need and respecting a tight memory and time budget — you cannot call an API when the widget wakes.",
-          "An AI that has to stay in bounds. A faith chatbot answering “what does this verse mean” has an obvious failure mode. The work was prompt design and grounding — keeping responses anchored in scripture and appropriate to a devotional context rather than free-associating, in a domain where getting it wrong genuinely matters to the person reading it.",
+          "Widgets are a different execution environment. Lock and home screen widgets refresh on a schedule the OS controls, not on demand. Getting fresh, personalised content into a widget means pre-computing what it will need and respecting a tight memory and time budget. You cannot call an API when the widget wakes.",
+          "An AI that has to stay in bounds. A faith chatbot answering “what does this verse mean” has an obvious failure mode. The work was prompt design and grounding: keeping responses anchored in scripture and appropriate to a devotional context instead of free-associating, in a domain where getting it wrong genuinely matters to the person reading it.",
           "Subscriptions across six price points. Weekly, monthly, six-month and annual tiers plus a three-day trial, with receipt validation, restore-purchase, and state that stays correct through cancellation and re-subscription.",
         ],
       },
@@ -426,14 +518,14 @@ const allProjects: Project[] = [
       ogImage: DEFAULT_OG,
     },
     imageAlt:
-      "Waves: Bible Verse app showing a curated scripture screen and mood check-in",
+      "Waves: Bible Verse app showing a scripture screen and mood check-in",
   },
 
   {
     slug: "bizscrape",
     name: "BizScrape",
     tagline:
-      "A powerful business data scraping platform for discovering and organizing leads.",
+      "Business data scraping for finding and organizing leads.",
     summary:
       "A web platform that helps users discover businesses, extract structured business data, and organize results for lead generation and research.",
     category: "Platform",
@@ -485,7 +577,7 @@ const allProjects: Project[] = [
       outcome: {
         heading: "Outcome",
         body: [
-          "Delivered a functional business scraping platform that streamlines business discovery, data collection, and lead organization.",
+          "Delivered a functional business scraping platform that handles discovery, collection, and lead organization.",
         ],
       },
     },
@@ -507,7 +599,7 @@ const allProjects: Project[] = [
     featured: true,
     role: "React Native Developer",
     platforms: ["Android"],
-    year: "2024 – 2026",
+    year: "2024 to 2026",
     status: "Production",
     client: "微碩有限公司 (Weishuo Co., Taiwan)",
     stack: [
@@ -546,7 +638,7 @@ const allProjects: Project[] = [
       problem: {
         heading: "The problem",
         body: [
-          "A driver watching the road cannot also watch a speedometer, and mobile speed traps move — a static database is out of date the day it ships. The only source that keeps up is other drivers.",
+          "A driver watching the road cannot also watch a speedometer, and mobile speed traps move. A static database is out of date the day it ships. The only source that keeps up is other drivers.",
           "That makes this a crowd-sourcing problem with a hard constraint: every interaction happens at speed, one-handed, with eyes that belong on the road. Anything requiring two taps and a look down is not just bad UX, it is dangerous.",
         ],
       },
@@ -556,9 +648,9 @@ const allProjects: Project[] = [
         bullets: [
           "Built the app in React Native for Taiwan's driving market",
           "Implemented real-time GPS tracking with per-second position updates against reported speed trap locations",
-          "Built the floating window overlay, so alerts stay visible over a navigation app rather than requiring BBpatrol to be foregrounded",
+          "Built the floating window overlay, so alerts stay visible over a navigation app instead of requiring BBpatrol to be foregrounded",
           "Implemented the voice alert system with multiple selectable voice packs",
-          "Built the crowd-sourced reporting flow — one-handed submission of speed traps and road conditions while driving",
+          "Built the crowd-sourced reporting flow: one-handed submission of speed traps and road conditions while driving",
           "Integrated Line Login, the dominant auth method in Taiwan",
         ],
       },
@@ -566,9 +658,9 @@ const allProjects: Project[] = [
         heading: "Engineering challenges",
         body: [
           "Battery versus accuracy. Per-second GPS updates plus a persistent overlay is close to a worst case for battery. Tuning location accuracy, update frequency and background behaviour to stay useful on a long drive without draining the phone was the central constraint.",
-          "A UI you use without looking. Reporting has to be a single large target, confirmable by feel, with audio confirmation instead of visual. The voice packs are not a novelty feature — audio is the primary output channel, because the screen is not one.",
+          "A UI you use without looking. Reporting has to be a single large target, confirmable by feel, with audio confirmation instead of visual. The voice packs are not a novelty feature. Audio is the primary output channel, because the screen is not one.",
           "Android overlay permissions. System overlay windows sit behind a special permission and behave differently across manufacturers' Android skins. Making the floating window reliable across real Taiwanese Android devices was ongoing compatibility work.",
-          "Localisation. The entire product is in Traditional Chinese for a Taiwanese market — a market I was building for without being in it.",
+          "Localisation. The entire product is in Traditional Chinese for a Taiwanese market, a market I was building for without being in it.",
         ],
       },
       outcome: {
@@ -592,7 +684,7 @@ const allProjects: Project[] = [
     name: "GetNetworked",
     tagline: "AI-powered event and professional networking platform",
     summary:
-      "An event platform for people who host professional communities. It covers the full lifecycle — create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards — shipped to web, iOS and Android from a shared React and Ionic codebase.",
+      "An event platform for people who host professional communities. It covers the full lifecycle: create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards. Shipped to web, iOS and Android from a shared React and Ionic codebase.",
     category: "AI",
     featured: true,
     role: "Frontend & Mobile Developer",
@@ -617,13 +709,13 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "GetNetworked is an event platform for people who host professional communities — founders, operators, membership organisations. It covers the full lifecycle: create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards. The company sells it in tiers from free through $159/month, with a custom enterprise tier.",
+          "GetNetworked is an event platform for people who host professional communities, founders, operators, membership organisations. It covers the full lifecycle: create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards. The company sells it in tiers from free through $159/month, with a custom enterprise tier.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
-          "Event tooling splits at the door. One product sells the ticket, another handles check-in, a third is where attendees try to find each other afterwards — usually LinkedIn, badly.",
+          "Event tooling splits at the door. One product sells the ticket, another handles check-in, a third is where attendees try to find each other afterwards, usually LinkedIn, badly.",
           "Hosts lose the thread between “who bought a ticket,” “who actually showed up,” and “who should meet whom,” which is the only part that produces a repeat attendee.",
         ],
       },
@@ -644,7 +736,7 @@ const allProjects: Project[] = [
         body: [
           "Payments in a hybrid app. Apple Pay plus Stripe inside an Ionic shell means native payment sheets, webhook-driven order state, and a checkout that cannot double-charge when the network drops mid-confirmation. Ticket state has to be authoritative server-side; the client is a view of it, never the source.",
           "Check-in at the door. Scanning happens in a crowded room on hotel wifi. The scan flow had to stay responsive and tolerate poor connectivity without ever letting the same ticket in twice.",
-          "Proximity-based suggestions that stay private. Location-driven recommendations mean handling real location data carefully — radius filtering that is useful without exposing precise position to other attendees.",
+          "Proximity-based suggestions that stay private. Location-driven recommendations mean handling real location data carefully, radius filtering that is useful without exposing precise position to other attendees.",
         ],
       },
       outcome: {
@@ -668,12 +760,12 @@ const allProjects: Project[] = [
     name: "Basil POS",
     tagline: "Restaurant point-of-sale platform and back office",
     summary:
-      "A point-of-sale platform for restaurants spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing — a cash/card price split that lets an operator run at effectively zero card processing fees.",
+      "A point-of-sale platform for restaurants spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing, a cash/card price split that lets an operator run at effectively zero card processing fees.",
     category: "Web",
     featured: false,
     role: "Frontend Developer",
     platforms: ["Web", "Admin Dashboard"],
-    year: "2025 – 2026",
+    year: "2025 to 2026",
     status: "Production",
     client: "The Credit Wholesale Company / Wholesale Payments",
     stack: ["React", "Next.js", "TypeScript"],
@@ -691,14 +783,14 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "Basil POS is a point-of-sale platform for restaurants, spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing — a cash/card price split that lets an operator run at effectively zero card processing fees. It ships as an Android POS app plus a web back office where owners manage menus, staff and reporting.",
+          "Basil POS is a point-of-sale platform for restaurants, spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing, a cash/card price split that lets an operator run at effectively zero card processing fees. It ships as an Android POS app plus a web back office where owners manage menus, staff and reporting.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
           "Restaurant POS software fails in a specific way: it is fast in a demo and slow at 7pm on a Friday. Every second between a cashier's tap and the screen responding is a second a customer is standing there.",
-          "On top of that, restaurant configuration is genuinely complex — modifier groups, seat-based ordering, tip rules, auto gratuity tiers, drive-thru flows — and all of it has to be editable by an owner who is not technical, at 2am, from their phone.",
+          "On top of that, restaurant configuration is genuinely complex, modifier groups, seat-based ordering, tip rules, auto gratuity tiers, drive-thru flows, and all of it has to be editable by an owner who is not technical, at 2am, from their phone.",
         ],
       },
       challenges: {
@@ -761,7 +853,7 @@ const allProjects: Project[] = [
       problem: {
         heading: "The problem",
         body: [
-          "Almost everyone has sat in a doctor's office and guessed at the answer to “does this run in your family?” That information exists — it is in a grandmother's memory, an aunt's recollection, a diagnosis nobody wrote down — and it disappears one funeral at a time.",
+          "Almost everyone has sat in a doctor's office and guessed at the answer to “does this run in your family?” That information exists, it is in a grandmother's memory, an aunt's recollection, a diagnosis nobody wrote down, and it disappears one funeral at a time.",
           "It is also the single cheapest input into preventive care. The problem is not medical, it is a data-capture problem wearing a medical coat: how do you get a family to record something that only pays off decades later?",
         ],
       },
@@ -769,7 +861,7 @@ const allProjects: Project[] = [
         heading: "What I built",
         body: [],
         bullets: [
-          "Built the interactive family tree builder — mapping relationships, attaching health conditions to individual members, and updating as new information arrives",
+          "Built the interactive family tree builder, mapping relationships, attaching health conditions to individual members, and updating as new information arrives",
           "Implemented an interactive health timeline for events, diagnoses and milestones",
           "Built sharing and export: structured health summaries sent to doctors or caregivers, PDF and digital chart export, and per-person view/edit permissions",
           "Implemented preventative screening alerts tied to age milestones, for example mammogram and colonoscopy reminders at the relevant ages",
@@ -780,7 +872,7 @@ const allProjects: Project[] = [
         heading: "Engineering challenges",
         body: [
           "A family tree is a graph, not a tree. Real families have step-parents, half-siblings, adoption and remarriage. A naive parent-child hierarchy breaks on the second real user. Rendering that graph legibly on a phone screen, and letting someone edit it with a thumb, is the core UI problem in the product.",
-          "Sensitive data raises the floor. Health records mean encryption, careful permission boundaries, and being deliberate about what leaves the device. Every sharing feature had to start from “who can see this, exactly” rather than adding permissions afterwards.",
+          "Sensitive data raises the floor. Health records mean encryption, careful permission boundaries, and being deliberate about what leaves the device. Every sharing feature had to start from “who can see this, exactly” instead of adding permissions afterwards.",
           "Export that a doctor will actually read. A PDF of a family health history is only useful if it is scannable in the thirty seconds a physician has. That is a typography and information-hierarchy problem as much as a rendering one.",
         ],
       },
@@ -794,7 +886,7 @@ const allProjects: Project[] = [
       hero: "/assets/projects/medicestry.png",
       ogImage: DEFAULT_OG,
     },
-    imageAlt: "Medicestry — family medical history app for iOS and Android",
+    imageAlt: "Medicestry, family medical history app for iOS and Android",
   },
 
   {
@@ -802,7 +894,7 @@ const allProjects: Project[] = [
     name: "Techifuze",
     tagline: "Enterprise contract intelligence and vendor execution platform",
     summary:
-      "A platform enterprises use to run outsourced services end to end — match a project to the right vendor, track it against milestones, catch schedule risk before it becomes a slipped deadline, and release payment when the work is signed off. A public marketing site fronts an authenticated product with separate client and admin applications behind it, kept live by a websocket layer.",
+      "A platform enterprises use to run outsourced services end to end, match a project to the right vendor, track it against milestones, catch schedule risk before it becomes a slipped deadline, and release payment when the work is signed off. A public marketing site fronts an authenticated product with separate client and admin applications behind it, kept live by a websocket layer.",
     category: "Platform",
     featured: false,
     role: "Frontend Developer",
@@ -834,15 +926,15 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "Techifuze positions itself as an enterprise contract intelligence platform — its own framing is “the source of truth for execution, spend and accountability.” An enterprise scopes a project, is matched to vendors, tracks delivery against milestones, and pays out as work is signed off, all inside one system.",
-          "The product has two halves. A public marketing site sells it — feature, platform, how-it-works and enterprise sections, a fourteen-day trial with no card required, and a SOC 2 badge in the trust row. Behind the sign-in are two separate applications: a client dashboard showing active projects, active vendors, total spend and on-time rate, and an admin console with its own routes and permissions.",
+          "Techifuze positions itself as an enterprise contract intelligence platform, its own framing is “the source of truth for execution, spend and accountability.” An enterprise scopes a project, is matched to vendors, tracks delivery against milestones, and pays out as work is signed off, all inside one system.",
+          "The product has two halves. A public marketing site sells it, feature, platform, how-it-works and enterprise sections, a fourteen-day trial with no card required, and a SOC 2 badge in the trust row. Behind the sign-in are two separate applications: a client dashboard showing active projects, active vendors, total spend and on-time rate, and an admin console with its own routes and permissions.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
           "When a large company buys services, the truth about that work is split across three places that never agree. The contract says what was promised. Email, calls and spreadsheets hold what actually happened. Invoices move money on a schedule that reconciles to neither. By the time anyone notices a project is late, it has been late for weeks.",
-          "So the platform's job is not project management — that market is full. It is closing the gap between the contract and reality fast enough to act on: surfacing a timeline deviation while there is still time to fix it, and tying payment release to a milestone actually being met rather than to an invoice date.",
+          "So the platform's job is not project management, that market is full. It is closing the gap between the contract and reality fast enough to act on: surfacing a timeline deviation while there is still time to fix it, and tying payment release to a milestone actually being met instead of to an invoice date.",
           "That premise sets the frontend brief. If the dashboard is stale, the product is a spreadsheet with better typography. Freshness is not a nice-to-have here, it is the entire value proposition rendered on screen.",
         ],
       },
@@ -851,7 +943,7 @@ const allProjects: Project[] = [
         body: [],
         bullets: [
           "Built the product frontend in Next.js App Router and TypeScript, with Tailwind and a shadcn/ui component layer shared across the marketing site and both authenticated applications",
-          "Implemented the real-time layer — a Socket.IO provider at the app root feeding live project state, milestone completions, payment releases and AI risk alerts into the dashboard without a refresh",
+          "Implemented the real-time layer, a Socket.IO provider at the app root feeding live project state, milestone completions, payment releases and AI risk alerts into the dashboard without a refresh",
           "Built the authentication and routing guard: JWT-backed sessions restored from storage, role resolution, and a guard that routes admins and clients to their own dashboards and keeps each out of the other's routes before anything renders",
           "Wired server state through TanStack Query against the REST API, so the websocket feed and fetched data stay coherent instead of fighting each other",
           "Integrated Stripe subscription billing for the trial-to-paid conversion path",
@@ -861,9 +953,9 @@ const allProjects: Project[] = [
       challenges: {
         heading: "Engineering challenges",
         body: [
-          "Two sources of truth for the same screen. Every dashboard value arrives twice — once from a fetch, once from a socket event — and the two disagree constantly, because a payment can be released between the request and the response. Getting this right means treating the socket as an invalidation signal into the query cache rather than as a second store writing to the same UI. Get it wrong and the number on screen flickers between two values, which on a spend dashboard is worse than being slow.",
-          "An auth guard is a rendering problem, not just a security one. Clients and admins share a codebase and a domain but must never see each other's routes. The check has to resolve the stored session, decode the token, read the role and redirect before the protected view paints — otherwise a client sees an admin screen for one frame, which is both a leak and a bug report. Doing that without a loading spinner on every navigation is the actual work.",
-          "A marketing site that has to look expensive and load like it does not. The audience is enterprise procurement, so the front page carries an animated gradient headline, blurred ambient lighting and a full dashboard mock — and it is also the first thing a buyer judges the product's competence by. The resolution is keeping the heavy sections below the fold and out of the initial payload, so the hero is interactive long before the rest of the page has arrived.",
+          "Two sources of truth for the same screen. Every dashboard value arrives twice, once from a fetch, once from a socket event, and the two disagree constantly, because a payment can be released between the request and the response. Getting this right means treating the socket as an invalidation signal into the query cache instead of as a second store writing to the same UI. Get it wrong and the number on screen flickers between two values, which on a spend dashboard is worse than being slow.",
+          "An auth guard is a rendering problem, not just a security one. Clients and admins share a codebase and a domain but must never see each other's routes. The check has to resolve the stored session, decode the token, read the role and redirect before the protected view paints, otherwise a client sees an admin screen for one frame, which is both a leak and a bug report. Doing that without a loading spinner on every navigation is the actual work.",
+          "A marketing site that has to look expensive and load like it does not. The audience is enterprise procurement, so the front page carries an animated gradient headline, blurred ambient lighting and a full dashboard mock, and it is also the first thing a buyer judges the product's competence by. The resolution is keeping the heavy sections below the fold and out of the initial payload, so the hero is interactive long before the rest of the page has arrived.",
           "Shipping a trial that has to convert. Fourteen days, no card up front, then a Stripe subscription at the end of it. Subscription state has to stay correct through trial expiry, payment failure and re-subscription, because every one of those states changes what a logged-in user is allowed to see.",
         ],
       },
@@ -893,7 +985,7 @@ const allProjects: Project[] = [
     featured: false,
     role: "Frontend Developer",
     platforms: ["Web"],
-    year: "2025 – 2026",
+    year: "2025 to 2026",
     status: "Production",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     highlights: [
@@ -909,14 +1001,14 @@ const allProjects: Project[] = [
       context: {
         heading: "Context",
         body: [
-          "Athlete to Mogul helps professional athletes move from a sports career into business — mentorship with former athletes who made the same jump, a business playbook of courses and workshops, private networking events and career placement support.",
+          "Athlete to Mogul helps professional athletes move from a sports career into business, mentorship with former athletes who made the same jump, a business playbook of courses and workshops, private networking events and career placement support.",
           "The site is the front door: it explains the programs, tells success stories, publishes insights, and routes people into either a booked call or the course platform.",
         ],
       },
       problem: {
         heading: "The problem",
         body: [
-          "The audience is unusual. Athletes at a career turning point are not browsing at a desk — they are on a phone, they are skeptical of anything that smells like a course-seller, and they respond to people rather than feature lists.",
+          "The audience is unusual. Athletes at a career turning point are not browsing at a desk, they are on a phone, they are skeptical of anything that smells like a course-seller, and they respond to people instead of feature lists.",
           "The site had to feel credible to someone whose whole career has been managed by people selling them something, and it had to move a visitor to a booked conversation quickly, since the actual product is human.",
         ],
       },
@@ -926,7 +1018,7 @@ const allProjects: Project[] = [
         bullets: [
           "Built the marketing and program site in Next.js: services, sponsors and partners, success stories, about, community and FAQ",
           "Built the blog and insights system with listing and article pages",
-          "Implemented the conversion path — Calendly booking integration for registrations and consultations, and hand-off to the external course platform for existing members",
+          "Implemented the conversion path . Calendly booking integration for registrations and consultations, and hand-off to the external course platform for existing members",
           "Built the team section, sponsor marquee, newsletter subscription, FAQ accordion and video hero",
         ],
       },
@@ -934,7 +1026,7 @@ const allProjects: Project[] = [
         heading: "Engineering challenges",
         body: [
           "Two audiences, one homepage. A prospective member and an enrolled member need different things from the same page. The navigation had to serve “convince me” and “let me in” without either one cluttering the other.",
-          "Handing off to systems you do not control. Login goes to an external LMS, registration goes to Calendly, and the privacy policy is hosted elsewhere. Making three third-party surfaces feel like one product is mostly a consistency problem — and a fragility problem, since none of them are yours.",
+          "Handing off to systems you do not control. Login goes to an external LMS, registration goes to Calendly, and the privacy policy is hosted elsewhere. Making three third-party surfaces feel like one product is mostly a consistency problem, and a fragility problem, since none of them are yours.",
         ],
       },
       outcome: {
@@ -950,7 +1042,7 @@ const allProjects: Project[] = [
       ogImage: DEFAULT_OG,
     },
     imageAlt:
-      "Athlete to Mogul — career transition platform for professional athletes",
+      "Athlete to Mogul, career transition platform for professional athletes",
   },
 ];
 
@@ -976,7 +1068,7 @@ export function countProductionProjects(): number {
   return projects.filter((p) => p.status === "Production").length;
 }
 
-/** Numbers used on Home Proof — derived from the archive so they stay checkable. */
+/** Numbers used on Home Proof, derived from the archive so they stay checkable. */
 export function getProofStats() {
   const products = countProductionProjects();
   const platforms = new Set(projects.flatMap((p) => p.platforms)).size;

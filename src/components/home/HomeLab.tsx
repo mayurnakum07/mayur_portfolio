@@ -12,7 +12,7 @@ export default function HomeLab() {
         <SectionHeader
           index="05"
           title={<span id="lab-heading">Lab</span>}
-          description="Active experiments — not shipped products."
+          description="Things I am actively figuring out. Not product pages."
           note={`As of ${currentlyLearning.asOf}`}
         />
 

@@ -1,11 +1,24 @@
 "use client";
 
-import { useCallback, useMemo, useTransition } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+/**
+ * Root cause (archive empty/stuck in production):
+ * This tree previously called `useSearchParams()`, which forced the entire
+ * Featured + Full archive block behind `<Suspense fallback="Loading archive…">`.
+ * Static / first-paint HTML therefore contained no ledger rows — only the
+ * fallback — until client JS hydrated and search params resolved. Slow or
+ * blocked JS left the archive looking empty while the server-rendered header
+ * (and any content outside Suspense) still appeared fine.
+ *
+ * Fix: projects are passed in from the Server Component page (SSG). Filter
+ * state lives here as client state; the URL is updated via `router.replace`
+ * for shareable links, but we never *read* search params through the hook
+ * that suspends. Deep links (`?category=AI`) are applied once on mount.
+ */
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SignalLink from "@/components/ui/SignalLink";
-import FeaturedLead from "./FeaturedLead";
-import FeaturedSupport from "./FeaturedSupport";
 import ArchiveLedgerRow from "./ArchiveLedgerRow";
 import ArchiveCursorPreview from "./ArchiveCursorPreview";
 import ProjectsFilterBar, {
@@ -15,11 +28,10 @@ import ProjectsFilterBar, {
 import {
   PROJECT_CATEGORIES,
   PROJECT_STATUSES,
-  filterProjects,
   type Category,
+  type Project,
   type Status,
 } from "@/data/projects";
-import { homeSelectedProjects } from "@/data/home";
 
 function parseCategory(value: string | null): CategoryFilter {
   if (!value || value === "All") return "All";
@@ -35,103 +47,87 @@ function parseStatus(value: string | null): StatusFilter {
     : "All";
 }
 
-export default function ProjectsArchive() {
-  const router = useRouter();
+function readFiltersFromLocation(): {
+  category: CategoryFilter;
+  status: StatusFilter;
+} {
+  if (typeof window === "undefined") {
+    return { category: "All", status: "All" };
+  }
+  const params = new URLSearchParams(window.location.search);
+  return {
+    category: parseCategory(params.get("category")),
+    status: parseStatus(params.get("status")),
+  };
+}
+
+interface ProjectsArchiveProps {
+  projects: Project[];
+}
+
+export default function ProjectsArchive({ projects }: ProjectsArchiveProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [, startTransition] = useTransition();
 
-  const category = parseCategory(searchParams.get("category"));
-  const status = parseStatus(searchParams.get("status"));
+  // SSR + first client paint always use All/All so all rows are in the HTML.
+  const [category, setCategory] = useState<CategoryFilter>("All");
+  const [status, setStatus] = useState<StatusFilter>("All");
 
-  const filtered = useMemo(
-    () => filterProjects({ category, status }),
-    [category, status]
-  );
+  useEffect(() => {
+    const { category: nextCategory, status: nextStatus } =
+      readFiltersFromLocation();
+    setCategory(nextCategory);
+    setStatus(nextStatus);
 
-  const featuredVisible = useMemo(() => {
-    return homeSelectedProjects.filter((project) => {
+    const onPopState = () => {
+      const next = readFiltersFromLocation();
+      setCategory(next.category);
+      setStatus(next.status);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const filtered = useMemo(() => {
+    return projects.filter((project) => {
       const categoryMatch =
         category === "All" || project.category === category;
       const statusMatch = status === "All" || project.status === status;
       return categoryMatch && statusMatch;
     });
-  }, [category, status]);
-
-  const [featuredLead, ...featuredSupport] = featuredVisible;
+  }, [projects, category, status]);
 
   const updateParams = useCallback(
     (nextCategory: CategoryFilter, nextStatus: StatusFilter) => {
+      setCategory(nextCategory);
+      setStatus(nextStatus);
+
+      // replaceState (not router.replace) keeps filtering fully client-side and
+      // avoids racing soft-navigations when category + status change in sequence.
       const params = new URLSearchParams();
       if (nextCategory !== "All") params.set("category", nextCategory);
       if (nextStatus !== "All") params.set("status", nextStatus);
       const query = params.toString();
-      startTransition(() => {
-        router.replace(query ? `${pathname}?${query}` : pathname, {
-          scroll: false,
-        });
-      });
+      window.history.replaceState(
+        null,
+        "",
+        query ? `${pathname}?${query}` : pathname
+      );
     },
-    [pathname, router]
+    [pathname]
   );
 
   return (
     <>
-      {featuredLead && (
-        <section
-          aria-labelledby="featured-heading"
-          className="section-standard border-b border-ink-border"
-        >
-          <div className="container-page">
-            <SectionHeader
-              index="02"
-              title={<span id="featured-heading">Featured</span>}
-              description="Start here — the editorial cut from Home, given room to breathe before the full catalog."
-              note="Curated · case studies inside"
-            />
-
-            <div className="mt-10 border-t border-ink-border lg:mt-14">
-              <FeaturedLead
-                project={featuredLead}
-                index={1}
-                priority
-              />
-
-              {featuredSupport.length > 0 && (
-                <div className="grid grid-cols-1 gap-0 border-b border-ink-border lg:grid-cols-2 lg:gap-x-12 lg:py-12">
-                  {featuredSupport.map((project, i) => (
-                    <div
-                      key={project.slug}
-                      className={
-                        i === 0
-                          ? "lg:border-r lg:border-ink-border lg:pr-12"
-                          : undefined
-                      }
-                    >
-                      <FeaturedSupport
-                        project={project}
-                        index={i + 2}
-                        reverse={i === 1}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
       <section
         aria-labelledby="archive-index-heading"
         className="section-major"
       >
         <div className="container-page">
           <SectionHeader
-            index={featuredLead ? "03" : "02"}
+            index="03"
             title={<span id="archive-index-heading">Full archive</span>}
             description="Every product in the catalog. Filter by category or status, then open a case study."
-            note="Indexed · filterable"
+            note="Filterable"
           />
 
           <div className="mt-10 lg:mt-14">
@@ -145,7 +141,10 @@ export default function ProjectsArchive() {
           </div>
 
           <ArchiveCursorPreview>
-            <div className="mt-2 border-t border-ink-border">
+            <div
+              key={`${category}-${status}`}
+              className="archive-list-transition mt-2 border-t border-ink-border"
+            >
               {filtered.length > 0 ? (
                 filtered.map((project, index) => (
                   <ArchiveLedgerRow
@@ -155,16 +154,18 @@ export default function ProjectsArchive() {
                   />
                 ))
               ) : (
-                <p className="py-12 text-body-md text-paper-muted">
-                  No projects match these filters.{" "}
+                <div className="py-12">
+                  <p className="text-body-md text-paper-muted">
+                    No projects match these filters.
+                  </p>
                   <button
                     type="button"
-                    className="signal-link signal-link--always min-h-0 text-body-md"
+                    className="signal-link signal-link--always mt-4 min-h-[44px] text-body-md"
                     onClick={() => updateParams("All", "All")}
                   >
-                    Clear filters
+                    Reset filters
                   </button>
-                </p>
+                </div>
               )}
             </div>
           </ArchiveCursorPreview>
@@ -179,7 +180,7 @@ export default function ProjectsArchive() {
                 Don&apos;t see what you&apos;re looking for?
               </p>
               <p className="mt-3 max-w-prose text-body-md text-paper-muted">
-                Tell me what you need — I&apos;ll point you to the right piece
+                Tell me what you need. I&apos;ll point you to the right piece
                 of work, or say so if it isn&apos;t here.
               </p>
               <div className="mt-6">

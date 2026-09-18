@@ -61,7 +61,7 @@ export default function CaseStudyArticle({
             ) : (
               <p className="max-w-prose text-body-md text-paper-muted">
                 A detailed write-up of this project is in progress. In the
-                meantime, the live product is linked below — or{" "}
+                meantime, the live product is linked below, or{" "}
                 <SignalLink
                   href="/contact"
                   className="inline min-h-0 text-body-md"

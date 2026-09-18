@@ -1,12 +1,12 @@
 /**
  * Copy for /about. This page must NOT reuse the homepage About/Experience
- * sections — it exists to say things the homepage does not.
+ * sections. It exists to say things the homepage does not.
  */
 
 export const aboutIntro = [
-  "I build web and mobile products, mostly in React, Next.js and React Native, and I have been doing it full time since August 2023 at DI Solutions in Surat. Ten of the things I have worked on are in production right now, across five platforms and clients in three countries.",
-  "I got here the unglamorous way — starting on interfaces, then following the problems underneath them. A screen that had to stay responsive on cheap Android hardware taught me more about rendering than any tutorial did. A calendar that had to agree with Google, Apple and Microsoft at the same time taught me that most hard frontend problems are actually data problems in a costume.",
-  "What I am doing now is the part I find most interesting: making products legible to AI systems rather than bolting a chat box onto them. On ByDesign that meant designing Model Context Protocol tools with schemas tight enough that a model picks the right one without guessing — which turns out to be a product design problem as much as an engineering one.",
+  "I build web and mobile products, mostly in React, Next.js and React Native. I spent three years full time at DI Solutions in Surat (August 2023 to August 2026), and I am now freelancing while looking for full-time roles and freelance work. Ten of the things I have worked on are in production right now, across five platforms and clients in three countries.",
+  "I got here the long way: interfaces first, then the problems underneath them. A screen that had to stay responsive on cheap Android hardware taught me more about rendering than any tutorial did. A calendar that had to agree with Google, Apple and Microsoft at the same time taught me that most hard frontend problems are actually data problems wearing a UI costume.",
+  "What I am doing now is the part I find most interesting: making products usable by AI systems, not just bolting a chat box onto them. On ByDesign that meant designing Model Context Protocol tools with schemas tight enough that a model picks the right one without guessing. Turns out that is as much a product design problem as an engineering one.",
 ];
 
 export interface WorkPrinciple {
@@ -18,7 +18,7 @@ export const howIWork: WorkPrinciple[] = [
   {
     title: "I scope by what breaks first",
     description:
-      "Before writing anything I look for the constraint that will decide the architecture — a payment flow that cannot double-charge, a widget that cannot call an API, a sync that cannot duplicate. Build around that, and the rest of the decisions get easier. Guess at it, and you rewrite.",
+      "Before writing anything I look for the constraint that will decide the architecture: a payment flow that cannot double-charge, a widget that cannot call an API, a sync that cannot duplicate. Build around that, and the rest of the decisions get easier. Guess at it, and you rewrite.",
   },
   {
     title: "Ship the thin version, then deepen it",
@@ -38,7 +38,7 @@ export const howIWork: WorkPrinciple[] = [
   {
     title: "Native where the platform demands it, shared everywhere else",
     description:
-      "Cross-platform is a means, not a principle. Widgets, notifications and calendar permissions are genuinely native work. I draw that line deliberately rather than fighting an abstraction that was never going to hold.",
+      "Cross-platform is a means, not a principle. Widgets, notifications and calendar permissions are genuinely native work. I draw that line on purpose instead of fighting an abstraction that was never going to hold.",
   },
   {
     title: "I say what I do not know",
@@ -50,11 +50,11 @@ export const howIWork: WorkPrinciple[] = [
 export const currentlyLearning = {
   asOf: "August 2026",
   items: [
-    "Deepening MCP server design and agent tool architecture — specifically how tool granularity affects model accuracy",
+    "MCP server design and agent tool architecture, especially how tool granularity affects model accuracy",
     "Server components and streaming SSR, and where they actually beat a client-rendered app",
-    "Measuring rather than guessing: Core Web Vitals, real-device profiling, and treating LCP as a budget rather than a score",
+    "Measuring instead of guessing: Core Web Vitals, real-device profiling, and treating LCP as a budget, not a vanity score",
   ],
 };
 
 export const beyondCode =
-  "I live and work in Surat, Gujarat. Outside of building things, I am the person who reads the changelog of an app I use daily and has opinions about it. I work with clients across the US, Taiwan and India, which means my week has an odd shape and a lot of timezone maths — a habit that has quietly made me better at building software that respects other people's clocks.";
+  "I live and work in Surat, Gujarat. Outside of building things, I am the person who reads the changelog of an app I use daily and has opinions about it. I work with clients across the US, Taiwan and India, so my week has an odd shape and a lot of timezone maths. That habit has quietly made me better at building software that respects other people's clocks.";

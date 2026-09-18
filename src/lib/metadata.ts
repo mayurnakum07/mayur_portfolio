@@ -50,4 +50,4 @@ export function createPageMetadata({
   };
 }
 
-export const defaultDescription = `${siteConfig.name} — ${siteConfig.title}. React, Next.js, React Native, and AI-native products built for production.`;
+export const defaultDescription = `${siteConfig.name}, ${siteConfig.title}. React, Next.js, React Native, and AI features in products that ship.`;

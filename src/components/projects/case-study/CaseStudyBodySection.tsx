@@ -44,7 +44,7 @@ export default function CaseStudyBodySection({
               className="flex gap-3 text-body-md text-paper-muted"
             >
               <span className="font-mono text-meta-sm text-paper-faint" aria-hidden>
-                —
+                ·
               </span>
               <span>{bullet}</span>
             </li>

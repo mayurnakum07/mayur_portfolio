@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: `Contact | Mayur - ${siteConfig.title}`,
   description:
-    "Get in touch with Mayur for AI product development, web applications, mobile apps, and full-time opportunities.",
+    "Email Mayur about a full-time role or freelance product work. Based in Surat, remote-first.",
   path: "/contact",
   ogImage: "contact",
   keywords: [

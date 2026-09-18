@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Params) {
   }
 
   return createPageMetadata({
-    title: `${project.name} — Case Study | Mayur Nakum`,
+    title: `${project.name} · Case Study | Mayur Nakum`,
     description: project.summary,
     path: `/projects/${project.slug}`,
     // Screenshots have no social card of their own, so use the shared one.

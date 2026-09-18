@@ -30,7 +30,7 @@ export default function AboutStrengths() {
           Technical strengths
         </h2>
         <p className="mt-4 max-w-prose text-body-md text-paper-muted">
-          What I ship for teams — open the archive to see it in production.
+          What I ship for teams. Open the archive to see it live.
         </p>
 
         <ul className="mt-10 border-t border-ink-border">

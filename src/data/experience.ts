@@ -4,16 +4,26 @@ export interface Contribution {
   description: string;
 }
 
+/** Current status shown above past roles on /about. */
+export const currentWork = {
+  title: "AI Software Engineer",
+  label: "Freelance",
+  location: "Surat, Gujarat · Remote",
+  duration: "August 2026 to Present",
+  description:
+    "Freelancing after three years at DI Solutions. Open to full-time roles and freelance product work across web, mobile, and AI.",
+};
+
 export const primaryExperience = {
   title: "AI Software Engineer",
   company: "DI Solutions",
   companyUrl: "https://disolutions.net",
   location: "Surat, Gujarat",
   employmentType: "Full Time",
-  /** Static string — avoid Date() at module load (SSR/client hydration drift). */
-  duration: "August 2023 — August 2026",
+  /** Static string. Avoid Date() at module load (SSR/client hydration drift). */
+  duration: "August 2023 to August 2026",
   description:
-    "Developing production-grade web and mobile applications using React, Next.js and React Native while collaborating with designers, backend developers and clients to deliver scalable digital products.",
+    "Built and shipped web and mobile apps with React, Next.js and React Native, working with designers, backend developers and clients from brief through release.",
   technologies: [
     "React",
     "Next.js",
@@ -27,10 +37,10 @@ export const primaryExperience = {
     "Git",
   ],
   impact: [
-    "Production Ready Applications",
-    "Cross Platform Development",
-    "AI Integrated Solutions",
-    "Performance Optimized UI",
+    "Apps in production",
+    "Cross-platform mobile",
+    "AI features in live products",
+    "Performance-focused UI",
   ],
 };
 
@@ -39,24 +49,24 @@ export const contributions: Contribution[] = [
     id: "production-apps",
     title: "Production Apps",
     description:
-      "Built and maintained production-ready applications used in real business environments.",
+      "Built and maintained apps that real businesses run day to day.",
   },
   {
     id: "cross-platform",
     title: "Cross-Platform Development",
     description:
-      "Developed Android and iOS applications using React Native and Expo.",
+      "Shipped Android and iOS apps with React Native and Expo.",
   },
   {
     id: "modern-frontend",
     title: "Modern Frontend",
     description:
-      "Built scalable interfaces using React, Next.js, TypeScript and Tailwind CSS.",
+      "Built interfaces with React, Next.js, TypeScript and Tailwind CSS.",
   },
   {
     id: "ai-integration",
     title: "AI Integration",
     description:
-      "Integrated AI-powered features, APIs and automation into modern digital products.",
+      "Wired AI features, APIs and automation into products already in use.",
   },
 ];

@@ -9,30 +9,30 @@ export const journeyMilestones: JourneyMilestone[] = [
     id: "started-coding",
     title: "Started Coding",
     description:
-      "Discovered programming and fell in love with solving problems through software.",
+      "Picked up programming and stuck with it because building things that work is satisfying.",
   },
   {
     id: "frontend",
     title: "Frontend Development",
     description:
-      "Mastered modern frontend development using React, Next.js and TypeScript while creating polished user experiences.",
+      "Got serious about React, Next.js and TypeScript, and learned to ship interfaces that hold up under real use.",
   },
   {
     id: "mobile",
     title: "Mobile Development",
     description:
-      "Expanded into React Native to build high-performance Android and iOS applications from a single codebase.",
+      "Moved into React Native so Android and iOS could share one codebase without feeling like a compromise.",
   },
   {
     id: "ai",
     title: "AI Engineering",
     description:
-      "Today I'm focused on integrating AI, LLMs and intelligent automation into scalable products that create real-world impact.",
+      "Now I spend most of my time putting LLMs and agent tooling into products that already have users, not demos.",
   },
 ];
 
 export const currentFocus = [
   "AI Engineering",
-  "Modern Web Applications",
-  "Cross-platform Mobile Apps",
+  "Web apps that ship",
+  "Cross-platform mobile",
 ] as const;

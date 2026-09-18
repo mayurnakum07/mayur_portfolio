@@ -19,8 +19,8 @@ export default function HomeSelectedWork() {
         <SectionHeader
           index="03"
           title={<span id="selected-work-heading">Selected work</span>}
-          description="Three production pieces worth opening first — an AI workspace and two apps shipping to real users."
-          note="Editorial cut · case studies inside"
+          description="Three shipped pieces to open first: an AI workspace and two apps with real users."
+          note="Case studies inside"
         />
 
         <div className="mt-12 border-t border-ink-border lg:mt-16">

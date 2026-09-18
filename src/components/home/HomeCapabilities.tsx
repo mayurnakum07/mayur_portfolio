@@ -13,7 +13,7 @@ export default function HomeCapabilities() {
         <SectionHeader
           index="04"
           title={<span id="capabilities-heading">What I build</span>}
-          description="Open the archive by category — each row leads to a case study."
+          description="Browse by category. Each row opens a case study."
         />
 
         <FadeUp className="mt-12 lg:mt-16">

@@ -23,7 +23,7 @@ function Portrait({
       <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
         <Image
           src={PROFILE_SRC}
-          alt={`${siteConfig.name} — ${siteConfig.title}`}
+          alt={`${siteConfig.name}, ${siteConfig.title}`}
           fill
           priority
           sizes={sizes}
@@ -107,7 +107,7 @@ export default function HomeOpening() {
               className="mb-6 inline-flex items-center gap-2.5 font-mono text-meta-sm text-paper-muted sm:mb-8"
             >
               <span className="status-dot status-dot--live" aria-hidden />
-              Available for new work
+              {siteConfig.availability}
             </div>
 
             <div className="grid grid-cols-12 items-start gap-x-4 gap-y-6">
@@ -116,10 +116,10 @@ export default function HomeOpening() {
                   data-hero-item
                   className="pb-[0.2em] font-display text-[clamp(1.5rem,4.5vw,3rem)] leading-[1.25] tracking-[-0.03em] text-paper text-balance"
                 >
-                  Intelligent products,
+                  Products that hold up,
                   <br />
                   <span className="text-paper-muted">
-                    shipped for production.
+                    not just look good in a demo.
                   </span>
                 </p>
               </div>
@@ -140,8 +140,8 @@ export default function HomeOpening() {
                 {siteConfig.title}
               </p>
               <p className="mt-4 text-body-lg text-paper-muted sm:mt-5">
-                Web, mobile, and AI-native systems — designed around real
-                constraints, not demos.
+                Web, mobile, and AI systems built around real constraints,
+                not pitch decks.
               </p>
             </div>
 

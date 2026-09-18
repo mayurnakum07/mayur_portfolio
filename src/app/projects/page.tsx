@@ -1,13 +1,14 @@
-import { Suspense } from "react";
 import ProjectsArchiveHeader from "@/components/projects/archive/ProjectsArchiveHeader";
+import ProjectsFeatured from "@/components/projects/archive/ProjectsFeatured";
 import ProjectsArchive from "@/components/projects/archive/ProjectsArchive";
+import { projects } from "@/data/projects";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: `Projects | Mayur - ${siteConfig.title}`,
   description:
-    "A curated archive of production-ready applications across AI, web and mobile — built to solve real-world business problems through thoughtful engineering.",
+    "Apps and platforms I have shipped across AI, web and mobile. Filter by category or status, then open a case study.",
   path: "/projects",
   ogImage: "projects",
   keywords: [
@@ -21,21 +22,17 @@ export const metadata = createPageMetadata({
   ],
 });
 
-function ArchiveFallback() {
-  return (
-    <div className="container-page section-standard">
-      <p className="font-mono text-meta-sm text-paper-faint">Loading archive…</p>
-    </div>
-  );
-}
-
+/**
+ * Featured is a Server Component; the archive list receives `projects` as props
+ * so all rows are present in the static HTML. Filtering is client-only state —
+ * see ProjectsArchive.tsx for why we no longer gate this tree on useSearchParams.
+ */
 export default function ProjectsPage() {
   return (
     <main className="w-full min-w-0">
       <ProjectsArchiveHeader />
-      <Suspense fallback={<ArchiveFallback />}>
-        <ProjectsArchive />
-      </Suspense>
+      <ProjectsFeatured />
+      <ProjectsArchive projects={projects} />
     </main>
   );
 }

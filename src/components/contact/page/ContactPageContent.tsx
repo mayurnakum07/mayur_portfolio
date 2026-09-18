@@ -30,13 +30,13 @@ const CONVERSATIONS = [
   {
     label: "A role or hire",
     note: "Full-time or long-term",
-    subject: "Role enquiry — portfolio",
+    subject: "Role enquiry from portfolio",
     body: "Hi Mayur,\n\nI'm reaching out about a role.\n\nWhat we're building:\n\nTimeline / location:\n\n",
   },
   {
     label: "A product to ship",
     note: "Contract or project",
-    subject: "Project enquiry — portfolio",
+    subject: "Project enquiry from portfolio",
     body: "Hi Mayur,\n\nI'm working on a product and need help shipping it.\n\nWhat it is:\n\nThe hard constraint:\n\n",
   },
   {
@@ -81,13 +81,13 @@ export default function ContactPageContent() {
 
               <p className="mt-8 max-w-measure text-body-lg text-paper-muted">
                 If you have a product to ship, a hard constraint to design
-                around, or a role that needs someone who has done this before —
+                around, or a role that needs someone who has done this before,
                 write directly.
               </p>
 
               <div className="mt-10 sm:mt-12">
                 <p className="font-mono text-meta-sm text-paper-faint">
-                  Primary — email
+                  Email
                 </p>
                 <SignalLink
                   href={`mailto:${siteConfig.email}`}
@@ -132,8 +132,8 @@ export default function ContactPageContent() {
               Start a conversation
             </h2>
             <p className="mt-3 max-w-prose text-body-md text-paper-muted">
-              Pick a path — opens a short draft in your mail client so you can
-              write without starting from a blank subject line.
+              Pick a path. It opens a short draft in your mail client so you are
+              not starting from a blank subject line.
             </p>
 
             <ul className="mt-8 border-t border-ink-border">
@@ -189,8 +189,7 @@ export default function ContactPageContent() {
                     aria-hidden
                   />
                   <span>
-                    Open to full-time roles, contract work, and AI product
-                    development
+                    {siteConfig.availability}
                   </span>
                 </dd>
               </div>

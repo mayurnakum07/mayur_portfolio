@@ -45,7 +45,7 @@ export default function AboutOpening() {
                   <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
                     <Image
                       src={PROFILE_SRC}
-                      alt={`${siteConfig.name} — ${siteConfig.title}`}
+                      alt={`${siteConfig.name}, ${siteConfig.title}`}
                       fill
                       priority
                       sizes="120px"
@@ -57,8 +57,9 @@ export default function AboutOpening() {
             </div>
 
             <p className="mt-8 max-w-measure text-body-lg text-paper-muted">
-              {siteConfig.tagline} Full time at DI Solutions in Surat since
-              August 2023 — building for clients across the US, Taiwan, and
+              {siteConfig.tagline} Previously full time at DI Solutions in
+              Surat (August 2023 to August 2026). Now freelancing and open to
+              full-time roles, building for clients across the US, Taiwan, and
               India.
             </p>
           </div>
@@ -68,7 +69,7 @@ export default function AboutOpening() {
               <div className="artifact-frame artifact-frame--static relative aspect-[3/4] w-full">
                 <Image
                   src={PROFILE_SRC}
-                  alt={`${siteConfig.name} — ${siteConfig.title}`}
+                  alt={`${siteConfig.name}, ${siteConfig.title}`}
                   fill
                   priority
                   sizes="280px"
