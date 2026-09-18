@@ -3,6 +3,7 @@
  *
  * The homepage featured grid, the /projects showcase and every /projects/[slug]
  * case study read from this file. No project literals belong in JSX.
+ * Display order follows array position — move entries to reorder.
  */
 
 export type Platform = "Web" | "iOS" | "Android" | "macOS" | "Admin Dashboard";
@@ -38,7 +39,6 @@ export interface Project {
   summary: string;
   category: Category;
   featured: boolean;
-  order: number;
 
   role?: string;
   platforms: Platform[];
@@ -82,7 +82,6 @@ const allProjects: Project[] = [
       "A productivity workspace that keeps tasks, notes, calendar events, habits and sharing in one place instead of scattered across four apps. It runs on web, iOS, Android and macOS from a largely shared codebase, with Model Context Protocol support that exposes the workspace as a tool surface an AI assistant can act on.",
     category: "AI",
     featured: true,
-    order: 1,
     role: "Frontend & Mobile Engineer",
     platforms: ["Web", "iOS", "Android", "macOS"],
     year: "2025 – Present",
@@ -172,7 +171,6 @@ const allProjects: Project[] = [
       "A React Native + Expo customer app for Devli, a pooja / ritual essentials store. It was migrated from a multi-store grocery+pharmacy MargERP marketplace into a single-seller Grocup experience — catalog, cart, OTP auth, orders, maps, voice search and deep links — with saffron/maroon Pooja branding for Android and iOS.",
     category: "Mobile",
     featured: true,
-    order: 2,
     role: "Frontend & Mobile Engineer",
     platforms: ["iOS", "Android"],
     year: "2026 – Present",
@@ -201,7 +199,8 @@ const allProjects: Project[] = [
     ],
     links: {
       live: "https://www.devli.in/",
-      playStore: "https://play.google.com/store/apps/details?id=com.devli.grocup",
+      playStore:
+        "https://play.google.com/store/apps/details?id=com.devli.grocup",
     },
     caseStudy: {
       context: {
@@ -263,7 +262,6 @@ const allProjects: Project[] = [
       "The storefront for a Surat jewellery house — over 100 pieces across curated collections, with an enquiry and consultation flow instead of a checkout. Behind it is an admin dashboard where the client manages products, categories and incoming enquiries.",
     category: "Web",
     featured: false,
-    order: 3,
     role: "Full Stack Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2026",
@@ -345,7 +343,6 @@ const allProjects: Project[] = [
       "An iOS app that delivers Bible verses curated to what someone is actually going through. A daily mood check-in shapes which scripture surfaces, widgets refresh through the day, and an AI chat explains verses and generates devotionals in context.",
     category: "Mobile",
     featured: true,
-    order: 4,
     role: "React Native Developer",
     platforms: ["iOS"],
     year: "2025 – 2026",
@@ -433,6 +430,74 @@ const allProjects: Project[] = [
   },
 
   {
+    slug: "bizscrape",
+    name: "BizScrape",
+    tagline:
+      "A powerful business data scraping platform for discovering and organizing leads.",
+    summary:
+      "A web platform that helps users discover businesses, extract structured business data, and organize results for lead generation and research.",
+    category: "Platform",
+    featured: true,
+    role: "Frontend Engineer",
+    platforms: ["Web"],
+    year: "2026",
+    status: "Completed",
+    stack: ["Next.js", "TypeScript", "React", "Tailwind CSS", "IndexedDB"],
+    highlights: [
+      "Built a business discovery and scraping workflow",
+      "Implemented local data storage with IndexedDB",
+      "Designed responsive interfaces for managing scraped results",
+    ],
+    links: {
+      live: "https://github.com/mayurnakum07/bizscrape?tab=readme-ov-file",
+      source: "https://github.com/mayurnakum07/bizscrape",
+    },
+    caseStudy: {
+      context: {
+        heading: "Context",
+        body: [
+          "BizScrape was built as a business research and lead-generation platform focused on collecting and organizing structured business data.",
+        ],
+      },
+      problem: {
+        heading: "The problem",
+        body: [
+          "Manually researching businesses across multiple sources is time-consuming and makes it difficult to organize large amounts of collected data.",
+        ],
+      },
+      contribution: {
+        heading: "What I built",
+        body: [],
+        bullets: [
+          "Built the core frontend architecture using Next.js and TypeScript",
+          "Created the business discovery and scraping workflow",
+          "Implemented IndexedDB-based local storage for scraped business data",
+          "Built interfaces for searching, reviewing, and managing collected results",
+          "Designed responsive and reusable UI components",
+        ],
+      },
+      challenges: {
+        heading: "Engineering challenges",
+        body: [
+          "Handling large volumes of scraped business records efficiently while keeping the interface responsive and providing reliable local persistence.",
+        ],
+      },
+      outcome: {
+        heading: "Outcome",
+        body: [
+          "Delivered a functional business scraping platform that streamlines business discovery, data collection, and lead organization.",
+        ],
+      },
+    },
+    images: {
+      card: "/assets/projects/bizscrape.png",
+      hero: "/assets/projects/bizscrape.png",
+      ogImage: DEFAULT_OG,
+    },
+    imageAlt: "BizScrape business data scraping platform dashboard",
+  },
+
+  {
     slug: "bbpatrol",
     name: "BBpatrol 黑箱糾察隊",
     tagline: "Crowd-sourced speed trap reporting for Taiwan",
@@ -440,7 +505,6 @@ const allProjects: Project[] = [
       "A driving safety app used in Taiwan. Drivers report mobile speed cameras and road conditions in real time; other drivers get voice alerts as they approach, delivered through a floating window that stays visible over their navigation app.",
     category: "Mobile",
     featured: true,
-    order: 5,
     role: "React Native Developer",
     platforms: ["Android"],
     year: "2024 – 2026",
@@ -531,7 +595,6 @@ const allProjects: Project[] = [
       "An event platform for people who host professional communities. It covers the full lifecycle — create the event, sell tickets, promote it, check guests in, and keep the room connected afterwards — shipped to web, iOS and Android from a shared React and Ionic codebase.",
     category: "AI",
     featured: true,
-    order: 6,
     role: "Frontend & Mobile Developer",
     platforms: ["Web", "iOS", "Android"],
     year: "2025",
@@ -608,7 +671,6 @@ const allProjects: Project[] = [
       "A point-of-sale platform for restaurants spanning counter service, table service, retail and a back office. Its commercial hook is dual pricing — a cash/card price split that lets an operator run at effectively zero card processing fees.",
     category: "Web",
     featured: false,
-    order: 7,
     role: "Frontend Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2025 – 2026",
@@ -670,7 +732,6 @@ const allProjects: Project[] = [
       "A mobile app that lets a family record, visualise and pass down its medical history. Health events, diagnoses and milestones map onto an interactive family tree, and a structured summary can be shared with relatives or a doctor.",
     category: "Mobile",
     featured: false,
-    order: 8,
     role: "React Native Developer",
     platforms: ["iOS", "Android"],
     year: "2026",
@@ -744,7 +805,6 @@ const allProjects: Project[] = [
       "A platform enterprises use to run outsourced services end to end — match a project to the right vendor, track it against milestones, catch schedule risk before it becomes a slipped deadline, and release payment when the work is signed off. A public marketing site fronts an authenticated product with separate client and admin applications behind it, kept live by a websocket layer.",
     category: "Platform",
     featured: false,
-    order: 9,
     role: "Frontend Developer",
     platforms: ["Web", "Admin Dashboard"],
     year: "2026",
@@ -831,7 +891,6 @@ const allProjects: Project[] = [
       "The front door for a program that helps professional athletes move from a sports career into business. It explains the programs, tells success stories, publishes insights, and routes visitors into either a booked call or the course platform.",
     category: "Web",
     featured: false,
-    order: 10,
     role: "Frontend Developer",
     platforms: ["Web"],
     year: "2025 – 2026",
@@ -895,10 +954,8 @@ const allProjects: Project[] = [
   },
 ];
 
-/** Display order everywhere on the site. */
-export const projects: Project[] = [...allProjects].sort(
-  (a, b) => a.order - b.order,
-);
+/** Display order is array position in this file. */
+export const projects: Project[] = allProjects;
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
@@ -923,8 +980,8 @@ export function countProductionProjects(): number {
 export function getProofStats() {
   const products = countProductionProjects();
   const platforms = new Set(projects.flatMap((p) => p.platforms)).size;
-  const onStores = projects.filter(
-    (p) => Boolean(p.links.appStore || p.links.playStore)
+  const onStores = projects.filter((p) =>
+    Boolean(p.links.appStore || p.links.playStore),
   ).length;
 
   return {
@@ -941,8 +998,7 @@ export function filterProjects(options: {
   const { category = "All", status = "All" } = options;
 
   return projects.filter((project) => {
-    const categoryMatch =
-      category === "All" || project.category === category;
+    const categoryMatch = category === "All" || project.category === category;
     const statusMatch = status === "All" || project.status === status;
     return categoryMatch && statusMatch;
   });
